@@ -1,0 +1,63 @@
+#auth_tab.aside_form_holder
+  .mob_control_title
+    a.mob_back_btn.closeAsideBtn(href='#')
+      img(src='img/svg/arrow_l.svg')
+    span.fz_40 Вход на сайт
+  form.submitEmulator(action='#')
+    .login_form
+      .form_title.land_only
+        span.fz_16.fw_b Войти на сайт
+
+      .f_cell.cell_v1
+        .input_w
+          input#login_email.f_input.input_v2.checkEmpty()
+          .focus_accent
+          label.label_v2(for='login_email')
+            span.fz_16 E-mail
+
+      .f_cell.cell_v1
+        .input_w.has_link
+          input#login_pass.f_input.input_v2.checkEmpty()
+          .focus_accent
+          label.label_v2(for='login_pass')
+            span.fz_16 Пароль
+          a.remind_link(href='#')
+            span.fz_14 Забыли?
+
+      .f_cell.cell_v1.text_center
+        button.btn_red.btn_v1.login_btn
+          span.fz_16 Войти
+
+      .alter_auth_block
+        p.text_center
+          span.fz_14 Или войдите через
+
+        ul.alter_auth
+          li
+            a.alter_auth_link(href='#')
+              img(src='img/svg/social-vk.svg' width=48 height=48)
+          li
+            a.alter_auth_link(href='#')
+              img(src='img/svg/social-fb.svg' width=48 height=48)
+          li
+            a.alter_auth_link(href='#')
+              img(src='img/svg/social-ok.svg' width=48 height=48)
+          li
+            a.alter_auth_link(href='#')
+              img(src='img/svg/social-gg.svg' width=48 height=48)
+
+        p.auth_tip
+          span.fz_12 Сайт не сможет делать публикаций  в соц. сетях.<br>Продолжая, вы принимаете условия&nbsp;
+          a.gl_link.fz_12(href='#') Соглашения
+          span .
+
+  .reg_block.land_only_
+    .form_title.mod_1
+      span.fz_16.fw_b Впервые у нас?
+
+    .text_center
+      a.btn_v1.reg_btn.btn_white_blue.tabBtn(href='#reg_tab')
+        span.fz_16 Зарегистрируйтесь
+
+  .aside_footer.land_only
+    img(src='img/svg/island.svg')

@@ -1,0 +1,31 @@
+[
+  {
+    "title": " О нас",
+    "href": "about.html",
+    "class": "land_only"
+  },
+  {
+    "title": "Условия",
+    "href": "conditions.html",
+    "class": "land_hidden"
+  },
+  {
+    "title": "Помощь",
+    "href": "help.html"
+  },
+  {
+    "title": "Соглашение",
+    "href": "agreement.html",
+    "class": "land_only"
+  },
+  {
+    "title": "Правила",
+    "href": "rules.html",
+    "class": "land_only"
+  },
+  {
+    "title": "Полная версия",
+    "href": "full.html",
+    "class": "land_hidden"
+  }
+]

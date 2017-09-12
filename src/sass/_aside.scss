@@ -1,0 +1,201 @@
+//*************************** aside
+
+.aside_form_holder {
+
+  p {
+    color: #a5a5a5;
+    line-height: 1.4;
+    overflow: hidden;
+  }
+
+  .landscape & {
+    @extend %bx_shdw;
+    min-height: 100%;
+    background: #f6fafc;
+  }
+}
+
+.login_form {
+
+  .portrait & {
+    padding: 4.8em 3.5em 1em;
+
+    .alter_auth_block {
+      background: #f3f3f3;
+      padding: 3.2em 1em 1em;
+      margin: 5.3em -3.5em 0;
+
+      .fz_14 {
+        font-size: 2.9em;
+      }
+    }
+
+    .alter_auth {
+      padding-top: 1.5em;
+      padding-bottom: 2.2em;
+    }
+
+    .alter_auth_link {
+      width: 4.4em;
+      height: 4.4em;
+      font-size: 2em;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .auth_tip {
+      font-size: 1.5em;
+      line-height: 1.6;
+      padding-bottom: 1.6em;
+    }
+
+    .f_cell {
+
+      &.cell_v1 {
+        margin-bottom: 4.4em;
+      }
+
+      .input_w {
+        font-size: 1.9em;
+      }
+    }
+
+    .btn_v1 {
+      font-size: 2.2em;
+      margin-top: .7em;
+      width: 17.5em;
+      padding-left: 1em;
+      padding-right: 1em;
+      max-width: 100%;
+    }
+  }
+
+  .landscape & {
+    padding: 0 6em;
+    border-bottom: 1px solid #e6e8ea;
+  }
+
+  .portrait ._reg & {
+    padding-top: 3.5em;
+  }
+}
+
+.aside_footer {
+  padding-bottom: 1.2em;
+  background: rgb(246, 250, 252);
+  background: -moz-linear-gradient(top, rgba(246, 250, 252, 1) 0%, rgba(161, 223, 243, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(246, 250, 252, 1) 0%, rgba(161, 223, 243, 1) 100%);
+  background: linear-gradient(to bottom, rgba(246, 250, 252, 1) 0%, rgba(161, 223, 243, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6fafc', endColorstr='#a1dff3', GradientType=0);
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.form_title {
+  text-align: center;
+  padding: 2.5em 4em;
+
+  &.mod_1 {
+    padding-bottom: 1.2em;
+  }
+
+  &.mod_2 {
+    padding-bottom: 1.6em;
+  }
+}
+
+.alter_auth {
+  text-align: center;
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+    padding: .75em;
+  }
+}
+
+.alter_auth_link {
+  @include transition_all(opacity .3s);
+  display: block;
+  width: 4.8em;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.auth_tip {
+  padding-bottom: 3.3em;
+  text-align: center;
+
+  ._reg & {
+    padding-bottom: 2.5em;
+  }
+}
+
+.reg_block {
+  padding: 1em 3em;
+
+  ._reg & {
+    min-height: 14em;
+  }
+
+  .portrait & {
+    font-size: 1.8em;
+    padding-bottom: 3em;
+  }
+
+  .landscape & {
+    min-height: 17em;
+    border-top: 1px solid #e6e8ea;
+  }
+}
+
+.remind_link {
+  position: absolute;
+  right: 0;
+  top: .5em;
+  z-index: 2;
+  color: $gl_blue;
+}
+
+.mob_control_title {
+  background: #f3f3f3;
+  color: #000;
+  padding: 2.5em 8.5em 1.6em;
+  min-height: 8em;
+  position: relative;
+
+  .landscape & {
+    display: none;
+  }
+}
+
+.mob_back_btn {
+  position: absolute;
+  width: 8em;
+  height: 8em;
+  left: .5em;
+  top: 50%;
+  margin-top: -3.5em;
+
+  img {
+    display: block;
+    width: 1em;
+    position: absolute;
+    top: 1.7em;
+    left: 50%;
+    margin-left: -1em;
+  }
+}

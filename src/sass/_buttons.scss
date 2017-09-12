@@ -1,0 +1,65 @@
+//************  buttons
+
+.btn_v1 {
+  height: 4em;
+
+  &.filter_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 4.1em;
+    font: 1em/2.4 $PFDinDisplayProBold;
+    //letter-spacing: -.09em;
+  }
+
+  &.login_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 3em;
+    font: 1em/2.4 $PFDinDisplayProBold;
+  }
+
+  &.reg_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 2.5em;
+    font: 1em/2.4 $PFDinDisplayProBold;
+  }
+}
+
+.btn_white_blue {
+  @include transition_all(background .3s, color .3s);
+  border: 1px solid $gl_blue;
+  color: $gl_blue;
+  background: transparent;
+
+  &:hover {
+    background: $gl_blue;
+    color: #fff;
+  }
+
+  &:focus,
+  &:active {
+    background: darken($gl_blue, 5%);
+  }
+}
+
+.btn_red {
+  @include transition_all(background .3s);
+  color: #fff;
+  background: #ff4500;
+
+  &:hover {
+    background: darken(#ff4500, 5%);
+  }
+
+  &:focus,
+  &:active {
+    background: darken(#ff4500, 10%);
+  }
+
+}
+
+

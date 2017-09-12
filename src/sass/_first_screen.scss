@@ -1,0 +1,323 @@
+%bx_shdw {
+  box-shadow: 0 0 18px rgba(0, 0, 0, .18);
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  //overflow: hidden;
+  font-size: 10px;
+}
+
+body {
+  @include transition_all(opacity .3s);
+  font-family: $PFDinDisplayProReg;
+  font-size: 1em;
+  line-height: 1.2;
+  background: #fff;
+  opacity: 0;
+  color: $default_t_color;
+  //opacity: 0;
+
+  &.landscape {
+    background: #f1f1f1;
+  }
+
+  &.portrait {
+    &.search_opened {
+      overflow: hidden;
+    }
+
+    &.user_menu_opened {
+
+      .footer {
+        position: fixed;
+        z-index: 22;
+      }
+    }
+  }
+}
+
+.hide {
+  display: none !important;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.cb {
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.dm {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+
+  .portrait & {
+    padding: $header_mob_h 0 9.2em;
+  }
+
+  .landscape & {
+    padding: 15.7em 0 9.6em;
+  }
+}
+
+.portrait {
+  .main_content {
+    padding-bottom: 1.6em;
+  }
+}
+
+.landscape {
+  .content_block {
+    @extend %global_flex_block_row_nowrap_space_between_stretch;
+  }
+}
+
+.top_section {
+
+  .landscape & {
+    @include transition_all(box-shadow .3s);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    background: #f1f1f1;
+    padding-bottom: 1em;
+  }
+
+  .landscape.top_scrolled & {
+    @extend %bx_shdw;
+  }
+
+  .portrait & {
+    .section_inner {
+      padding: 0;
+    }
+  }
+}
+
+.top_slider_holder {
+  position: relative;
+
+  .landscape & {
+    padding-left: 12.8em;
+  }
+}
+
+.top_slider_w {
+  padding-left: 1px;
+}
+
+.top_slider {
+  @extend %clearfix;
+  padding-left: 1px;
+
+  .slide {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;
+    padding-bottom: 16em;
+    width: 16em;
+
+    .landscape & {
+      width: 12.8em;
+      padding-bottom: 12.8em;
+    }
+  }
+}
+
+.board_img {
+  @include transition_all(transform .3s);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  img {
+    @extend %hor_vert_centr;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .board_unit:hover > &,
+  .slide:hover > & {
+    @include transform_scale(1.1);
+  }
+}
+
+.section_inner {
+  @extend %clearfix;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 3.5em;
+
+  @include respond-to-min($resp_step_3) {
+    padding: 0 12.5em;
+  }
+}
+
+.aside {
+
+  .landscape & {
+    float: left;
+    width: 23%;
+  }
+}
+
+.content {
+
+  .landscape & {
+    float: right;
+    width: 77%;
+    padding-left: 1.6%;
+  }
+}
+
+%mob_aside {
+  @include transition_all(transform .3s);
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.auth_aside {
+
+  .portrait & {
+    @include transform_translate(-100%, 0);
+    @extend %mob_aside;
+    left: 0;
+    top: $header_mob_h;
+    bottom: 9.2em;
+    background: #fff;
+  }
+
+  .portrait.user_menu_opened & {
+    @include transform_translate(0, 0);
+  }
+}
+
+.filter_aside {
+
+  .portrait & {
+    @include transform_translate(100%, 0);
+    @extend %mob_aside;
+    right: 0;
+    top: 10.7em;
+    bottom: 0;
+
+    .filter_holder {
+      min-height: 100%;
+      width: 57em;
+      background: rgba(49, 53, 59, .96);
+      float: right;
+    }
+  }
+
+  .portrait.search_opened & {
+    @include transform_translate(0, 0);
+  }
+}
+
+.user_block {
+  position: relative;
+  height: 20em;
+  text-align: center;
+}
+
+.user_holder {
+
+}
+
+.user_slider_holder {
+  position: relative;
+
+  .user_slider_btn {
+    @include transition_all(opacity .3s);
+    position: absolute;
+    top: 50%;
+    width: 6em;
+    height: 6em;
+    margin-top: -3em;
+    line-height: 6em;
+    text-align: center;
+    opacity: .2;
+    cursor: pointer;
+    z-index: 2;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+      width: 1em;
+      height: 4em;
+    }
+
+    &._prev {
+      left: 0;
+    }
+
+    &._next {
+      right: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .lSAction {
+    > .lSNext,
+    > .lSPrev {
+      display: none !important;
+    }
+  }
+}
+
+.user_slider_w {
+  height: 20em;
+  width: 20em;
+  margin: 0 auto;
+
+  .avatar {
+    overflow: hidden;
+    border-radius: 100%;
+
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

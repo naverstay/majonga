@@ -1,0 +1,166 @@
+#reg_tab.aside_form_holder._reg(style='display:none')
+  .mob_control_title
+    span.mob_back_btn.closeAsideBtn
+      img(src='img/svg/arrow_l.svg')
+    span.fz_40 Регистрация
+  form.submitEmulator(action='#')
+    .login_form
+      .form_title.mod_2.land_only
+        span.fz_16.fw_b Регистрация
+
+      .f_row.f_group.text_center
+        .f_cell
+          label.f_check.radio_v1.keepFZ_
+            input.inp_hidden.togglePerson(type='radio' name='aside_gender' checked data-toggle='false')
+            span.check_text
+              span.fz_16 Я парень
+        .f_cell
+          label.f_check.radio_v1.keepFZ_
+            input.inp_hidden.togglePerson(type='radio' name='aside_gender' data-toggle='false')
+            span.check_text
+              span.fz_16 Я девушка
+        .f_cell
+          label.f_check.radio_v1.keepFZ_
+            input.inp_hidden.togglePerson(type='radio' name='aside_gender' data-toggle='true')
+            span.check_text
+              span.fz_16 Мы пара
+
+      p.text_center._wnw
+        span.mob_edged_caption
+          span.fz_16.c_gray Ищу
+
+      .f_row.f_row_v2.text_center
+        .f_cell
+          label.f_check.check_v1
+            input.inp_hidden(type='checkbox')
+            span.check_text
+              span.fz_16 Девушку
+        .f_cell
+          label.f_check.check_v1
+            input.inp_hidden(type='checkbox')
+            span.check_text
+              span.fz_16 Парня
+        .f_cell
+          label.f_check.check_v1
+            input.inp_hidden(type='checkbox')
+            span.check_text
+              span.fz_16 Пару
+
+      .f_cell.cell_v1
+        .input_w
+          input#reg_email.f_input.input_v2.checkEmpty()
+          .focus_accent
+          label.label_v2(for='reg_email')
+            span.fz_16 E-mail
+
+      .f_cell.cell_v2
+        .input_w
+          input#reg_name.f_input.input_v2.checkEmpty()
+          .focus_accent
+          label.label_v2(for='reg_name')
+            span.fz_16 Имя
+
+      .f_row.f_row_v4
+        .f_cell.cell_v2
+          .input_w.select_box_v1
+            select.select2(data-placeholder='День' data-select-class='select_w1')
+              option(disabled selected)
+              -i=0;
+              while i < 31
+                -i++;
+                option= i
+
+        .f_cell.cell_v2
+          .input_w.select_box_v1
+            select.select2(data-placeholder='Месяц' data-select-class='select_w1')
+              option(disabled selected)
+              each i, m in months
+                option= i
+
+        .f_cell.cell_v2
+          .input_w.select_box_v1
+            select.select2(data-placeholder='Год' data-select-class='select_w1')
+              option(disabled selected)
+              -i=2001;
+              while i > 1950
+                -i--;
+                option= i
+
+      .secondPersonBlock(style='display:none')
+        .f_cell.cell_v2
+          .input_w
+            input#reg_name_2.f_input.input_v2.checkEmpty()
+            .focus_accent
+            label.label_v2(for='reg_name')
+              span.fz_16 Имя
+
+        .f_row.f_row_v4
+          .f_cell.cell_v2
+            .input_w.select_box_v1
+              select.select2(data-placeholder='День' data-select-class='select_w1')
+                option(disabled selected)
+                -i=0;
+                while i < 31
+                  -i++;
+                  option= i
+
+          .f_cell.cell_v2
+            .input_w.select_box_v1
+              select.select2(data-placeholder='Месяц' data-select-class='select_w1')
+                option(disabled selected)
+                each i, m in months
+                  option= i
+
+          .f_cell.cell_v2
+            .input_w.select_box_v1
+              select.select2(data-placeholder='Год' data-select-class='select_w1')
+                option(disabled selected)
+                -i=2001;
+                while i > 1950
+                  -i--;
+                  option= i
+
+
+
+      .f_cell.cell_v3
+        .input_w.select_box_v1
+          select.select2(data-placeholder='Город' data-select-class='select_w1' data-ajax='true')
+            option(disabled selected)
+            option Москва
+            option Харьков
+            option Киев
+            option Амстердам
+
+      .f_cell.cell_v3.text_center
+        button.btn_red.btn_v1.login_btn
+          span.fz_16 Зарегистрироваться
+
+      p.text_center
+        span.fz_14 Или зарегистрируйтесь через
+
+      ul.alter_auth
+        li
+          a.alter_auth_link(href='#')
+            img(src='img/svg/social-vk.svg' width=48 height=48)
+        li
+          a.alter_auth_link(href='#')
+            img(src='img/svg/social-fb.svg' width=48 height=48)
+        li
+          a.alter_auth_link(href='#')
+            img(src='img/svg/social-ok.svg' width=48 height=48)
+        li
+          a.alter_auth_link(href='#')
+            img(src='img/svg/social-gg.svg' width=48 height=48)
+
+      p.auth_tip.mod_1
+        span.fz_12 Сайт не сможет делать публикаций  в соц. сетях.<br>Продолжая, вы принимаете условия&nbsp;
+        a.gl_link.fz_12(href='#') Соглашения
+        span .
+
+  .reg_block
+    .form_title.mod_1
+      span.fz_16.fw_b Уже зарегистрированы?
+
+    .text_center
+      a.btn_v1.reg_btn.btn_white_blue.tabBtn(href='#auth_tab')
+        span.fz_16 Войдите на сайт!

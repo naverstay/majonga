@@ -1,0 +1,22 @@
+.top_section
+  .section_inner._blur_it
+    .top_slider_holder
+      .logo_block.land_only
+        a.board_img.logo(href='#')
+          img(src='img/svg/logo2.svg' width=70 height=70)
+      .topSlider.top_slider.swiper-container
+        .swiper-wrapper
+          +loop_while(7)
+            .slide.swiper-slide
+              .board_img
+                img(src='img/top_1.jpg')
+            .slide.swiper-slide
+              .board_img
+                img(src='img/top_2.jpg')
+            .slide.swiper-slide
+              .board_img
+                img(src='img/top_3.jpg')
+            .slide.swiper-slide
+              .board_img
+                img(src='img/top_4.jpg')
+

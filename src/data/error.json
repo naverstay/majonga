@@ -1,0 +1,6 @@
+{
+  "success": true,
+  "action": {
+    "func": "console.log('func from server');"
+  }
+}

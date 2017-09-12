@@ -1,0 +1,146 @@
+//*************************** header
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 22;
+  background: #fff;
+
+  .landscape & {
+    background: #f1f1f1;
+  }
+
+  .portrait & {
+    @extend %bx_shdw;
+    position: fixed;
+
+    .section_inner {
+      padding: 0;
+    }
+  }
+}
+
+.logo_block {
+  background: $gl_blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12.8em;
+  padding-bottom: 12.8em;
+}
+
+.logo.board_img {
+
+  img {
+    min-height: 0;
+    max-width: 7em;
+  }
+}
+
+.callback_block {
+  float: right;
+}
+
+.mob_header {
+  text-align: center;
+  position: relative;
+  padding: 3em 10em 1em;
+  min-height: 10.8em;
+  background: $gl_blue;
+  z-index: 12;
+}
+
+$img_w: 4.2em;
+
+.user_menu {
+  position: absolute;
+  height: 10.8em;
+  width: 9.4em;
+  left: 0;
+  top: 0;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $img_w;
+    height: $img_w;
+    margin: (-$img_w / 2) 0 0 (-$img_w / 2);
+  }
+}
+
+.mob_search {
+  position: absolute;
+  height: 10.8em;
+  width: 9.4em;
+  right: 0;
+  top: 0;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $img_w;
+    height: $img_w;
+    margin: (-$img_w / 2) 0 0 (-$img_w / 2);
+  }
+}
+
+._off {
+  display: none;
+  .state_off & {
+    display: block;
+  }
+}
+
+._on {
+  .state_off & {
+    display: none;
+  }
+}
+
+.mob_logo {
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+  letter-spacing: .7em;
+
+  img {
+    width: 6em;
+    height: 6em;
+    margin: -.8em -.15em;
+  }
+
+  span, img {
+    display: inline-block;
+  }
+}
+
+// *********  menu
+
+.main_m_item {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  max-width: 330px;
+}
+
+.main_menu {
+  float: right;
+}
+
+.menu_item {
+  float: left;
+  margin: 0 17px;
+}
+
+.menu_link {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  padding-left: 32px;
+  text-decoration: none;
+}
+

@@ -1,0 +1,28 @@
+extends ../components/layout
+block head
+  - var pageTitle = 'Главная';
+  - var pageDescription = '';
+  - var activePage = 0;
+
+block content
+  .wrapper.page_index
+    include ../components/header
+    include ../components/top
+
+    .main_content
+      .section_inner
+        .aside.user_holder.land_only
+          include ../components/user_slider
+
+        .content.filter_aside
+          include ../components/filter
+
+      .section_inner.content_block
+        .aside.auth_aside
+          include ../components/auth_aside
+          include ../components/reg_aside
+
+        .content._blur_it
+          include ../components/board
+
+    include ../components/footer

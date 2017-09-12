@@ -1,0 +1,11 @@
+.user_slider_holder.userSliderHolder
+  .user_slider_btn._prev.userPrev
+    img(src='img/svg/arrow_l.svg' height=40 width=10)
+  .user_slider_btn._next.userNext
+    img(src='img/svg/arrow_r.svg' height=40 width=10)
+
+  .user_slider_w.userSlider.swiper-container
+    .swiper-wrapper
+      +loop_while(5)
+        .avatar.slide.swiper-slide
+          img(src='img/profile_1.png')

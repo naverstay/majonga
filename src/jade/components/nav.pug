@@ -1,0 +1,13 @@
+- var menuList = locals['nav'];
+
+ul.nav
+  each item, ind in menuList
+    li.nav_item(class= item.class)
+      a.gl_link(href=item.href class=((ind + 1) == activePage ? 'nav_link-active' : ''))
+        span #{item.title}
+      - if (item.submenu)
+        ul.nav_submenu.mob-only
+          each subitem, subind in item.submenu
+            li.item
+              a.gl_link(href=subitem.href)
+                span #{subitem.title}
