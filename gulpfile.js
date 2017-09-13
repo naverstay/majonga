@@ -18,7 +18,11 @@ var fs = require('fs'),
   postcss = require('gulp-postcss'),
   notify = require("gulp-notify"),
   newer = require('gulp-newer'),
-  flexibility = require('postcss-flexibility');
+  flexibility = require('postcss-flexibility'),
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
+  concatCss = require('gulp-concat-css'),
+  pump = require('pump');
 
 var src = {
   root: 'src',
@@ -45,52 +49,107 @@ var dest = {
 };
 
 gulp.task('jade', function () {
-  gulp.src(src.jade_pages)
-    .pipe(plumber())
-    .pipe(pug({
-      pretty: true,
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'}));
+
+  pump([
+    gulp.src(src.jade_pages),
+    plumber(),
+    pug({
+      pretty: !opt.prod_ver,
       locals: {
+        'production': opt.prod_ver,
+        'scripts': opt.scripts,
         'nav': JSON.parse(fs.readFileSync('src/jade/components/nav/data.json', {encoding: 'utf-8'}))
       }
-    }).on('error', gutil.log))
-    .pipe(gulp.dest(dest.root))
-    .pipe(notify("templates done"))
-  // .pipe(reload({stream: true}))
-  ;
+    }).on('error', gutil.log),
+    gulp.dest(dest.root),
+    notify("templates done")
+  ]);
+
+});
+
+gulp.task('compress', function (cb) {
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'})),
+    scripts = opt.scripts;
+
+  var arr = [];
+
+  for (var i = 0; i < scripts.length; i++) {
+    arr.push(src.root + scripts[i]);
+  }
+
+  console.log("compress", arr);
+
+  pump([
+      gulp.src(arr),
+      concat('all_min.js'),
+      uglify(opt.uglify),
+      gulp.dest(dest.js)
+    ],
+    cb
+  );
 });
 
 gulp.task('js', function () {
-  gulp.src(src.js)
-    .pipe(newer(dest.js))
-    .pipe(plumber())
-    .pipe(gulp.dest(dest.js))
-    .pipe(notify("js done"))
-  // .pipe(reload({stream: true}))
-  ;
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'}));
+
+  pump([
+    gulp.src(src.js),
+    sourcemaps.init(),
+    newer(dest.js),
+    plumber(),
+    gulp.dest(dest.js),
+    notify("js done")
+  ], function () {
+
+    if (opt.prod_ver) {
+      gulp.start('compress', function () {
+        console.log('compress done');
+      });
+    }
+  });
 });
 
 gulp.task('sass', function () {
-  gulp.src(src.sass)
-  // .pipe(sourcemaps.init())
-    .pipe(plumber())
-    .pipe(sass())
-    .pipe(autoprefixer('last 2 version', 'ie9'))
-    .pipe(postcss([flexibility]))
-    // .pipe(rename('style.css'))
-    // .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(dest.css))
-    .pipe(notify("styles done"))
-  // .pipe(reload({stream:true}))
-  ;
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'}));
+
+  pump([
+    gulp.src(src.sass),
+    plumber(),
+    sass(),
+    autoprefixer('last 2 version', 'ie9'),
+    postcss([flexibility]),
+    gulp.dest(dest.css),
+    notify("styles done")
+  ], function () {
+
+    if (opt.prod_ver) {
+      gulp.start('csso', function () {
+        console.log('csso done');
+      });
+    }
+  });
 });
 
 gulp.task('csso', function () {
-  return gulp.src(dest.css + 'style.css')
-    .pipe(csso())
-    .pipe(gulp.dest(dest.css));
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'})),
+    arr = opt.styles;
+
+  arr.push(dest.css + '**/*.css');
+
+  console.log('csso', arr);
+
+  pump([
+    gulp.src(arr),
+    concatCss('styles.min.css'),
+    csso(),
+    gulp.dest(dest.css)
+  ]);
+
 });
 
 gulp.task('copy', function () {
+
   gulp.src([src.img, '!src/img/icons/sprite/*.svg'])
     .pipe(newer(dest.img))
     .pipe(gulp.dest(dest.img));
@@ -109,9 +168,11 @@ gulp.task('copy', function () {
 });
 
 gulp.task('image', function () {
-  gulp.src(src.img)
-    .pipe(image())
-    .pipe(gulp.dest(dest.img));
+  pump([
+    gulp.src(src.img),
+    image(),
+    gulp.dest(dest.img)
+  ]);
 });
 
 gulp.task('svgstore', function () {
@@ -159,5 +220,5 @@ gulp.task('dev', ['jade', 'sass', 'js', 'copy', 'browser-sync'], function () {
 });
 
 gulp.task('default', ['dev']);
-gulp.task('build', ['csso', 'image']);
-//gulp.task('svg', ['svgstore']);
+gulp.task('build', ['csso', 'image', 'compress']);
+gulp.task('svg', ['svgstore']);

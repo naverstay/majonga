@@ -1,0 +1,55 @@
+{
+  "prod_ver": false,
+  "scripts": [
+    "/js/jquery1.10.js",
+    "/js/enquire.js",
+    "/js/hammer.min.js",
+    "/vendor/FlipClock-master/compiled/flipclock.js",
+    "/vendor/lightGallery-master/lib/picturefill.min.js",
+    "/vendor/lightGallery-master/dist/js/lightgallery-all.js",
+    "/vendor/lightGallery-master/lib/lg-zoom.min.js",
+    "/vendor/lightGallery-master/lib/lg-wheelmouse.min.js",
+    "/js/nouislider.js",
+    "/js/jquery.inputmask.bundle.js",
+    "/js/swiper.js",
+    "/js/select2.js",
+    "/js/isotop/isotope.pkgd.js",
+    "/js/isotop/cells-by-column.js",
+    "/js/isotop/cells-by-row.js",
+    "/js/isotop/fit-columns.js",
+    "/js/isotop/horizontal.js",
+    "/js/isotop/masonry-horizontal.js",
+    "/js/isotop/packery-mode.pkgd.js",
+    "/js/main.js"
+  ],
+  "styles": [
+    "vendor/lightGallery-master/dist/css/lg-fb-comment-box.css",
+    "vendor/lightGallery-master/dist/css/lg-transitions.css",
+    "vendor/lightGallery-master/dist/css/lightgallery.css"
+  ],
+  "uglify": {
+    "warnings": true,
+    "parse": {
+    },
+    "compress": {
+      "booleans": true,
+      "dead_code": true,
+      "drop_console": true,
+      "loops": true,
+      "drop_debugger": true,
+      "conditionals": true,
+      "join_vars": false,
+      "hoist_funs": false,
+      "hoist_vars": false
+    },
+    "mangle": {
+      "toplevel": true
+    },
+    "output": {
+    },
+    "sourceMap": {
+    },
+    "nameCache": null,
+    "toplevel": false
+  }
+}

@@ -9,9 +9,9 @@ var body_var,
   odometer,
   clock,
 
-  baseM = 0.0714286666666667,
-  baseWindowWidth = 1920,
-  baseRate = .47,
+  //baseM = 0.0714286666666667,
+  //baseWindowWidth = 1920,
+  //baseRate = .47,
 
   resizer = true,
   domR = false,
@@ -39,15 +39,6 @@ var body_var,
   preferredHeight = [1388, 1270],
   preferredWidth = [640, 1920];
 
-window.odometerOptions = {
-  auto: false, // Don't automatically initialize everything with class 'odometer'
-  selector: '.counters', // Change the selector used to automatically find things to be animated
-  format: '(,ddd).dd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
-  duration: 1000, // Change how long the javascript expects the CSS animation to take
-  theme: 'car', // Specify the theme (if you have more than one theme css file on the page)
-  animation: 'count' // Count is a simpler animation method which just increments the value,
-                     // use it when you're looking for something more subtle.
-};
 
 $(function ($) {
   browserWindow = $(window);
@@ -89,11 +80,7 @@ function domReady(cb) {
 
   body_var
     .on('tap', function (e) {
-      //console.log(e.target);
       hideAside(e);
-    })
-    .on('click', function (e) {
-      //hideAside(e);
     })
     .delegate('.togglePerson', 'change', function () {
       var chk = $(this);
@@ -139,24 +126,21 @@ function domReady(cb) {
       return false;
     });
 
-  //odometer = new Odometer({el: $('.counters')[0], duration: 1000, value: 0, theme: 'car'});
-
   startOdometer();
 
   domR = true;
 
   if (typeof cb == 'function') cb();
-
 }
 
 function initGallery() {
   $('.lightgallery').each(function (ind) {
     $(this).lightGallery({
-      cssEasing: 'cubic-bezier(0.680, -0.550, 0.265, 1.550)',
-      //selector: '.board_unit',
+      selector: '.board_unit',
       speed: 200,
       thumbnail: true,
       zoom: true,
+      dynamic: false,
       scale: 1,
       enableZoomAfter: 0,
       actualSize: true
@@ -168,13 +152,13 @@ function hideAside(e) {
   var trgt = $(e.target);
 
   if ((e.target.tagName).toLowerCase() == 'a' || trgt.closest('a').length) {
-    console.log('skip tap');
+    //console.log('skip tap');
   } else {
-    console.log(e.type, e.target.tagName, trgt.closest('.auth_aside').length, trgt.closest('.filter_holder').length);
+    //console.log(e.type, e.target.tagName, trgt.closest('.auth_aside').length, trgt.closest('.filter_holder').length);
 
     if (!(trgt.closest('.auth_aside').length > 0 || trgt.closest('.filter_holder').length > 0)) {
       setTimeout(function () {
-        console.log('state_off click');
+        //console.log('state_off click');
         $('.state_off').click();
       }, 0);
     }
@@ -657,6 +641,11 @@ function getUsers() {
         if (data.users) {
 
           if (!(clock && clock.$el)) {
+            clock = $('.counters').FlipClock(count_limit, count_down);
+          }
+
+          if (count_limit > 990) {
+            count_limit = 1;
             clock = $('.counters').FlipClock(count_limit, count_down);
           }
 

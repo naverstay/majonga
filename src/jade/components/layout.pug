@@ -1,4 +1,6 @@
 block variables
+  - var production = locals['production'];
+  - var scripts_arr = locals['scripts'];
   - var months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
 
 include page
@@ -16,24 +18,11 @@ html(lang='ru')
   +page
     block content
     include popup
-    +scripts([
-      '/js/jquery1.10.js',
-      '/js/enquire.js',
-      '/js/hammer.min.js',
-      '/vendor/FlipClock-master/compiled/flipclock.js',
-      '/vendor/lightGallery-master/lib/picturefill.min.js',
-      '/vendor/lightGallery-master/lib/jquery.mousewheel.min.js',
-      '/vendor/lightGallery-master/dist/js/lightgallery-all.js',
-      '/js/nouislider.js',
-      '/js/jquery.inputmask.bundle.js',
-      '/js/swiper.js',
-      '/js/select2.js',
-      '/js/isotop/isotope.pkgd.js',
-      '/js/isotop/cells-by-column.js',
-      '/js/isotop/cells-by-row.js',
-      '/js/isotop/fit-columns.js',
-      '/js/isotop/horizontal.js',
-      '/js/isotop/masonry-horizontal.js',
-      '/js/isotop/packery-mode.pkgd.js',
-      '/js/main.js'
-    ])
+
+    - if (production)
+      link(rel='stylesheet', href='css/styles.min.css')
+      +scripts([
+        '/js/all_min.js'
+      ])
+    - else
+      +scripts(scripts_arr)
