@@ -34,11 +34,14 @@
 }
 
 $grid_koef: 2/3;
-$box_size_p: 30.25em;
+$box_size_p: 29.5em;
 $box_size_p: $box_size_p * $grid_koef;
 $box_size_l: 13em;
 
 $box_gap: 1.7em;
+
+$resp_grid: 57em;
+$resp_step: 8em;
 
 .board_grid {
   position: relative;
@@ -73,35 +76,107 @@ $box_gap: 1.7em;
 
 .grid_item {
   position: absolute;
+  overflow: hidden;
+
   //max-width: 1/9 * 100%;
 
-  padding: $box_gap;
-  height: $box_size_p;
+  //padding: $box_gap;
+  //height: $box_size_p;
   width: $box_size_p;
 
+  &:before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+
   .portrait & {
-    padding: $box_gap * $grid_koef;
-    max-width: 33.3333%;
+    //height: auto;
+    //padding: 0;
+    //padding: $box_gap * $grid_koef;
+    //max-width: 33.3333%;
+
+    //@include respond-to-max($resp_grid - $resp_step) {
+      //height: $box_size_p * .9;
+      //width: $box_size_p * .9;
+
+      width: 1/6 * 100%;
+    //}
+
+    @include respond-to-max($resp_grid - $resp_step) {
+      //height: $box_size_p * .8;
+      //width: $box_size_p * .8;
+      width: 20%;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 2) {
+      //height: $box_size_p * .8;
+      //width: $box_size_p * .8;
+      width: 25%;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 3) {
+      //height: $box_size_p * .7;
+      //width: $box_size_p * .7;
+      width: 33.33%;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 4) {
+      width: 50%;
+    }
   }
 
   &.grid_x2 {
     //max-width: 2/9 * 100%;
-    height: $box_size_p * 2;
+    //height: $box_size_p * 2;
     width: $box_size_p * 2;
 
     .portrait & {
-      max-width: 66.6666%;
+      //max-width: 66.6666%;
+
+      //@include respond-to-max($resp_grid - $resp_step) {
+        //height: $box_size_p * .9;
+        //width: $box_size_p * .9;
+
+        width: 2 * 1/6 * 100%;
+      //}
+
+      @include respond-to-max($resp_grid - $resp_step) {
+        //height: $box_size_p * .8;
+        //width: $box_size_p * .8;
+        width: 2 * 20%;
+      }
+
+      @include respond-to-max($resp_grid - $resp_step * 2) {
+        //height: $box_size_p * .8;
+        //width: $box_size_p * .8;
+        width: 2 * 25%;
+      }
+
+      @include respond-to-max($resp_grid - $resp_step * 3) {
+        //height: $box_size_p * .7;
+        //width: $box_size_p * .7;
+        width: 2 * 33.33%;
+      }
+
+      @include respond-to-max($resp_grid - $resp_step * 4) {
+        width: 2 * 50%;
+      }
     }
+
   }
 
   .landscape & {
-    padding: 1px;
-    height: $box_size_l;
+    //padding: 1px;
+    //height: $box_size_l;
     width: $box_size_l;
 
     &.grid_x2 {
       //max-width: 2/9 * 100%;
-      height: $box_size_l * 2;
+      //height: $box_size_l * 2;
       width: $box_size_l * 2;
     }
   }
@@ -115,10 +190,16 @@ $box_gap: 1.7em;
 
 .board_unit {
   display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  //position: relative;
+  //width: 100%;
+  //height: 100%;
   overflow: hidden;
+
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
 
   &:before {
     content: '';
@@ -132,7 +213,28 @@ $box_gap: 1.7em;
     background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#cc1e1e1e', GradientType=0);
+  }
 
+  .portrait & {
+    position: absolute;
+    //width: auto;
+    //height: auto;
+    //top: $box_gap * $grid_koef;
+    //bottom: $box_gap * $grid_koef;
+    //left: $box_gap * $grid_koef;
+    //right: $box_gap * $grid_koef;
+
+    top: 7%;
+    bottom: 7%;
+    left: 7%;
+    right: 7%;
+  }
+
+  .portrait .grid_x2 & {
+    top: 3.5%;
+    bottom: 3.5%;
+    left: 3.5%;
+    right: 3.5%;
   }
 }
 
@@ -216,7 +318,6 @@ $box_gap: 1.7em;
         height: 1px;
         background: #e7e7e7;
       }
-
     }
 
     .odometer-digit-inner {

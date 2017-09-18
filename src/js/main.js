@@ -33,11 +33,11 @@ var body_var,
   //Standard dimensions, for which the body font size is correct
 
   baseFZ = 1,
-  minFZ = [.25, .25],
+  minFZ = [.75, .25],
   maxFZ = [1, 1.5],
   landscapeFlag = -1,
   preferredHeight = [1388, 1270],
-  preferredWidth = [640, 1920];
+  preferredWidth = [1024, 1920];
 
 
 $(function ($) {
@@ -85,7 +85,7 @@ function domReady(cb) {
     .delegate('.togglePerson', 'change', function () {
       var chk = $(this);
 
-      $('.secondPersonBlock').slideToggle(chk.attr('data-toggle') == 'true');
+      $('.secondPersonBlock').slideToggle(chk.attr('data-toggle') === 'true');
 
     })
     .delegate('.submitEmulator', 'submit', function () {
@@ -130,7 +130,7 @@ function domReady(cb) {
 
   domR = true;
 
-  if (typeof cb == 'function') cb();
+  if (typeof cb === 'function') cb();
 }
 
 function initGallery() {
@@ -141,7 +141,7 @@ function initGallery() {
       thumbnail: true,
       zoom: true,
       dynamic: false,
-      scale: 1,
+      scale: .5,
       enableZoomAfter: 0,
       actualSize: true
     });
@@ -151,7 +151,7 @@ function initGallery() {
 function hideAside(e) {
   var trgt = $(e.target);
 
-  if ((e.target.tagName).toLowerCase() == 'a' || trgt.closest('a').length) {
+  if ((e.target.tagName).toLowerCase() === 'a' || trgt.closest('a').length) {
     //console.log('skip tap');
   } else {
     //console.log(e.type, e.target.tagName, trgt.closest('.auth_aside').length, trgt.closest('.filter_holder').length);
@@ -372,12 +372,12 @@ function initSelect() {
 }
 
 function plural(n, str1, str2, str5) {
-  return n + ' ' + ((((n % 10) == 1) && ((n % 100) != 11)) ? (str1) : (((((n % 10) >= 2) && ((n % 10) <= 4)) && (((n % 100) < 10) || ((n % 100) >= 20))) ? (str2) : (str5)))
+  return n + ' ' + ((((n % 10) === 1) && ((n % 100) !== 11)) ? (str1) : (((((n % 10) >= 2) && ((n % 10) <= 4)) && (((n % 100) < 10) || ((n % 100) >= 20))) ? (str2) : (str5)))
 }
 
 function initMask(el) {
 
-  if (el == void 0) {
+  if (el === void 0) {
     el = $("input");
   }
 
@@ -576,8 +576,6 @@ function resizeMe(displayHeight, displayWidth) {
   if (boardGrid && boardGrid.length) {
     boardGrid.isotope('layout');
   }
-
-  console.log(landscapeFlag);
 
   if (!domR) {
     domReady(function () {

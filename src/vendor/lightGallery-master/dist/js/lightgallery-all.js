@@ -3291,7 +3291,7 @@
 
         _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex, index) {
 
-            setTimeout(function() { 
+            setTimeout(function() {
                 $('#lg-share-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + (encodeURIComponent(_this.core.$items.eq(index).attr('data-facebook-share-url') || window.location.href)));
 
                 $('#lg-share-twitter').attr('href', 'https://twitter.com/intent/tweet?text=' + _this.core.$items.eq(index).attr('data-tweet-text') + '&url=' + (encodeURIComponent(_this.core.$items.eq(index).attr('data-twitter-share-url') || window.location.href)));
