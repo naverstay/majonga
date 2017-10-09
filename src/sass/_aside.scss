@@ -8,10 +8,44 @@
     overflow: hidden;
   }
 
+  .portrait & {
+    height: 100%;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      left: 0;
+      height: 12em;
+      background: #f3f3f3;
+    }
+
+    .aside_form_inner {
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    &._profile {
+      position: relative;
+
+      &:before {
+        background: #343538;
+      }
+    }
+  }
+
   .landscape & {
     @extend %bx_shdw;
+    @extend %global_flex_block_column_nowrap_flex-start_stretch;
     min-height: 100%;
     background: #f6fafc;
+
+    .aside_footer {
+      @include flex(1 0);
+      @extend %global_flex_block_column_nowrap_flex-end_stretch;
+    }
   }
 }
 
@@ -74,7 +108,8 @@
   }
 
   .landscape & {
-    padding: 0 6em;
+    //padding: 0 6em;
+    padding: 0 15.6%;
     border-bottom: 1px solid #e6e8ea;
   }
 
@@ -116,7 +151,8 @@
   li {
     display: inline-block;
     vertical-align: top;
-    padding: .75em;
+    //padding: .75em;
+    padding: 2.85%;
   }
 }
 

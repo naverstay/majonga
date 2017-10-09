@@ -110,11 +110,18 @@ $img_w: 4.2em;
   img {
     width: 6em;
     height: 6em;
-    margin: -.8em -.15em;
+    margin: -1.2em -.15em;
+
+    .portrait & {
+      width: 9em;
+      height: 9em;
+      margin: -2.2em -1em;
+    }
   }
 
   span, img {
     display: inline-block;
+    vertical-align: top;
   }
 }
 

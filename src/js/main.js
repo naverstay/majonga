@@ -1,5 +1,7 @@
 var body_var,
   browserWindow,
+  scrollFixed,
+  topSection,
   global_window_Height,
   userSlider,
   userSliderTimer,
@@ -33,16 +35,18 @@ var body_var,
   //Standard dimensions, for which the body font size is correct
 
   baseFZ = 1,
-  minFZ = [.75, .25],
+  minFZ = [.5, .75],
   maxFZ = [1, 1.5],
   landscapeFlag = -1,
   preferredHeight = [1388, 1270],
-  preferredWidth = [1024, 1920];
+  preferredWidth = [640, 1920];
 
 
 $(function ($) {
   browserWindow = $(window);
   body_var = $('body');
+  scrollFixed = $('.scrollFixed');
+  topSection = $('.topSection');
 
   //resizer = false;
 
@@ -82,11 +86,19 @@ function domReady(cb) {
     .on('tap', function (e) {
       hideAside(e);
     })
+    .delegate('.settingsCollapseBtn', 'click', function () {
+      var btn = $(this);
+
+      btn.toggleClass('_collapsed').next('.settingsCollapseBlock').slideToggle();
+    })
     .delegate('.togglePerson', 'change', function () {
       var chk = $(this);
 
-      $('.secondPersonBlock').slideToggle(chk.attr('data-toggle') === 'true');
-
+      if (chk.attr('data-toggle') === 'true') {
+        $('.secondPersonBlock').slideDown();
+      } else {
+        $('.secondPersonBlock').slideUp();
+      }
     })
     .delegate('.submitEmulator', 'submit', function () {
       overlay(true);
@@ -105,8 +117,17 @@ function domReady(cb) {
     .delegate('.openSearch', 'click', function () {
       $(this).toggleClass('state_off');
 
-      body_var.toggleClass('search_opened').removeClass('user_menu_opened');
+      body_var.toggleClass('search_opened').removeClass('profile_opened').removeClass('user_menu_opened');
       $('.openUserMenu').removeClass('state_off');
+      $('.openProfileMenu').removeClass('state_off');
+
+      return false;
+    })
+    .delegate('.openProfileMenu', 'click', function () {
+      $(this).toggleClass('state_off');
+
+      body_var.toggleClass('profile_opened').removeClass('user_menu_opened').removeClass('search_opened');
+      $('.openSearch').removeClass('state_off');
       return false;
     })
     .delegate('.openUserMenu', 'click', function () {
@@ -156,7 +177,7 @@ function hideAside(e) {
   } else {
     //console.log(e.type, e.target.tagName, trgt.closest('.auth_aside').length, trgt.closest('.filter_holder').length);
 
-    if (!(trgt.closest('.auth_aside').length > 0 || trgt.closest('.filter_holder').length > 0)) {
+    if (!(trgt.closest('.preventClosing').length > 0)) {
       setTimeout(function () {
         //console.log('state_off click');
         $('.state_off').click();
@@ -251,15 +272,14 @@ function initBoard() {
   });
 }
 
-
 function formatResult(rslt) {
-  if (rslt.loading) return rslt.name;
+  //if (rslt.loading) return rslt.name;
 
   return rslt.name;
 }
 
 function formatResultSelection(rslt) {
-  return rslt.name;
+  return rslt.id.length ? rslt.name : rslt.text;
 }
 
 function initSelect() {
@@ -365,7 +385,7 @@ function initSelect() {
         }
       };
 
-    opt = Object.assign({}, opt, ($slct.attr('data-ajax') && $slct.attr('data-ajax').length ? s2ajax : s2options));
+    opt = Object.assign({}, opt, ($slct.hasClass('ajax') ? s2ajax : s2options));
 
     $slct.select2(opt);
   });
@@ -442,10 +462,21 @@ $(window).on('resize', function () {
 
   windowRisize();
 
+  body_var.addClass('dom_ready');
+
 }).on('scroll', function () {
   var scrtop = getScrollTop();
 
   body_var.toggleClass('top_scrolled', scrtop > 0);
+
+  if (topSection.length && scrollFixed.length) {
+    scrollFixed.each(function (ind) {
+      var scr = $(this);
+
+      scr.toggleClass('_fixed', scrtop > (scr.offset().top - topSection.outerHeight()))
+
+    });
+  }
 
 });
 
@@ -474,7 +505,7 @@ function startOrientationWatching() {
 
   //if (resizer) {
 
-  enquire.register("screen and (orientation: landscape) and (min-width:1024px)", {
+  enquire.register("screen and (orientation: landscape) and (min-width:1281px)", {
     match: function () {
       landscapeFlag = 1;
       console.log('land', landscapeFlag);
@@ -546,10 +577,23 @@ function resizeMe(displayHeight, displayWidth) {
 
     //console.log(heightPercentage, widthPercentage, Math.min(heightPercentage, widthPercentage));
 
-    body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+
+    //if (browserWindow.width() > 640) {
+    //  body_var.css('font-size', '1em');
+    //} else {
+      body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+    //}
+
     $('.keepFZ').css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+
   } else {
-    body_var.css('font-size', (baseFZ / dpr) + 'em');
+
+    //if (browserWindow.width() > 640) {
+    //  body_var.css('font-size', '1em');
+    //} else {
+      body_var.css('font-size', (baseFZ / dpr) + 'em');
+    //}
+
     $('.keepFZ').css('font-size', (baseFZ / dpr) + 'em');
   }
 
@@ -557,7 +601,7 @@ function resizeMe(displayHeight, displayWidth) {
   //
   //body_var.css('font-size', (newFZ > maxFZ ? maxFZ : newFZ) + 'em');
 
-  if (topSlider) {
+  if (topSlider && topSlider.container.length) {
     clearTimeout(topSliderTimer);
     topSliderTimer = setTimeout(function () {
       topSlider.update(true);
@@ -565,7 +609,7 @@ function resizeMe(displayHeight, displayWidth) {
     }, 1);
   }
 
-  if (userSlider) {
+  if (userSlider && userSlider.container.length) {
     clearTimeout(userSliderTimer);
     userSliderTimer = setTimeout(function () {
       userSlider.update(true);

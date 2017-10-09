@@ -7,7 +7,12 @@
   }
 
   .portrait & {
-    padding: 3.4em;
+    overflow-y: auto;
+    max-height: 100%;
+
+    .filter_w {
+      padding: 3.4em;
+    }
   }
 }
 
@@ -16,7 +21,7 @@
   .landscape & {
     @extend %clearfix;
     @extend %bx_shdw;
-    padding: 3.5em 3.2em;
+    padding: 3.5em 3.2em 3em;
     min-height: 20em;
     background: #fff;
   }

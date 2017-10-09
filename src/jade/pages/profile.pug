@@ -3,7 +3,7 @@ block head
   - var pageTitle = 'Главная';
   - var pageDescription = '';
   - var activePage = 0;
-  - var leftBtn = 0;
+  - var leftBtn = 1;
 
 block content
   .wrapper.page_index
@@ -12,18 +12,13 @@ block content
 
     .main_content
       .section_inner.content_block
-        .aside.user_holder.land_only
-          include ../components/user_slider
+        .aside.profile_aside.scrollFixed
+          include ../components/profile_aside
 
-        .content.filter_aside
+        .content.filter_aside.land_hidden
           include ../components/filter
 
-      .section_inner.content_block
-        .aside.auth_aside.scrollFixed
-          include ../components/auth_aside
-          include ../components/reg_aside
-
         .content._blur_it
-          include ../components/board
+          include ../components/profile_settings
 
     include ../components/footer

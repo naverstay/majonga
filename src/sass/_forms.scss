@@ -136,6 +136,10 @@
       width: 33%;
       float: left;
       padding-left: 3em;
+
+      &._wide {
+        width: 100%;
+      }
     }
   }
 
@@ -285,6 +289,11 @@
       .inp_hidden:checked + .check_text {
         background: #f9a818;
       }
+    }
+
+    .inp_hidden:disabled + .check_text {
+      opacity: .5;
+      cursor: default;
     }
   }
 

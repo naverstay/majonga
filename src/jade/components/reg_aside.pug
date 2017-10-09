@@ -1,4 +1,4 @@
-#reg_tab.aside_form_holder._reg(style='display:none')
+#reg_tab.aside_form_holder._reg.preventClosing(style='display:none'): .aside_form_inner
   .mob_control_title
     span.mob_back_btn.closeAsideBtn
       img(src='img/svg/arrow_l.svg')
@@ -122,7 +122,7 @@
 
       .f_cell.cell_v3
         .input_w.select_box_v1
-          select.select2(data-placeholder='Город' data-select-class='select_w1' data-ajax='true')
+          select.select2.ajax(data-placeholder='Город' data-select-class='select_w1')
             option(disabled selected)
             option Москва
             option Харьков

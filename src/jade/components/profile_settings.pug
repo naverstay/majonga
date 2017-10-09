@@ -1,0 +1,276 @@
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22
+      span.land_only Мои&nbsp;
+      span.land_ttl Настройки
+
+    .profile_title_controls
+      ul.profile_controls
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon(5)
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon(9)
+              span.profile_l_counter
+                span 568
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon(5)
+              span.profile_l_counter
+                span 25
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon(9)
+
+  .board_block
+    form(action='#')
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(1)
+          span.fz_22 Профиль
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_col
+            .profile_settings_box
+              .f_cell.cell_v2
+                .input_w
+                  input#settings_name.f_input.input_v2.checkEmpty()
+                  .focus_accent
+                  label.label_v2(for='settings_name')
+                    span.fz_16 Имя
+
+              .f_row.f_row_v4
+                .f_cell.cell_v2
+                  .input_w.select_box_v1
+                    select.select2(data-placeholder='День' data-select-class='select_w1')
+                      option(disabled selected)
+                      -i=0;
+                      while i < 31
+                        -i++;
+                        option= i
+
+                .f_cell.cell_v2
+                  .input_w.select_box_v1
+                    select.select2(data-placeholder='Месяц' data-select-class='select_w1')
+                      option(disabled selected)
+                      each i, m in months
+                        option= i
+
+                .f_cell.cell_v2
+                  .input_w.select_box_v1
+                    select.select2(data-placeholder='Год' data-select-class='select_w1')
+                      option(disabled selected)
+                      -i=2001;
+                      while i > 1950
+                        -i--;
+                        option= i
+
+          .profile_settings_col
+            .profile_settings_box
+              .f_cell.cell_v3
+                .input_w.select_box_v1
+                  select.select2.ajax(data-placeholder='Город' data-select-class='select_w1')
+                    option(disabled selected)
+                    option Москва
+                    option Харьков
+                    option Киев
+                    option Амстердам
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(9)
+          span.fz_22 Интерфейс
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_col
+            .f_cell
+              .profile_settings_label
+                span.fz_16 Кол-во анкет на странице в поиске
+            .profile_settings_box
+              .f_row.f_row_v4
+                .f_cell.cell_v2
+                  .input_w.select_box_v1
+                    select.select2(data-placeholder='Кол-во' data-select-class='select_w1')
+                      option(disabled selected)
+                      -i=0;
+                      while i < 30
+                        -i++;
+                        option= i
+
+          .profile_settings_col
+            .profile_settings_label
+              span.fz_16 Аватарки собеседников в сообщениях
+            .profile_settings_box
+              .f_cell.cell_v3
+                .f_row.f_group.text_center.port_last
+                  .f_cell
+                    label.f_check.radio_v1
+                      input.inp_hidden.togglePerson(type='radio' name='interlocutors_avatars' checked data-toggle='false')
+                      span.check_text
+                        span.fz_16 Показывать
+                  .f_cell
+                    label.f_check.radio_v1.keepFZ_
+                      input.inp_hidden.togglePerson(type='radio' name='interlocutors_avatars' data-toggle='false')
+                      span.check_text
+                        span.fz_16 Не показывать
+
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(9)
+          span.fz_22 Приватность
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_col
+            .profile_settings_label
+              span.fz_16 Режим невидимки&nbsp;
+              span.label_icon
+                +menu_icon(10)
+            .profile_settings_box
+              .f_row.f_group.text_center
+                .f_cell
+                  label.f_check.radio_v1
+                    input.inp_hidden.togglePerson(type='radio' name='stealth_mode' checked data-toggle='false')
+                    span.check_text
+                      span.fz_16 Да
+                .f_cell
+                  label.f_check.radio_v1.keepFZ_
+                    input.inp_hidden.togglePerson(type='radio' name='stealth_mode' data-toggle='false')
+                    span.check_text
+                      span.fz_16 Нет
+
+            .profile_settings_label._small
+              span.fz_14 В этом режиме фотографии будут доступны для просмотра только тем пользователям, которых вы добавили в «Избранное».
+
+            .profile_settings_label
+              span.fz_16 Не показывать возраст&nbsp;
+              span.label_icon
+                +menu_icon(10)
+            .profile_settings_box
+              .f_row.f_group.text_center
+                .f_cell
+                  label.f_check.radio_v1
+                    input.inp_hidden.togglePerson(type='radio' name='age_visible' disabled data-toggle='false')
+                    span.check_text
+                      span.fz_16 Да
+                .f_cell
+                  label.f_check.radio_v1.keepFZ_
+                    input.inp_hidden.togglePerson(type='radio' name='age_visible' disabled checked data-toggle='false')
+                    span.check_text
+                      span.fz_16 Нет
+
+          .profile_settings_col
+            .profile_settings_label
+              span.fz_16 Не показывать онлайн и дату посещения&nbsp;
+              span.label_icon
+                +menu_icon(10)
+            .profile_settings_box
+              .f_cell.cell_v3
+                .f_row.f_group.text_center
+                  .f_cell
+                    label.f_check.radio_v1
+                      input.inp_hidden.togglePerson(type='radio' name='aside_gender' disabled data-toggle='false')
+                      span.check_text
+                        span.fz_16 Да
+                  .f_cell
+                    label.f_check.radio_v1.keepFZ_
+                      input.inp_hidden.togglePerson(type='radio' name='aside_gender' disabled checked data-toggle='false')
+                      span.check_text
+                        span.fz_16 Нет
+
+            .profile_settings_label
+              span.fz_16 Не регистрировать посещения анкет&nbsp;
+              span.label_icon
+                +menu_icon(10)
+            .profile_settings_box
+              .f_cell.cell_v3
+                .f_row.f_group.text_center.port_last_2
+                  .f_cell
+                    label.f_check.radio_v1
+                      input.inp_hidden.togglePerson(type='radio' name='save_visitors' disabled data-toggle='false')
+                      span.check_text
+                        span.fz_16 Да
+                  .f_cell
+                    label.f_check.radio_v1.keepFZ_
+                      input.inp_hidden.togglePerson(type='radio' name='save_visitors' disabled checked data-toggle='false')
+                      span.check_text
+                        span.fz_16 Нет
+
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(9)
+          span.fz_22 Сообщения и поиск
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_col
+            .profile_settings_label
+              span.fz_16 Анкета участвует в поиске
+            .profile_settings_box
+              .f_row.f_group.text_center
+                .f_cell
+                  label.f_check.radio_v1
+                    input.inp_hidden.togglePerson(type='radio' name='show_in_search' checked data-toggle='false')
+                    span.check_text
+                      span.fz_16 Да
+                .f_cell
+                  label.f_check.radio_v1.keepFZ_
+                    input.inp_hidden.togglePerson(type='radio' name='show_in_search' data-toggle='false')
+                    span.check_text
+                      span.fz_16 Нет
+
+            .profile_settings_label._small
+              span.fz_14 Необходимо наличие хотя бы одной фотографии.
+
+          .profile_settings_col
+            .profile_settings_box
+              .f_cell.cell_v3
+                .input_w.select_box_v1
+                  select.select2(data-placeholder='Принимать от' data-select-class='select_w1')
+                    option От друзей
+                    option(selected) Принимать сообщения от всех
+                    option Ни от кого
+
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(9)
+          span.fz_22 Безопасность
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_col._port
+            .profile_settings_box
+              a.btn_v1.profile_btn.btn_white_blue(href='#')
+                span.fz_16 Сменить е-мейл
+
+          .profile_settings_col._port
+            .profile_settings_box
+              a.btn_v1.profile_btn.btn_white_blue(href='#')
+                span.fz_16 Сменить пароль
+
+      .profile_settings_row._save_row
+        .profile_settings_col
+          .profile_settings_box
+            a.btn_v1.btn_red.save_btn(href='#')
+              span.fz_16 Сохранить

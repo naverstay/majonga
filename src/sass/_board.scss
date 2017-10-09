@@ -12,24 +12,68 @@
 .board_block {
 
   .landscape & {
-    padding: 3.4em 4.9em;
+    padding: 3.4em 4em 4em 4.9em;
     background: #fff;
-    padding-right: 2em;
-    padding-bottom: 4em;
   }
 }
 
 .board_title {
   padding: 3.35em 1em 1em;
 
-  .portrait & {
-    text-align: center;
+  > a,
+  > span {
+    display: inline-block;
   }
 
   .landscape & {
     padding: 2.5em 4em 1.4em;
     background: #f6fafc;
     border-bottom: 1px solid #f6f6f6;
+
+    &._profile_controls {
+      position: relative;
+      padding-right: 31.5em;
+    }
+  }
+
+  .portrait & {
+    &._profile_controls {
+      font-size: 1.8em;
+      padding: 1.5em 1em .8em;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -3.5em;
+        right: -3.5em;
+        background: #f3f3f3;
+        border-bottom: 1px solid #dfdfdf;
+      }
+
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.title_back_btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1.2em 1.5em 0 -1.2em;
+
+  img {
+    display: block;
+    width: 2em;
+  }
+
+  .portrait & {
+    margin-top: -1em;
+    margin-right: .5em;
   }
 }
 
@@ -78,12 +122,6 @@ $resp_step: 8em;
   position: absolute;
   overflow: hidden;
 
-  //max-width: 1/9 * 100%;
-
-  //padding: $box_gap;
-  //height: $box_size_p;
-  width: $box_size_p;
-
   &:before {
     content: '';
     position: relative;
@@ -94,33 +132,17 @@ $resp_step: 8em;
   }
 
   .portrait & {
-    //height: auto;
-    //padding: 0;
-    //padding: $box_gap * $grid_koef;
-    //max-width: 33.3333%;
-
-    //@include respond-to-max($resp_grid - $resp_step) {
-      //height: $box_size_p * .9;
-      //width: $box_size_p * .9;
-
-      width: 1/6 * 100%;
-    //}
+    width: 1/6 * 100%;
 
     @include respond-to-max($resp_grid - $resp_step) {
-      //height: $box_size_p * .8;
-      //width: $box_size_p * .8;
       width: 20%;
     }
 
     @include respond-to-max($resp_grid - $resp_step * 2) {
-      //height: $box_size_p * .8;
-      //width: $box_size_p * .8;
       width: 25%;
     }
 
     @include respond-to-max($resp_grid - $resp_step * 3) {
-      //height: $box_size_p * .7;
-      //width: $box_size_p * .7;
       width: 33.33%;
     }
 
@@ -130,35 +152,20 @@ $resp_step: 8em;
   }
 
   &.grid_x2 {
-    //max-width: 2/9 * 100%;
-    //height: $box_size_p * 2;
     width: $box_size_p * 2;
 
     .portrait & {
-      //max-width: 66.6666%;
-
-      //@include respond-to-max($resp_grid - $resp_step) {
-        //height: $box_size_p * .9;
-        //width: $box_size_p * .9;
-
-        width: 2 * 1/6 * 100%;
-      //}
+      width: 2 * 1/6 * 100%;
 
       @include respond-to-max($resp_grid - $resp_step) {
-        //height: $box_size_p * .8;
-        //width: $box_size_p * .8;
         width: 2 * 20%;
       }
 
       @include respond-to-max($resp_grid - $resp_step * 2) {
-        //height: $box_size_p * .8;
-        //width: $box_size_p * .8;
         width: 2 * 25%;
       }
 
       @include respond-to-max($resp_grid - $resp_step * 3) {
-        //height: $box_size_p * .7;
-        //width: $box_size_p * .7;
         width: 2 * 33.33%;
       }
 
@@ -166,18 +173,35 @@ $resp_step: 8em;
         width: 2 * 50%;
       }
     }
-
   }
 
+  $resp_step: 15em;
+
   .landscape & {
-    //padding: 1px;
-    //height: $box_size_l;
-    width: $box_size_l;
+    width: 1/7 * 100%;
+
+    @for $i from 1 through 20 {
+      @include respond-to-min(80em + $resp_step * $i) {
+        width: 100%/(7 + $i);
+      }
+    }
 
     &.grid_x2 {
-      //max-width: 2/9 * 100%;
-      //height: $box_size_l * 2;
-      width: $box_size_l * 2;
+      width: 2/7 * 100%;
+
+      @for $i from 1 through 20 {
+        @include respond-to-min(80em + $resp_step * $i) {
+          width: 2 * (100%/(7 + $i));
+        }
+      }
+    }
+
+    @include respond-to-max(101em) { // 100em = 1600px
+      font-size: 1.25em;
+    }
+
+    @include respond-to-max(81em) { // 80em = 1280px
+      font-size: 1.45em;
     }
   }
 
@@ -191,9 +215,6 @@ $resp_step: 8em;
 .board_unit {
   display: block;
   position: absolute;
-  //position: relative;
-  //width: 100%;
-  //height: 100%;
   overflow: hidden;
 
   top: 1px;
@@ -217,17 +238,26 @@ $resp_step: 8em;
 
   .portrait & {
     position: absolute;
-    //width: auto;
-    //height: auto;
-    //top: $box_gap * $grid_koef;
-    //bottom: $box_gap * $grid_koef;
-    //left: $box_gap * $grid_koef;
-    //right: $box_gap * $grid_koef;
-
     top: 7%;
     bottom: 7%;
     left: 7%;
     right: 7%;
+
+    @include respond-to-max($resp_grid - $resp_step) {
+      //font-size: 1.1em;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 2) {
+      font-size: 1.25em;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 3) {
+      //font-size: 1.3em;
+    }
+
+    @include respond-to-max($resp_grid - $resp_step * 4) {
+      font-size: 1.5em;
+    }
   }
 
   .portrait .grid_x2 & {
@@ -248,8 +278,10 @@ $resp_step: 8em;
   word-break: break-all;
 
   span {
-    max-height: 3em;
+    max-height: 4.6em;
     overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 
@@ -257,7 +289,6 @@ $resp_step: 8em;
   padding-left: 1.2em;
   position: relative;
   height: 1.2em;
-  display: inline-block;
 
   &:before {
     content: '';

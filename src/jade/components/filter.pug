@@ -1,4 +1,4 @@
-.filter_holder
+.filter_holder.preventClosing
   .filter_w
     .filter_block
       .filter_col._col_12: .filter_box_holder
@@ -59,7 +59,7 @@
                 span.fz_16.c_gray &nbsp;
             .f_cell._wide
               .cb.select_box_v1
-                select.select2(data-placeholder='Город' data-select-class='select_w1' data-ajax='true')
+                select.select2.ajax(data-placeholder='Город' data-select-class='select_w1')
                   option(disabled selected)
                   option Москва
                   option Харьков

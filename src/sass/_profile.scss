@@ -1,0 +1,572 @@
+//*************************** profile
+
+.profile_holder {
+
+  .landscape & {
+    padding-bottom: 2em;
+  }
+
+  .portrait & {
+    //overflow-y: auto;
+    min-height: 100%;
+    background: #282a2e;
+    border-top: 1px solid #fff;
+  }
+}
+
+.profile_settings {
+  position: absolute;
+  top: .3em;
+  right: -.3em;
+
+  img {
+    display: block;
+
+    .landscape & {
+      width: 2.1em;
+      height: 2.1em;
+    }
+
+    .portrait & {
+      width: 4.2em;
+      height: 4.2em;
+    }
+  }
+}
+
+.profile_block {
+  padding: 2.9em 3.2em 2.6em 3.7em;
+  background: #fff;
+
+  p {
+    color: #282a2e;
+    font-size: 1.4em;
+    margin-bottom: .5em;
+
+    span {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .portrait & {
+    background: #343538;
+    padding: 2.9em 3.2em 2.0em 3.5em;
+
+    p {
+      font-size: 1.8em;
+      color: #6f7073;
+    }
+  }
+}
+
+.profile_menu_w {
+  padding: 2.4em 3.7em 1.6em;
+
+  .portrait & {
+    background: #282a2e;
+    padding: 3em 4em 1.8em 2.8em;
+
+    + .profile_menu_w {
+      padding-top: 3em;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+  }
+
+  .landscape & {
+    background: #f6fafc;
+
+    + .profile_menu_w {
+      padding-top: 3em;
+      border-top: 1px solid #ebeef0;
+    }
+  }
+}
+
+.profile_menu {
+
+  li {
+    .landscape & {
+      padding-left: 4em;
+      margin-bottom: 1.7em;
+    }
+
+    .portrait & {
+      padding-left: 7em;
+      margin-bottom: 3.6em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &._mod_1 {
+
+    .portrait & {
+      li {
+        margin-bottom: 1.5em;
+      }
+    }
+  }
+}
+
+.profile_b_inner {
+  @extend %clearfix;
+  position: relative;
+}
+
+.profile_counter {
+  color: #52c5eb;
+
+  .portrait & {
+    color: #fff;
+  }
+}
+
+.profile_avatar {
+  float: left;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  .landscape & {
+    width: 6.9em;
+    height: 6.9em;
+    margin-right: 2em;
+  }
+
+  .portrait & {
+    width: 11.4em;
+    height: 11.4em;
+    margin-right: 2.8em;
+    border: .4em solid #fff;
+  }
+}
+
+.user_name {
+  font: 2.2em $PFDinDisplayProReg;
+
+  .landscape & {
+    color: #000;
+    padding: .15em 0;
+    margin-right: 2em;
+  }
+
+  .portrait & {
+    color: #fff;
+    font-size: 3.4em;
+    margin-right: 1.5em;
+    margin-bottom: .25em;
+  }
+}
+
+.profile_icon {
+  width: 1.2em;
+  height: 1em;
+  margin-top: .1em;
+  margin-right: .5em;
+  line-height: 1;
+
+  svg {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+
+    .portrait & {
+      fill: #6f7073;
+    }
+  }
+}
+
+.profile_l_counter {
+  float: right;
+  color: #fff;
+  background: #ff4500;
+  border-radius: .8em;
+  padding: .4em .8em .1em;
+  line-height: 1;
+
+  span {
+    font-size: 1.3em;
+  }
+
+  .portrait & {
+    border-radius: 1.5em;
+    padding: .4em 1em .1em;
+    font-size: 1.1em;
+    margin-top: -0.5em;
+
+    span {
+      font-size: 3em;
+    }
+  }
+}
+
+.profile_link {
+
+  > span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .landscape & {
+    color: #282a2e;
+  }
+
+  .portrait & {
+    color: #fff;
+  }
+
+  &:hover,
+  &._active {
+    .profile_l_icon svg {
+      opacity: 1;
+    }
+  }
+}
+
+.profile_l_icon {
+  width: 5em;
+  margin: -.5em 0;
+  vertical-align: top !important;
+
+  svg {
+    @include transition_all(opacity .3s);
+    display: inline-block;
+    vertical-align: top;
+    width: 3.5em;
+    height: 2.85em;
+    opacity: .1;
+  }
+
+  &._mod_1 {
+    margin: -.75em 0;
+
+    svg {
+      opacity: 1;
+      width: 4em;
+      height: 3.7em;
+    }
+  }
+
+  .landscape & {
+
+    svg {
+    }
+  }
+
+  .portrait & {
+    width: 8em;
+    margin: -.75em 0;
+
+    svg {
+      width: 6em;
+      height: 4.7em;
+      fill: #fff;
+    }
+  }
+
+}
+
+.profile_l_text {
+  font-size: 1.8em;
+
+  .portrait & {
+    font-size: 3em;
+  }
+}
+
+.profile_c_icon {
+  position: relative;
+
+  .profile_l_counter {
+    position: absolute;
+    top: .3em;
+    right: -1.4em;
+  }
+}
+
+.profile_title_controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 31.5em;
+
+  .portrait & {
+    display: none;
+  }
+}
+
+.profile_controls {
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+
+  li {
+    display: table-cell;
+    vertical-align: middle;
+    border-left: 1px solid #eceff1;
+  }
+}
+
+.profile_control {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  svg {
+    display: block;
+    fill: $gl_blue;
+    width: 4.5em;
+  }
+}
+
+.profile_settings_row {
+  @extend %clearfix;
+  position: relative;
+
+  + .profile_settings_row {
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      border-bottom: 1px solid #ebeef0;
+
+      .landscape & {
+        left: -4.9em;
+        right: -4em;
+      }
+    }
+  }
+
+  .landscape & {
+    padding-bottom: .8em;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    + .profile_settings_row {
+      padding-top: 3em;
+    }
+  }
+
+  .portrait & {
+    &._save_row {
+      padding-top: .5em;
+      font-size: 2em;
+    }
+  }
+}
+
+.profile_settings_label {
+  margin-bottom: 1.2em;
+  max-width: 39em;
+  color: rgba(0, 0, 0, .5);
+
+  + .profile_settings_label {
+    margin-top: 3em;
+  }
+
+  .portrait & {
+    margin-bottom: 1em;
+    font-size: .93em;
+
+    &._small {
+      font-size: .715em;
+      margin-top: -.5em;
+    }
+
+    + .profile_settings_label {
+      margin-top: 2em;
+    }
+  }
+}
+
+.profile_settings_wrapper {
+  @extend %clearfix;
+
+  .landscape & {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .portrait & {
+    font-size: 2em;
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+
+    + .profile_settings_wrapper {
+      padding-top: 2em;
+    }
+
+    .f_cell.cell_v2 {
+      margin-bottom: 1.35em;
+    }
+
+    .f_cell.cell_v3 {
+      margin-bottom: 0;
+    }
+
+    .f_row.f_group .f_cell {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.profile_settings_col {
+
+  .landscape & {
+    position: relative;
+    float: left;
+    width: 48%;
+    padding-left: 2.2em;
+  }
+
+  .portrait & {
+    &._port {
+      float: left;
+      width: 48%;
+      font-size: 1.1em;
+
+      &:first-child {
+        margin-right: 4%;
+      }
+
+      .profile_btn {
+        padding: 0 .5em;
+        font-family: $PFDinDisplayProReg;
+        letter-spacing: -.07em;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.profile_settings_caption {
+  position: relative;
+  margin-bottom: 1.5em;
+  padding-left: 2.2em;
+
+  .portrait & {
+    font-size: 1.45em;
+    margin-bottom: .3em;
+    padding: 2em 3em 1.4em 3.6em;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -3.5em;
+      right: -3.5em;
+      background: #f3f3f3;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+.profile_settings_arrow {
+  @include transition_all(transform .3s);
+  @include transform_rotate(90);
+  position: absolute !important;
+  right: 0;
+  top: 2.6em;
+  width: 1.4em;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ._collapsed & {
+    @include transform_rotate(-90);
+  }
+
+  .landscape & {
+    display: none;
+  }
+}
+
+.profile_settings_box {
+
+  .f_row.f_group {
+
+    .f_cell {
+      width: 50%;
+    }
+
+    .portrait & {
+      margin-bottom: 1.6em;
+
+      &.port_last {
+        margin-bottom: 0;
+      }
+
+      &.port_last_2 {
+        margin-bottom: .5em;
+      }
+    }
+  }
+
+  .landscape & {
+    max-width: 27.5em;
+
+    .f_row.f_group {
+      max-width: 100%;
+      width: 27em;
+    }
+  }
+}
+
+.profile_settings_icon {
+  position: absolute !important;
+  top: -.2em;
+  left: -1.7em;
+  width: 2em;
+
+  svg {
+    display: block;
+    max-width: 100%;
+    fill: $gl_blue;
+
+    .portrait ._collapsed & {
+      fill: #000;
+      opacity: .2;
+    }
+  }
+
+  .portrait & {
+    top: 2em;
+    left: -0.4em;
+    width: 2.6em;
+  }
+
+}
+
+.label_icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -.85em 0 -.65em;
+
+  svg {
+    width: 2.4em;
+    fill: $gl_blue;
+  }
+}

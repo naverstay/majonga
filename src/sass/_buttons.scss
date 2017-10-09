@@ -3,6 +3,21 @@
 .btn_v1 {
   height: 4em;
 
+  &.coins_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    margin-top: .5em;
+    padding: 0 2.6em;
+    font: 1em/2.8 $PFDinDisplayProBold;
+
+    .portrait & {
+      font: 1.5em/2.8 $PFDinDisplayProReg;
+      margin-left: 3em;
+      padding: 0 3.6em;
+    }
+  }
+
   &.filter_btn {
     display: inline-block;
     vertical-align: top;
@@ -26,6 +41,23 @@
     border-radius: 2em;
     padding: 0 2.5em;
     font: 1em/2.4 $PFDinDisplayProBold;
+  }
+
+  &.profile_btn {
+    text-align: center;
+    display: block;
+    margin-bottom: 2em;
+    border-radius: 2em;
+    padding: 0 2.5em;
+    font: 1em/2.4 $PFDinDisplayProBold;
+  }
+
+  &.save_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 2.8em;
+    font: 1em/2.8 $PFDinDisplayProBold;
   }
 }
 
@@ -59,7 +91,25 @@
   &:active {
     background: darken(#ff4500, 10%);
   }
+}
 
+.btn_blue {
+  @include transition_all(background .3s);
+  background: $gl_blue;
+  color: #fff;
+
+  &:hover {
+    background: darken($gl_blue, 5%);
+  }
+
+  &:focus,
+  &:active {
+    background: darken($gl_blue, 10%);
+  }
+
+  .portrait & {
+    background: #ff4500;
+  }
 }
 
 
