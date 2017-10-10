@@ -1,8 +1,8 @@
 extends ../components/layout
 block head
-  - var pageTitle = 'Профиль настройки';
+  - var pageTitle = 'Мои фото';
   - var pageDescription = '';
-  - var activePage = 0;
+  - var activePage = 7;
   - var leftBtn = 1;
 
 block content
@@ -19,6 +19,6 @@ block content
           include ../components/filter
 
         .content._blur_it
-          include ../components/profile_settings
+          include ../components/profile_photos
 
     include ../components/footer

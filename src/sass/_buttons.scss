@@ -43,6 +43,14 @@
     font: 1em/2.4 $PFDinDisplayProBold;
   }
 
+  &.upload_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 2.5em;
+    font: 1em/2.4 $PFDinDisplayProBold;
+  }
+
   &.profile_btn {
     text-align: center;
     display: block;
@@ -58,6 +66,21 @@
     border-radius: 2em;
     padding: 0 2.8em;
     font: 1em/2.8 $PFDinDisplayProBold;
+  }
+}
+
+.btn_v2 {
+  height: 2.7em;
+
+  &.board_footer_btn {
+    padding: .5em 2.3em;
+    margin-left: 2.7em;
+    border-radius: 1.3em;
+    line-height: normal;
+
+    + .board_footer_btn {
+      margin-left: .8em;
+    }
   }
 }
 
@@ -90,6 +113,22 @@
   &:focus,
   &:active {
     background: darken(#ff4500, 10%);
+  }
+}
+
+.btn_gray {
+  @include transition_all(background .3s);
+  color: #000;
+  background: transparent;
+  border: 1px solid #e1e4e6;
+
+  &:hover {
+    background: #e1e4e6;
+  }
+
+  &:focus,
+  &:active {
+    background: darken(#e1e4e6, 5%);
   }
 }
 

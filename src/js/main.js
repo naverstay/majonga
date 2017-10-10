@@ -82,6 +82,12 @@ function domReady(cb) {
 
   initGallery();
 
+  body_var.on('click', function (e) {
+    if ($(e.target).closest('.profile_photos_menu_holder').length != 1) {
+      hideDropDowns();
+    }
+  });
+
   body_var
     .on('tap', function (e) {
       hideAside(e);
@@ -90,6 +96,17 @@ function domReady(cb) {
       var btn = $(this);
 
       btn.toggleClass('_collapsed').next('.settingsCollapseBlock').slideToggle();
+
+      return false;
+    })
+    .delegate('.profileMenuBtn', 'click', function () {
+      var btn = $(this), parent = btn.closest('.gridItem');
+
+      $('.gridItem').not(parent).removeClass('_menu_opened');
+
+      parent.toggleClass('_menu_opened');
+
+      return false;
     })
     .delegate('.togglePerson', 'change', function () {
       var chk = $(this);
@@ -152,6 +169,10 @@ function domReady(cb) {
   domR = true;
 
   if (typeof cb === 'function') cb();
+}
+
+function hideDropDowns() {
+  $('._menu_opened').removeClass('_menu_opened');
 }
 
 function initGallery() {
@@ -262,14 +283,16 @@ function initTopSlider() {
 
 function initBoard() {
 
-  boardGrid = $('.boardGrid').isotope({
-    percentPosition: true,
-    gutter: 0,
-    // main isotope options
-    itemSelector: '.gridItem',
-    // set layoutMode
-    layoutMode: 'packery'
-  });
+  if ($('.boardGrid').length) {
+    boardGrid = $('.boardGrid').isotope({
+      percentPosition: true,
+      gutter: 0,
+      // main isotope options
+      itemSelector: '.gridItem',
+      // set layoutMode
+      layoutMode: 'packery'
+    });
+  }
 }
 
 function formatResult(rslt) {
@@ -581,7 +604,7 @@ function resizeMe(displayHeight, displayWidth) {
     //if (browserWindow.width() > 640) {
     //  body_var.css('font-size', '1em');
     //} else {
-      body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+    body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
     //}
 
     $('.keepFZ').css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
@@ -591,7 +614,7 @@ function resizeMe(displayHeight, displayWidth) {
     //if (browserWindow.width() > 640) {
     //  body_var.css('font-size', '1em');
     //} else {
-      body_var.css('font-size', (baseFZ / dpr) + 'em');
+    body_var.css('font-size', (baseFZ / dpr) + 'em');
     //}
 
     $('.keepFZ').css('font-size', (baseFZ / dpr) + 'em');

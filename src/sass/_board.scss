@@ -6,6 +6,14 @@
     @extend %bx_shdw;
     min-height: 100%;
     background: #fff;
+
+    &._footer_mode {
+      @extend %global_flex_block_column_nowrap_space_between_stretch;
+
+      .board_block {
+        @include flex(1 0);
+      }
+    }
   }
 }
 
@@ -14,7 +22,52 @@
   .landscape & {
     padding: 3.4em 4em 4em 4.9em;
     background: #fff;
+
+    &._photos_mode {
+      padding: 2.4em 4em 4em 2.9em;
+    }
+
+    &._has_aside {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 38em;
+        border-left: 1px solid #f6f6f6;
+        background: #fbfbfb;
+      }
+    }
   }
+}
+
+.board_footer {
+  background: #f6fafc;
+  padding: 1.6em 38em 1.1em 3.4em;
+}
+
+.board_footer_controls {
+  @extend %clearfix;
+
+  .landscape & {
+    padding-right: 4em;
+    line-height: 2.6;
+
+    li {
+      float: right;
+
+      &:first-child {
+        float: left;
+      }
+    }
+  }
+}
+
+.board_footer_link {
+  color: #000;
 }
 
 .board_title {
@@ -216,7 +269,6 @@ $resp_step: 8em;
   display: block;
   position: absolute;
   overflow: hidden;
-
   top: 1px;
   bottom: 1px;
   left: 1px;

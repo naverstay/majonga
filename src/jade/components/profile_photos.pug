@@ -1,0 +1,88 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls
+    a.title_back_btn(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22
+      span Мои фото
+      span.land_only графии
+
+    .profile_title_controls
+      ul.profile_controls
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon('cup')
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon('search')
+              span.profile_l_counter
+                span 568
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon('cup')
+              span.profile_l_counter
+                span 25
+
+        li: a.profile_control(href='#')
+            span.profile_c_icon
+              +menu_icon('search')
+
+  .board_block._has_aside._photos_mode
+    form.profile_photos_holder(action='#')
+      .profile_photos_list.boardGrid
+        +loop_while(4)
+          .profile_photo_unit.gridItem: .profile_photo_w
+            .profile_photo
+              img(src='img/my_photo.jpg')
+            +profile_photo_menu(true, 1250, false, false, true)
+          .profile_photo_unit.gridItem: .profile_photo_w
+            .profile_photo
+              img(src='img/my_photo.jpg')
+            +profile_photo_menu(true, 1250, true)
+          .profile_photo_unit.gridItem: .profile_photo_w
+            .profile_photo
+              img(src='img/my_photo_adult.jpg')
+            +profile_photo_menu(true, 1250, false, true)
+
+      .profile_photos_helper
+        .profile_photos_helper_caption
+          span Подсказки по управлению
+
+        .profile_photos_helper_text
+          p Можно менять порядок отображения фотографий, просто тащите фотки с одного места на
+            |  другое и их порядок изменится.
+
+          p Первые фотографии, но не более 3 шт., будут показываться в полоске с общей информацией.
+
+          p Значком обозначен ваш текущий аватар, его можно сменить в любое время кликнув на другой фотографии.
+
+        .profile_photos_helper_caption
+          span Добавление новых фото
+
+        .profile_photos_uploader
+          p
+            span.fz_14 Переносите сюда<br>ваши фотографии<br>или нажмите кнопку
+          p
+            label.btn_v1.btn_white_blue.upload_btn
+              input.inp_hidden(type='file')
+              span.fz_16 Загрузить
+
+  .board_footer
+    ul.board_footer_controls
+      li
+        span.dm.fz_14
+          span Выбрано:&nbsp;
+          span.fw_b 10
+          span.fw_b &nbsp;фото
+
+        a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
+          span.fz_16.fw_m Скрыть
+        a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
+          span.fz_16.fw_m Удалить
+
+      li
+        a.board_footer_link.fz_14(href='#') Выбрать все фото
+

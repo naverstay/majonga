@@ -29,47 +29,47 @@
     .profile_menu_w
       ul.profile_menu
         li
-          a.profile_link._active(href='#')
+          a.profile_link(href='#' class=(1 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(1)
+              +menu_icon('user')
             span.profile_l_text Моя анкета
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='#' class=(2 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(2)
+              +menu_icon('trend_up')
             span.profile_l_text Поднять анкету
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='#' class=(3 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(3)
+              +menu_icon('vip')
             span.profile_l_text Купить VIP
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='#' class=(4 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(4)
+              +menu_icon('envelope')
             span.profile_l_text Сообщения
             span.profile_l_counter
               span 25
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='#' class=(5 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(5)
+              +menu_icon('cup')
             span.profile_l_text Царь горы
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='#' class=(6 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(6)
+              +menu_icon('photos')
             span.profile_l_text Фотолента
 
         li
-          a.profile_link(href='#')
+          a.profile_link(href='my_photos.html' class=(7 === activePage ? '_active' : ''))
             span.profile_l_icon
-              +menu_icon(7)
+              +menu_icon('camera')
             span.profile_l_text Мои фотографии
 
     .profile_menu_w
@@ -77,7 +77,7 @@
         li
           a.profile_link(href='#')
             span.profile_l_icon._mod_1
-              +menu_icon(8)
+              +menu_icon('coins')
             span.profile_l_text
               span Монетки:
               b  344

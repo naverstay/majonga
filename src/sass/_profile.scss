@@ -117,7 +117,7 @@
 }
 
 .profile_counter {
-  color: #52c5eb;
+  color: $gl_blue;
 
   .portrait & {
     color: #fff;
@@ -220,10 +220,19 @@
     color: #fff;
   }
 
-  &:hover,
-  &._active {
+  &:hover {
     .profile_l_icon svg {
       opacity: 1;
+    }
+  }
+
+  &._active {
+    cursor: default;
+    color: $gl_blue;
+
+    .profile_l_icon svg {
+      opacity: 1;
+      fill: $gl_blue;
     }
   }
 }
@@ -568,5 +577,256 @@
   svg {
     width: 2.4em;
     fill: $gl_blue;
+  }
+}
+
+.profile_photos_holder {
+  @extend %global_flex_block_row_nowrap_space_between_stretch;
+  min-height: 100%;
+}
+
+.profile_photos_list {
+  position: relative;
+
+  .landscape & {
+    @include flex(1 0 auto);
+  }
+}
+
+.profile_photos_helper {
+  position: relative;
+
+  .landscape & {
+    width: 34.4em;
+    padding: 0 2.3em 0 5.3em;
+  }
+}
+
+.profile_photos_helper_caption {
+
+  .landscape & {
+    margin-bottom: 1.5em;
+
+    span {
+      font-size: 2.2em;
+    }
+  }
+
+  .portrait & {
+    margin-bottom: 2em;
+
+    span {
+      font-size: 3.2em;
+    }
+  }
+}
+
+.profile_photos_helper_text {
+
+  p {
+    color: #7f7f7f;
+  }
+
+  .landscape & {
+    padding-bottom: 6em;
+
+    p {
+      font-size: 1.4em;
+      line-height: 1.6;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .portrait & {
+    background: #f3f3f3;
+
+    p {
+      font-size: 2.2em;
+      padding: 4em/2.2;
+
+      + p {
+        margin-top: 1.5em;
+      }
+    }
+  }
+}
+
+.profile_photos_uploader {
+  position: relative;
+  border: 2px dashed $gl_blue;
+  padding: 3.3em 3em 1.5em;
+  text-align: center;
+  margin-top: 2.3em;
+
+  p {
+    color: rgba(0, 0, 0, .5);
+    margin-bottom: 1.5em;
+    line-height: 1.3;
+  }
+}
+
+.profile_photo_unit {
+
+  &:before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+  }
+
+  .landscape & {
+    width: 25%;
+  }
+
+  .portrait & {
+    width: 50%;
+  }
+}
+
+.profile_photo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 75%;
+    z-index: 1;
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#cc1e1e1e', GradientType=0);
+  }
+}
+
+.profile_photo_w {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .landscape & {
+    bottom: 3.3em;
+    right: 3.3em;
+  }
+
+  .portrait & {
+    bottom: 1px;
+    right: 1px;
+  }
+}
+
+.profile_photo_check {
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  left: 8.5%;
+  background: #fff;
+}
+
+.photo_icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: .5em;
+
+  svg {
+    width: 1.5em;
+
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.profile_menu_icon {
+  display: block;
+  width: 1.7em;
+  margin: -0.1em 0;
+
+  svg {
+    max-width: 100%;
+
+    path {
+      fill: #fff;
+    }
+  }
+
+  &._menu {
+    @include transition_all(transform .3s);
+    cursor: pointer;
+
+    &:hover {
+      @include transform_scale(1.2);
+    }
+  }
+}
+
+.profile_photo_menu {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.4em;
+
+  .landscape & {
+    left: 8%;
+    right: 8%;
+    bottom: 2%;
+  }
+
+  .portrait & {
+    left: 7%;
+    right: 7%;
+    bottom: 7%;
+  }
+}
+
+.profile_photo_views {
+  float: left;
+}
+
+.profile_photos_menu {
+  float: right;
+  position: relative;
+}
+
+.profile_photos_menu_holder {
+  display: none;
+  z-index: 2;
+  position: absolute;
+  top: 100%;
+  left: 55%;
+
+  ._menu_opened & {
+    display: block;
+  }
+}
+
+.profile_photos_menu_list {
+  background: #fff;
+  padding: 1.2em 0 .7em;
+  min-width: 17em;
+  line-height: normal;
+  box-shadow: 0 0 29px rgba(0, 0, 0, .08);
+}
+
+.profile_menu_btn {
+  display: block;
+}
+
+.profile_menu_link {
+  @include transition_all(color .3s);
+  display: block;
+  color: #000;
+  text-decoration: none;
+  padding: .8em .5em .8em 2.2em;
+
+  &:hover {
+    color: $gl_blue;
   }
 }

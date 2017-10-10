@@ -333,6 +333,10 @@
         -o-background-size: cover;
         background-size: cover;
       }
+
+      &:empty {
+        padding-left: 2.1em;
+      }
     }
 
     .inp_hidden:checked + .check_text {

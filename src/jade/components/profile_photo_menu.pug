@@ -1,0 +1,43 @@
+mixin profile_photo_menu(has_check, views, lock, adult, menu)
+  .profile_photo_menu
+    - if (views)
+      .profile_photo_views
+        span.photo_icon
+          +menu_icon('eye')
+        span= views
+
+    - if (menu)
+      .profile_photos_menu
+        .profile_menu_btn.profileMenuBtn
+          .profile_menu_icon._menu
+            +menu_icon('user_2')
+            //img(src='img/svg/user_2.svg')
+
+    - if (lock)
+      .profile_photos_menu
+        .profile_menu_btn
+          .profile_menu_icon
+            +menu_icon('lock')
+            //img(src='img/svg/lock.svg')
+
+    - if (adult)
+      .profile_photos_menu
+        .profile_menu_btn
+          .profile_menu_icon
+            +menu_icon('adult')
+            //img(src='img/svg/adult_only.svg')
+
+  - if (has_check)
+    .profile_photo_check
+      label.f_check.check_v1
+        input.inp_hidden(type='checkbox')
+        span.check_text
+
+  - if (menu)
+    .profile_photos_menu_holder
+      ul.profile_photos_menu_list
+        li: a.profile_menu_link(href='#'): span.fz_16 Сделать аватаркой
+        li: a.profile_menu_link(href='#'): span.fz_16 Выключить
+        li: a.profile_menu_link(href='#'): span.fz_16 Только для VIP
+        li: a.profile_menu_link(href='#'): span.fz_16 Интим-фото
+        li: a.profile_menu_link(href='#'): span.fz_16 Удалить

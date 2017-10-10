@@ -1,6 +1,6 @@
 {
   "success": true,
   "action": {
-    "goto" : "index.html?test"
+    "goto" : "profile.html?auth_success"
   }
 }

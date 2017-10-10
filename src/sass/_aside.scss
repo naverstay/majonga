@@ -42,6 +42,11 @@
     min-height: 100%;
     background: #f6fafc;
 
+    .aside_form_inner {
+      @include flex(1 0);
+      @extend %global_flex_block_column_nowrap_flex-start_stretch;
+    }
+
     .aside_footer {
       @include flex(1 0);
       @extend %global_flex_block_column_nowrap_flex-end_stretch;
@@ -228,9 +233,11 @@
 
   img {
     display: block;
-    width: 1em;
     position: absolute;
-    top: 1.7em;
+    //width: 1em;
+    //top: 1.7em;
+    top: 2em;
+    width: 3em;
     left: 50%;
     margin-left: -1em;
   }
