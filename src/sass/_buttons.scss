@@ -2,6 +2,7 @@
 
 .btn_v1 {
   height: 4em;
+  cursor: pointer;
 
   &.coins_btn {
     display: inline-block;
@@ -70,6 +71,7 @@
 }
 
 .btn_v2 {
+  cursor: pointer;
   height: 2.7em;
 
   &.board_footer_btn {

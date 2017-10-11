@@ -163,6 +163,10 @@
   font-size: 2.2em;
 }
 
+.fz_26 {
+  font-size: 2.6em;
+}
+
 .fz_40 {
   font-size: 4em;
 }
@@ -193,6 +197,14 @@
   .portrait .filter_block & {
     color: rgba(255, 255, 255, .3);
   }
+}
+
+.clr_gray {
+  color: #7f7f7f;
+}
+
+.clr_white {
+  color: #fff;
 }
 
 ._wnw {

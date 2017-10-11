@@ -1,0 +1,183 @@
+//*************************** questionnaire
+
+.questionnaire_address {
+  margin-top: -.5em;
+  margin-right: -5em;
+  line-height: 1.7;
+
+  p {
+    span {
+      font-size: 1.6em;
+    }
+
+    + p {
+      margin-top: 1.2em;
+    }
+  }
+
+  @include respond-to-min(120em) {
+    padding-left: 1em;
+  }
+}
+
+.questionnaire_tip {
+  margin-bottom: 2.2em;
+
+  p {
+    line-height: 1.7;
+  }
+}
+
+.questionnaire_aside {
+
+  .landscape & {
+    position: relative;
+    width: 34.8em;
+    padding-left: 8.5em;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -2.4em;
+      bottom: 0;
+      left: 7.3em;
+      border-left: 1px solid #eceff1;
+    }
+  }
+}
+
+.questionnaire_ratings {
+  @extend %clearfix;
+  position: relative;
+
+  .landscape & {
+    padding-bottom: 4em;
+    margin-right: -1.5em;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      bottom: 0;
+      left: -1.2em;
+      right: -4em;
+      border-bottom: 1px solid #eceff1;
+    }
+  }
+}
+
+.questionnaire_rating_col {
+  float: left;
+  width: 50%;
+  text-align: center;
+
+  p {
+    margin-bottom: 1.65em;
+    line-height: 1.3;
+    color: rgba(0, 0, 0, .5);
+  }
+}
+
+.rating_counter {
+  border-radius: 100%;
+  width: 8.4em;
+  height: 8.4em;
+  line-height: 8.4em;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+
+  &._total {
+    border: 1px solid #52c5eb;
+  }
+
+  &._month {
+    border: 1px solid #ee2e5b;
+  }
+
+  span {
+    width: 96%;
+    display: inline-block;
+    vertical-align: middle;
+    font: 300 2.4em/1.2 $PFDinDisplayProLight;
+  }
+}
+
+.questionnaire_gifts {
+
+  //.landscape & {
+  @extend %global_flex_block_row_nowrap_space_between_stretch;
+  padding-top: .5em;
+  margin-right: -1.5em;
+
+  .questionnaire_gift_list {
+    @include flex(1 0);
+  }
+  //}
+}
+
+.questionnaire_gift_list {
+  white-space: nowrap;
+  overflow: hidden;
+
+  .questionnaire_slide {
+    width: auto;
+  }
+
+  .landscape & {
+
+  }
+}
+
+.questionnaire_gift {
+  position: relative;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .landscape & {
+    padding: 1em .8em 1em 1.5em;
+
+    img {
+      max-height: 7.5em;
+    }
+  }
+}
+
+.questionnaire_gifts_more {
+  padding-left: 1em;
+  padding-top: 4.5em;
+}
+
+.gift_more_btn {
+  color: $gl_blue;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.gift_rm_btn {
+  cursor: pointer;
+  position: absolute;
+  top: 1.2em;
+  //right: -.4em;
+  right: 0;
+  display: block;
+  background: #ff4500;
+  width: 2em;
+  height: 2em;
+  padding: .3em;
+  border-radius: 100%;
+  border: 2px solid #fff;
+
+  svg {
+    max-width: 100%;
+    fill: #fff;
+  }
+}
+
+
+

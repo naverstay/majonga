@@ -257,6 +257,7 @@
       display: block;
       padding: 1em 1.75em .8em;
       border-radius: inherit;
+      cursor: pointer;
 
       .login_form & {
         padding-left: 1.15em;
@@ -364,6 +365,64 @@
 
       .inp_hidden:checked + .check_text:before {
         background: #f9a818;
+      }
+    }
+  }
+
+  &.check_v2 {
+    display: block;
+
+    .check_text {
+      position: relative;
+      display: block;
+      width: 3.5em;
+      height: 1.3em;
+      border-radius: .6em;
+      background: rgb(214, 214, 214);
+      background: -moz-linear-gradient(top, rgba(214, 214, 214, 1) 0%, rgba(220, 220, 220, 1) 100%);
+      background: -webkit-linear-gradient(top, rgba(214, 214, 214, 1) 0%, rgba(220, 220, 220, 1) 100%);
+      background: linear-gradient(to bottom, rgba(214, 214, 214, 1) 0%, rgba(220, 220, 220, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6d6d6', endColorstr='#dcdcdc', GradientType=0);
+
+      &:after {
+        @include transition_all(opacity .3s);
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: inherit;
+        z-index: 1;
+        opacity: 0;
+        background: #bce8f7;
+      }
+
+      &:before {
+        @include transition_all(left .3s, box-shadow .3s, border-color .3s, background .3s);
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: -.55em;
+        left: 0;
+        width: 2.4em;
+        height: 2.4em;
+        border-radius: 100%;
+        background: #fdfdfd;
+        border: 1px solid rgba(0, 0, 0, .16);
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
+      }
+    }
+
+    .inp_hidden:checked + .check_text {
+
+      &:before {
+        background: $gl_blue;
+        left: 1.1em;
+      }
+
+      &:after {
+        opacity: 1;
       }
     }
   }

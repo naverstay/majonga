@@ -1,10 +1,26 @@
-mixin profile_photo_menu(has_check, views, lock, adult, menu)
-  .profile_photo_menu
+mixin profile_photo_menu(has_check, views, lock, adult, menu, camera, address)
+  - if (address)
+    .profile_photo_menu
+      .profile_photo_views.land_hidden
+        p.clr_white
+          span.fz_26 Россия, Санкт-Петербург<br>
+          span.fz_26 Близнецы
+        p
+          span.board_status._online._left
+            span Online
+
+  .profile_photo_menu(class= address ? '_mob_top' : '')
     - if (views)
       .profile_photo_views
         span.photo_icon
           +menu_icon('eye')
         span= views
+
+    - if (camera)
+      .profile_photo_views._alone
+        span.photo_icon._large
+          +menu_icon('camera')
+        span= camera
 
     - if (menu)
       .profile_photos_menu
@@ -30,7 +46,7 @@ mixin profile_photo_menu(has_check, views, lock, adult, menu)
   - if (has_check)
     .profile_photo_check
       label.f_check.check_v1
-        input.inp_hidden(type='checkbox')
+        input.inp_hidden.photoCheck(type='checkbox')
         span.check_text
 
   - if (menu)

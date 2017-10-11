@@ -8,6 +8,9 @@ include ../components/profile_photo_menu
       span Мои фото
       span.land_only графии
 
+    a.title_edit_btn.land_hidden(href='#')
+      +menu_icon('edit')
+
     .profile_title_controls
       ul.profile_controls
         li: a.profile_control(href='#')
@@ -31,8 +34,8 @@ include ../components/profile_photo_menu
               +menu_icon('search')
 
   .board_block._has_aside._photos_mode
-    form.profile_photos_holder(action='#')
-      .profile_photos_list.boardGrid
+    form(action='#'): .profile_photos_holder
+      .profile_photos_list: .boardGrid
         +loop_while(4)
           .profile_photo_unit.gridItem: .profile_photo_w
             .profile_photo
@@ -50,6 +53,7 @@ include ../components/profile_photo_menu
       .profile_photos_helper
         .profile_photos_helper_caption
           span Подсказки по управлению
+          span.land_hidden  фото
 
         .profile_photos_helper_text
           p Можно менять порядок отображения фотографий, просто тащите фотки с одного места на
@@ -59,23 +63,25 @@ include ../components/profile_photo_menu
 
           p Значком обозначен ваш текущий аватар, его можно сменить в любое время кликнув на другой фотографии.
 
-        .profile_photos_helper_caption
+        .profile_photos_helper_caption.land_only
           span Добавление новых фото
 
         .profile_photos_uploader
-          p
+          p.land_only
             span.fz_14 Переносите сюда<br>ваши фотографии<br>или нажмите кнопку
           p
             label.btn_v1.btn_white_blue.upload_btn
               input.inp_hidden(type='file')
-              span.fz_16 Загрузить
+              span.fz_16.land_only Загрузить
+              span.mob_action_icon.land_hidden
+                +menu_icon('plus')
 
   .board_footer
     ul.board_footer_controls
       li
         span.dm.fz_14
           span Выбрано:&nbsp;
-          span.fw_b 10
+          span.fw_b.checkCounter 0
           span.fw_b &nbsp;фото
 
         a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
@@ -84,5 +90,7 @@ include ../components/profile_photo_menu
           span.fz_16.fw_m Удалить
 
       li
-        a.board_footer_link.fz_14(href='#') Выбрать все фото
+        label.board_footer_link.fz_14
+          input.inp_hidden.checkAll(data-target='.photoCheck' type='checkbox')
+          span Выбрать все фото
 

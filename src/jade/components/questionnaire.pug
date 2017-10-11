@@ -1,0 +1,344 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22 Моя анкета
+
+    .profile_title_controls
+      ul.profile_controls
+        li: a.profile_control(href='#')
+          span.profile_c_icon
+            +menu_icon('cup')
+
+        li: a.profile_control(href='#')
+          span.profile_c_icon
+            +menu_icon('search')
+            span.profile_l_counter
+              span 568
+
+        li: a.profile_control(href='#')
+          span.profile_c_icon
+            +menu_icon('cup')
+            span.profile_l_counter
+              span 25
+
+        li: a.profile_control(href='#')
+          span.profile_c_icon
+            +menu_icon('search')
+
+  .board_block._photos_mode
+    form(action='#'): .profile_photos_holder
+      .profile_photos_list
+        .boardGrid.keepFZ_
+          +loop_while(1)
+            .profile_photo_unit.gridItem._wide: .profile_photo_w
+              .profile_photo._no_shadow
+                img(src='img/my_photo.jpg')
+              +profile_photo_menu(false, 0, false, false, false, 25, true)
+            .profile_photo_unit.gridItem.land_only: .profile_photo_w
+              .profile_photo._no_shadow
+                img(src='img/my_photo.jpg')
+              +profile_photo_menu(false, 0)
+            .profile_photo_unit.gridItem.land_only: .profile_photo_w
+              .profile_photo._no_shadow._empty
+
+            .profile_photo_unit.gridItem.land_only: .profile_photo_w
+              .profile_photo._no_shadow._profile_address
+                p: span Россия, Санкт-Петербург,<br>м. Проспект Большевиков<br>Гороскоп: Близнецы
+                p: span.clr_gray Хочу найти:<br>Парня или Девушку 18–25 лет<br>из Санкт-Петербурга
+
+        .questionnaire_tip.land_only
+          p
+            span.fz_16.clr_gray Это ваша анкета. Именно так её видят другие пользователи.
+          p
+            span.fz_16.clr_gray Вы можете редактировать блоки, а можете их не редактировать.
+
+      .questionnaire_aside
+        .questionnaire_ratings.land_only
+          .questionnaire_rating_col
+            p
+              span.fz_14 Позиция<br>на сайте
+            .rating_counter._total
+              span.dm 282
+
+          .questionnaire_rating_col
+            p
+              span.fz_14 Просмотры<br>за последний месяц
+            .rating_counter._month
+              span.dm 1 585
+
+        .questionnaire_gifts
+          .questionnaire_gift_list: .giftSlider.swiper-container
+            .swiper-wrapper
+              +loop_while(3)
+                .questionnaire_slide.swiper-slide
+                  .questionnaire_gift
+                    a.gift_rm_btn.giftRmBtn(href='#')
+                      +menu_icon('close')
+                    img(src='img/gift_1.jpg')
+                .questionnaire_slide.swiper-slide
+                  .questionnaire_gift
+                    a.gift_rm_btn.giftRmBtn(href='#')
+                      +menu_icon('close')
+                    img(src='img/gift_2.jpg')
+                .questionnaire_slide.land_hidden.swiper-slide
+                  .questionnaire_gift
+                    a.gift_rm_btn.giftRmBtn(href='#')
+                      +menu_icon('close')
+                    img(src='img/gift_3.jpg')
+                .questionnaire_slide.swiper-slide
+                  .questionnaire_gift
+                    a.gift_rm_btn.giftRmBtn(href='#')
+                      +menu_icon('close')
+                    img(src='img/gift_4.jpg')
+
+          .questionnaire_gifts_more
+            a.gift_more_btn(href='#')
+              span.fz_14 Все
+
+    .profile_settings_container
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon(1)
+          span.fz_22 О себе
+
+          .profile_settings_control
+            .profile_settings_tip.dm
+              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+            .profile_settings_btn.dm
+              +menu_icon('settings')
+            .profile_settings_toggle.dm
+              label.check_v2.f_check.checkIt
+                input.inp_hidden(type='checkbox' checked data-event='toggle_about')
+                span.check_text
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_block
+            p
+              span.fz_16 Общительная,любознательная,положительная. Рада буду простому общению,без пафоса и королевских замашек.<br>Я не подарок,но со мной не заскучаешь)))
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon('acquaintance')
+          span.fz_22 Знакомства
+
+          .profile_settings_control
+            .profile_settings_tip.dm
+              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+            .profile_settings_btn.dm
+              +menu_icon('settings')
+            .profile_settings_toggle.dm
+              label.check_v2.f_check.checkIt
+                input.inp_hidden(type='checkbox' data-event='toggle_acquaintance')
+                span.check_text
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Хочу найти
+              dd
+                p
+                  span.fz_16 Парня или Девушку или Пару М+Ж 18–25 лет
+
+              dt
+                p
+                  span.fz_16 Кого хочу найти:
+              dd
+                p
+                  span.fz_16 смысл жизни
+
+              dt
+                p
+                  span.fz_16 Цель знакомства:
+              dd
+                p
+                  span.fz_16 тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
+
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Мой автомобиль:
+              dd
+                p
+                  span.fz_16 ножками надо ходить, нож-ка-ми!
+
+              dt
+                p
+                  span.fz_16 Состою в браке:
+              dd
+                p
+                  span.fz_16 Да, живем вместе
+
+              dt
+                p
+                  span.fz_16 Есть ли дети:
+              dd
+                p
+                  span.fz_16 Да, живем вместе
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon('type')
+          span.fz_22 Типаж
+
+          .profile_settings_control
+            .profile_settings_tip.dm
+              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+            .profile_settings_btn.dm
+              +menu_icon('settings')
+            .profile_settings_toggle.dm
+              label.check_v2.f_check.checkIt
+                input.inp_hidden(type='checkbox' data-event='toggle_type')
+                span.check_text
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Рост, Вес:
+              dd
+                p
+                  span.fz_16 180 см, 90 кг
+
+              dt
+                p
+                  span.fz_16 Цвет волос:
+              dd
+                p
+                  span.fz_16 Бритый наголо
+
+              dt
+                p
+                  span.fz_16 Материальное положение:
+              dd
+                p
+                  span.fz_16 микрААлигАрх))
+
+              dt
+                p
+                  span.fz_16 Телосложение:
+              dd
+                p
+                  span.fz_16 Кипарис!
+
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Темперамент:
+              dd
+                p
+                  span.fz_16 брызжу оптимизЬмом))
+
+              dt
+                p
+                  span.fz_16 Профессия:
+              dd
+                p
+                  span.fz_16 Студент, учусь
+
+              dt
+                p
+                  span.fz_16 Проживание:
+              dd
+                p
+                  span.fz_16 Живу с родителями)
+
+              dt
+                p
+                  span.fz_16 Режим дня:
+              dd
+                p
+                  span.fz_16 Я — жаворонок (люблю рано вставать)
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon('hobbies')
+          span.fz_22 Увлечения
+
+          .profile_settings_control
+            .profile_settings_tip.dm
+              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+            .profile_settings_btn.dm
+              +menu_icon('settings')
+            .profile_settings_toggle.dm
+              label.check_v2.f_check.checkIt
+                input.inp_hidden(type='checkbox' data-event='toggle_hobbies')
+                span.check_text
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Хочу найти
+              dd
+                p
+                  span.fz_16 Парня или Девушку или Пару М+Ж 18–25 лет
+
+              dt
+                p
+                  span.fz_16 Кого хочу найти:
+              dd
+                p
+                  span.fz_16 смысл жизни
+
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Мой автомобиль:
+              dd
+                p
+                  span.fz_16 ножками надо ходить, нож-ка-ми!
+
+      .profile_settings_row
+        .profile_settings_caption.settingsCollapseBtn
+          span.profile_settings_icon
+            +menu_icon('lips')
+          span.fz_22 Секс
+
+          .profile_settings_control
+            .profile_settings_tip.dm
+              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+            .profile_settings_btn.dm
+              +menu_icon('settings')
+            .profile_settings_toggle.dm
+              label.check_v2.f_check.checkIt
+                input.inp_hidden(type='checkbox' data-event='toggle_sex')
+                span.check_text
+
+        .profile_settings_wrapper.settingsCollapseBlock
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Цель знакомства:
+              dd
+                p
+                  span.fz_16 тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
+
+          .profile_settings_block._col
+            dl.profile_settings_list
+              dt
+                p
+                  span.fz_16 Есть ли дети:
+              dd
+                p
+                  span.fz_16 Да, живем вместе
+

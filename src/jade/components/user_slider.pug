@@ -1,4 +1,4 @@
-.user_slider_holder.userSliderHolder
+.user_slider_holder.userSliderHolder.keepFZ
   .user_slider_btn._prev.userPrev
     img(src='img/svg/arrow_l.svg' height=40 width=10)
   .user_slider_btn._next.userNext
@@ -7,5 +7,5 @@
   .user_slider_w.userSlider.swiper-container
     .swiper-wrapper
       +loop_while(5)
-        .avatar.slide.swiper-slide
+        a.avatar.slide.swiper-slide(href='profile.html')
           img(src='img/profile_1.png')

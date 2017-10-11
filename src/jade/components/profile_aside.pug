@@ -2,7 +2,7 @@
   .profile_holder
     .profile_block
       .profile_b_inner
-        .profile_settings
+        a.profile_settings(href='my_profile.html')
           span.land_only
             img(src='img/svg/tune-black.svg')
           span.land_hidden
@@ -29,7 +29,7 @@
     .profile_menu_w
       ul.profile_menu
         li
-          a.profile_link(href='#' class=(1 === activePage ? '_active' : ''))
+          a.profile_link(href='my_profile.html' class=(1 === activePage ? '_active' : ''))
             span.profile_l_icon
               +menu_icon('user')
             span.profile_l_text Моя анкета

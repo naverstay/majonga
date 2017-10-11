@@ -6,7 +6,9 @@ var body_var,
   userSlider,
   userSliderTimer,
   topSlider,
+  giftSlider,
   topSliderTimer,
+  giftSliderTimer,
   boardGrid,
   odometer,
   clock,
@@ -37,7 +39,7 @@ var body_var,
   baseFZ = 1,
   minFZ = [.5, .75],
   maxFZ = [1, 1.5],
-  landscapeFlag = -1,
+  landscapeFlag = 0,
   preferredHeight = [1388, 1270],
   preferredWidth = [640, 1920];
 
@@ -55,32 +57,36 @@ $(function ($) {
 });
 
 function domReady(cb) {
+  delete Hammer.defaults.cssProps.userSelect;
 
   new Hammer(body_var[0], {
-    domEvents: true
+    domEvents: true,
+    touchAction: 'pan-x pan-y'
   });
 
-  startOrientationWatching();
+  startOrientationWatching(); // отслежаваем медиа-квери
 
-  initPlaceholder();
+  initPlaceholder(); // проверка пустых/заполненных инпутов
 
   initTopSlider();
 
+  initGiftSlider();
+
   initUserSlider();
 
-  initBoard();
+  initGallery();
 
-  initSelect();
+  initBoard(); // изотоп
 
-  initMask();
+  initSelect(); // селекты
 
-  initToddler();
+  initMask(); // маски инпутов
+
+  initToddler(); // ползунки
+
+  checkEmptyFields(); // проверка пустых полей
 
   all_dialog_close();
-
-  checkEmptyFields();
-
-  initGallery();
 
   body_var.on('click', function (e) {
     if ($(e.target).closest('.profile_photos_menu_holder').length != 1) {
@@ -92,10 +98,31 @@ function domReady(cb) {
     .on('tap', function (e) {
       hideAside(e);
     })
+    .delegate('.checkIt', 'click', function () {
+      var chck = $(this).find('input'), data = {};
+
+      data[chck.attr('data-event')] = !chck.prop('checked');
+
+      chck.prop('checked', !chck.prop('checked'));
+
+      sendProfileSettings(data);
+    })
+    .delegate('.giftRmBtn', 'click', function () {
+
+      giftRemover(this);
+
+      return false;
+    })
     .delegate('.settingsCollapseBtn', 'click', function () {
       var btn = $(this);
 
-      btn.toggleClass('_collapsed').next('.settingsCollapseBlock').slideToggle();
+      $('.settingsCollapseBtn._expanded').not(btn).each(function (ind) {
+        $(this).removeClass('_expanded').next('.settingsCollapseBlock').slideUp()
+      });
+
+      if (landscapeFlag === 0) {
+        btn.toggleClass('_expanded').next('.settingsCollapseBlock').slideToggle();
+      }
 
       return false;
     })
@@ -116,6 +143,19 @@ function domReady(cb) {
       } else {
         $('.secondPersonBlock').slideUp();
       }
+    })
+    .delegate('.photoCheck', 'change', function () {
+      $('.checkCounter').text($('.photoCheck:checked').length);
+    })
+    .delegate('.checkAll', 'change', function () {
+      var chk = $(this), target = $(chk.attr('data-target'));
+
+      if (target && target.length) {
+        target.prop('checked', chk.prop('checked'));
+      }
+
+      $('.checkCounter').text($('.photoCheck:checked').length);
+
     })
     .delegate('.submitEmulator', 'submit', function () {
       overlay(true);
@@ -173,6 +213,15 @@ function domReady(cb) {
 
 function hideDropDowns() {
   $('._menu_opened').removeClass('_menu_opened');
+}
+
+function giftRemover(link) {
+  $(link).closest('.questionnaire_slide').remove();
+  giftSlider.update();
+}
+
+function sendProfileSettings(data) {
+  console.log('ajax', data);
 }
 
 function initGallery() {
@@ -277,6 +326,20 @@ function initTopSlider() {
     freeModeSticky: true,
     autoResize: false,
     spaceBetween: 1,
+    slidesPerView: 'auto'
+  });
+}
+
+function initGiftSlider() {
+  giftSlider = new Swiper('.giftSlider', {
+    // Optional parameters
+    //direction: 'vertical',
+    autoHeight: true,
+    loop: false,
+    freeMode: true,
+    freeModeSticky: true,
+    autoResize: false,
+    spaceBetween: 0,
     slidesPerView: 'auto'
   });
 }
@@ -525,7 +588,6 @@ function checkPlaceholder(inp) {
 }
 
 function startOrientationWatching() {
-
   //if (resizer) {
 
   enquire.register("screen and (orientation: landscape) and (min-width:1281px)", {
@@ -535,7 +597,6 @@ function startOrientationWatching() {
       body_var.addClass('landscape').removeClass('portrait');
 
       windowRisize();
-
     },
     unmatch: function () {
       landscapeFlag = 0;
@@ -543,7 +604,6 @@ function startOrientationWatching() {
       body_var.addClass('portrait').removeClass('landscape');
 
       windowRisize();
-
     }
   });
 
@@ -554,7 +614,6 @@ function startOrientationWatching() {
       body_var.addClass('portrait').removeClass('landscape');
 
       windowRisize();
-
     }
   });
 
@@ -629,6 +688,14 @@ function resizeMe(displayHeight, displayWidth) {
     topSliderTimer = setTimeout(function () {
       topSlider.update(true);
       topSlider.slideTo(topSlider.activeIndex, 0);
+    }, 1);
+  }
+
+  if (giftSlider && giftSlider.container.length) {
+    clearTimeout(giftSliderTimer);
+    giftSliderTimer = setTimeout(function () {
+      giftSlider.update(true);
+      giftSlider.slideTo(giftSlider.activeIndex, 0);
     }, 1);
   }
 

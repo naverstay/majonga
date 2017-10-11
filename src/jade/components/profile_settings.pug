@@ -31,14 +31,14 @@
   .board_block
     form(action='#')
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+        .profile_settings_caption.settingsCollapseBtn._expanded
           span.profile_settings_icon
             +menu_icon(1)
           span.fz_22 Профиль
-          span.profile_settings_arrow
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
-        .profile_settings_wrapper.settingsCollapseBlock
+        .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
           .profile_settings_col
             .profile_settings_box
               .f_cell.cell_v2
@@ -90,7 +90,7 @@
           span.profile_settings_icon
             +menu_icon('search')
           span.fz_22 Интерфейс
-          span.profile_settings_arrow
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
@@ -126,13 +126,12 @@
                       span.check_text
                         span.fz_16 Не показывать
 
-
       .profile_settings_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
             +menu_icon('search')
           span.fz_22 Приватность
-          span.profile_settings_arrow
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
@@ -211,13 +210,12 @@
                       span.check_text
                         span.fz_16 Нет
 
-
       .profile_settings_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
             +menu_icon('search')
           span.fz_22 Сообщения и поиск
-          span.profile_settings_arrow
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
@@ -244,18 +242,17 @@
             .profile_settings_box
               .f_cell.cell_v3
                 .input_w.select_box_v1
-                  select.select2(data-placeholder='Принимать от' data-select-class='select_w1')
+                  select.select2(data-placeholder='Принимать от' data-minimum-results-for-search='-1' data-select-class='select_w1')
                     option От друзей
                     option(selected) Принимать сообщения от всех
                     option Ни от кого
-
 
       .profile_settings_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
             +menu_icon('search')
           span.fz_22 Безопасность
-          span.profile_settings_arrow
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
