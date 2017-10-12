@@ -394,6 +394,10 @@ $resp_step: 8em;
   &._left:before {
     right: auto;
     left: 0;
+
+    .portrait .profile_photo_menu._address & {
+      margin-top: -.4em;
+    }
   }
 
   &._online {

@@ -103,9 +103,15 @@
   }
 }
 
-.questionnaire_gifts {
+.questionnaire_mob_info {
+  padding: 1.5em 0 1em;
 
-  //.landscape & {
+  p {
+    margin-top: 1.7em;
+  }
+}
+
+.questionnaire_gifts {
   @extend %global_flex_block_row_nowrap_space_between_stretch;
   padding-top: .5em;
   margin-right: -1.5em;
@@ -113,7 +119,6 @@
   .questionnaire_gift_list {
     @include flex(1 0);
   }
-  //}
 }
 
 .questionnaire_gift_list {
@@ -137,6 +142,14 @@
     max-width: 100%;
   }
 
+  .portrait & {
+    padding: 1em 1.3em 2.5em;
+
+    img {
+      max-height: 12em;
+    }
+  }
+
   .landscape & {
     padding: 1em .8em 1em 1.5em;
 
@@ -149,6 +162,10 @@
 .questionnaire_gifts_more {
   padding-left: 1em;
   padding-top: 4.5em;
+
+  .portrait & {
+    font-size: 1.2em;
+  }
 }
 
 .gift_more_btn {
@@ -177,6 +194,12 @@
     max-width: 100%;
     fill: #fff;
   }
+
+  .portrait & {
+    font-size: 1.7em;
+    top: .6em;
+  }
+
 }
 
 

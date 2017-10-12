@@ -69,6 +69,12 @@ include ../components/profile_photo_menu
             .rating_counter._month
               span.dm 1 585
 
+        .questionnaire_mob_info.land_hidden
+          p
+            span.fz_26 Хочу найти: Парня или Девушку 18–25 лет
+          p
+            span.clr_gray.fz_22 Просмотров за последние 30 дней: 266
+
         .questionnaire_gifts
           .questionnaire_gift_list: .giftSlider.swiper-container
             .swiper-wrapper
@@ -98,17 +104,24 @@ include ../components/profile_photo_menu
             a.gift_more_btn(href='#')
               span.fz_14 Все
 
+    .profile_settings_mob_collapse.land_hidden
+      .settingsCollapseAll._expanded
+        .fl
+          span.fz_40 Анкета
+        .fr.profile_settings_control_right
+          span.fz_26 Раскрыть все блоки
+        .profile_settings_control
+          span.profile_settings_arrow
+            img(src='img/svg/back-left-arr.svg')
+
     .profile_settings_container
-      .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+      .profile_settings_row._gray_row
+        .profile_settings_caption.settingsCollapseBtn._toggled
           span.profile_settings_icon
             +menu_icon(1)
           span.fz_22 О себе
 
           .profile_settings_control
-            .profile_settings_tip.dm
-              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
             .profile_settings_btn.dm
               +menu_icon('settings')
             .profile_settings_toggle.dm
@@ -121,6 +134,8 @@ include ../components/profile_photo_menu
             p
               span.fz_16 Общительная,любознательная,положительная. Рада буду простому общению,без пафоса и королевских замашек.<br>Я не подарок,но со мной не заскучаешь)))
 
+          .profile_settings_last_edit
+            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
       .profile_settings_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
@@ -128,9 +143,6 @@ include ../components/profile_photo_menu
           span.fz_22 Знакомства
 
           .profile_settings_control
-            .profile_settings_tip.dm
-              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
             .profile_settings_btn.dm
               +menu_icon('settings')
             .profile_settings_toggle.dm
@@ -143,58 +155,56 @@ include ../components/profile_photo_menu
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Хочу найти
+                  span Хочу найти
               dd
                 p
-                  span.fz_16 Парня или Девушку или Пару М+Ж 18–25 лет
-
+                  span Парня или Девушку или Пару М+Ж
+                  span.land_hidden <br>
+                  span  18–25 лет
               dt
                 p
-                  span.fz_16 Кого хочу найти:
+                  span Кого хочу найти:
               dd
                 p
-                  span.fz_16 смысл жизни
-
+                  span смысл жизни
               dt
                 p
-                  span.fz_16 Цель знакомства:
+                  span Цель знакомства:
               dd
                 p
-                  span.fz_16 тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
+                  span тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
 
           .profile_settings_block._col
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Мой автомобиль:
+                  span Мой автомобиль:
               dd
                 p
-                  span.fz_16 ножками надо ходить, нож-ка-ми!
-
+                  span ножками надо ходить, нож-ка-ми!
               dt
                 p
-                  span.fz_16 Состою в браке:
+                  span Состою в браке:
               dd
                 p
-                  span.fz_16 Да, живем вместе
-
+                  span Да, живем вместе
               dt
                 p
-                  span.fz_16 Есть ли дети:
+                  span Есть ли дети:
               dd
                 p
-                  span.fz_16 Да, живем вместе
+                  span Да, живем вместе
 
-      .profile_settings_row
+          .profile_settings_last_edit
+            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+      .profile_settings_row._gray_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
             +menu_icon('type')
           span.fz_22 Типаж
 
           .profile_settings_control
-            .profile_settings_tip.dm
-              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
             .profile_settings_btn.dm
               +menu_icon('settings')
             .profile_settings_toggle.dm
@@ -207,61 +217,58 @@ include ../components/profile_photo_menu
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Рост, Вес:
+                  span Рост, Вес:
               dd
                 p
-                  span.fz_16 180 см, 90 кг
-
+                  span 180 см, 90 кг
               dt
                 p
-                  span.fz_16 Цвет волос:
+                  span Цвет волос:
               dd
                 p
-                  span.fz_16 Бритый наголо
-
+                  span Бритый наголо
               dt
                 p
-                  span.fz_16 Материальное положение:
+                  span Материальное положение:
               dd
                 p
-                  span.fz_16 микрААлигАрх))
-
+                  span микрААлигАрх))
               dt
                 p
-                  span.fz_16 Телосложение:
+                  span Телосложение:
               dd
                 p
-                  span.fz_16 Кипарис!
+                  span Кипарис!
 
           .profile_settings_block._col
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Темперамент:
+                  span Темперамент:
               dd
                 p
-                  span.fz_16 брызжу оптимизЬмом))
-
+                  span брызжу оптимизЬмом))
               dt
                 p
-                  span.fz_16 Профессия:
+                  span Профессия:
               dd
                 p
-                  span.fz_16 Студент, учусь
-
+                  span Студент, учусь
               dt
                 p
-                  span.fz_16 Проживание:
+                  span Проживание:
               dd
                 p
-                  span.fz_16 Живу с родителями)
-
+                  span Живу с родителями)
               dt
                 p
-                  span.fz_16 Режим дня:
+                  span Режим дня:
               dd
                 p
-                  span.fz_16 Я — жаворонок (люблю рано вставать)
+                  span Я — жаворонок (люблю рано вставать)
+
+          .profile_settings_last_edit
+            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
 
       .profile_settings_row
         .profile_settings_caption.settingsCollapseBtn
@@ -270,9 +277,6 @@ include ../components/profile_photo_menu
           span.fz_22 Увлечения
 
           .profile_settings_control
-            .profile_settings_tip.dm
-              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
             .profile_settings_btn.dm
               +menu_icon('settings')
             .profile_settings_toggle.dm
@@ -285,37 +289,36 @@ include ../components/profile_photo_menu
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Хочу найти
+                  span Хочу найти
               dd
                 p
-                  span.fz_16 Парня или Девушку или Пару М+Ж 18–25 лет
-
+                  span Парня или Девушку или Пару М+Ж 18–25 лет
               dt
                 p
-                  span.fz_16 Кого хочу найти:
+                  span Кого хочу найти:
               dd
                 p
-                  span.fz_16 смысл жизни
+                  span смысл жизни
 
           .profile_settings_block._col
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Мой автомобиль:
+                  span Мой автомобиль:
               dd
                 p
-                  span.fz_16 ножками надо ходить, нож-ка-ми!
+                  span ножками надо ходить, нож-ка-ми!
 
-      .profile_settings_row
+          .profile_settings_last_edit
+            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
+
+      .profile_settings_row._gray_row
         .profile_settings_caption.settingsCollapseBtn
           span.profile_settings_icon
             +menu_icon('lips')
           span.fz_22 Секс
 
           .profile_settings_control
-            .profile_settings_tip.dm
-              span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
             .profile_settings_btn.dm
               +menu_icon('settings')
             .profile_settings_toggle.dm
@@ -328,17 +331,20 @@ include ../components/profile_photo_menu
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Цель знакомства:
+                  span Цель знакомства:
               dd
                 p
-                  span.fz_16 тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
+                  span тестирую я тут.. сообщество) в общем, в целом, запчастями, узлами и агрегатами)))
 
           .profile_settings_block._col
             dl.profile_settings_list
               dt
                 p
-                  span.fz_16 Есть ли дети:
+                  span Есть ли дети:
               dd
                 p
-                  span.fz_16 Да, живем вместе
+                  span Да, живем вместе
+
+          .profile_settings_last_edit
+            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
 

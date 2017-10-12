@@ -340,38 +340,13 @@
   }
 }
 
-.profile_settings_container {
-
-  .landscape & {
-    margin-right: -4em;
-    margin-left: -2.9em;
-
-    .profile_settings_row {
-      padding: 3em 5em;
-      border-top: 1px solid #ebeef0;
-    }
-
-    .profile_settings_caption {
-      margin-bottom: .8em;
-    }
-
-    .profile_settings_icon {
-      width: 2.5em;
-
-      svg {
-        fill: #c9c9c9;
-
-        path {
-          fill: #c9c9c9;
-        }
-      }
-    }
-  }
-}
-
 .profile_settings_row {
   @extend %clearfix;
   position: relative;
+
+  &._gray_row {
+    background: #fbfbfb;
+  }
 
   + .profile_settings_row {
 
@@ -405,6 +380,76 @@
     &._save_row {
       padding-top: .5em;
       font-size: 2em;
+    }
+  }
+}
+
+.profile_settings_control_right {
+  margin-right: 7em;
+}
+
+.profile_settings_mob_collapse {
+  @extend %clearfix;
+  position: relative;
+  padding: 3.3em 0 2em;
+  line-height: 4em;
+
+  .portrait & {
+    .profile_settings_control {
+      top: 4.6em;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    right: -4em;
+    left: -4em;
+    top: 0;
+    border-top: 1px solid #ebeef0;
+  }
+}
+
+.profile_settings_container {
+
+  .landscape & {
+    border-top: 1px solid #ebeef0;
+    padding-bottom: 2em;
+    margin: 0 -4em -4em -2.9em;
+
+    .profile_settings_row {
+      padding: 3em 5em;
+
+      &:before {
+        right: 0;
+        left: 0;
+      }
+    }
+
+    .profile_settings_caption {
+      margin-bottom: .8em;
+    }
+
+    .profile_settings_icon {
+      width: 2.5em;
+
+      svg {
+        fill: #c9c9c9;
+
+        path {
+          fill: #c9c9c9;
+        }
+      }
+    }
+  }
+
+  .portrait & {
+    margin-bottom: -2em;
+
+    .profile_settings_wrapper {
+      padding-top: 1em;
+      padding-bottom: 1.2em;
     }
   }
 }
@@ -463,6 +508,7 @@
       font-size: 1.5em;
     }
   }
+
 }
 
 .profile_settings_col {
@@ -524,7 +570,9 @@
 .profile_settings_arrow {
   @include transition_all(transform .3s);
   @include transform_rotate(-90);
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 1.4em;
 
   img {
@@ -545,6 +593,18 @@
 
   .portrait & {
     top: 2.6em;
+
+    .dm {
+      margin-right: 2em;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .f_check.check_v2 {
+      font-size: 1.16em;
+    }
   }
 
   .landscape & {
@@ -565,6 +625,10 @@
       fill: #c9c9c9;
     }
   }
+
+  .portrait & {
+    font-size: 1.1em;
+  }
 }
 
 .profile_settings_tip {
@@ -577,10 +641,42 @@
   }
 }
 
+.profile_settings_last_edit {
+
+  .landscape & {
+    position: absolute;
+    top: 3em;
+    right: 16em;
+    z-index: 2;
+    color: #b0b0b0;
+  }
+
+  .portrait & {
+    position: relative;
+    color: #7f7f7f;
+    padding-left: 3.4em;
+    padding-top: 2.4em;
+    font-size: .78em;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: .6em;
+      left: 3.3em;
+      right: -3em;
+      border-top: 1px solid #ebeef0;
+    }
+  }
+}
+
 .profile_settings_block {
   padding-left: 2.2em;
   line-height: 1.45;
   margin-bottom: -.3em;
+
+  p {
+    //word-break: break-all;
+  }
 
   .landscape & {
     &._col {
@@ -589,30 +685,71 @@
       //margin-bottom: -2em;
     }
   }
+
+  .portrait & {
+    padding-left: 2.5em;
+
+    p {
+      span.fz_16 {
+        font-size: 1.2em;
+      }
+    }
+  }
 }
 
 .profile_settings_list {
-  overflow: hidden;
-  margin-bottom: -2em;
-
-  dt,
-  dd {
-    float: left;
-    margin-top: .5em;
-    margin-bottom: 1.4em;
-  }
-
-  dd {
-    width: 67.5%;
-  }
 
   dt {
-    clear: both;
-    width: 32.5%;
-    padding-right: 2em;
     color: rgba(0, 0, 0, .5);
   }
 
+  .portrait & {
+    dt,
+    dd {
+      margin-top: .2em;
+    }
+
+    dt {
+      span {
+        font-size: 1.2em;
+      }
+    }
+
+    dd {
+      margin-bottom: 1em;
+
+      span {
+        font-size: 1.3em;
+      }
+    }
+  }
+
+  .landscape & {
+    overflow: hidden;
+    margin-bottom: -2em;
+
+    dt,
+    dd {
+      float: left;
+      margin-top: .5em;
+      margin-bottom: 1.4em;
+
+      span {
+        font-size: 1.6em;
+      }
+    }
+
+    dd {
+      width: 67.5%;
+      margin-bottom: 2em;
+    }
+
+    dt {
+      clear: both;
+      width: 32.5%;
+      padding-right: 2em;
+    }
+  }
 }
 
 .profile_settings_box {
@@ -655,12 +792,23 @@
   svg {
     display: block;
     max-width: 100%;
-    fill: $gl_blue;
 
-    .portrait ._collapsed & {
-      fill: #000;
-      opacity: .2;
+    ._toggled & {
+      fill: $gl_blue !important;
+
+      path {
+        fill: $gl_blue !important;
+      }
     }
+
+    //.portrait ._collapsed & {
+    //  fill: #000;
+    //  opacity: .2;
+    //
+    //  path {
+    //    fill: #000;
+    //  }
+    //}
   }
 
   .portrait & {
@@ -668,7 +816,6 @@
     left: -0.4em;
     width: 2.6em;
   }
-
 }
 
 .label_icon {
@@ -856,7 +1003,7 @@
     }
 
     &:nth-child(n + 7) {
-      display: none;
+      //display: none;
     }
   }
 }
@@ -1019,9 +1166,25 @@
     bottom: 4%;
     font-size: 1.8em;
 
+    &._address {
+      left: 6%;
+      right: 6%;
+      bottom: 5%;
+
+      p {
+        margin-top: .8em;
+      }
+
+      .fz_26 {
+        font-size: 1.45em;
+      }
+    }
+
     &._mob_top {
       bottom: auto;
-      top: 4%;
+      top: 2%;
+      left: 3%;
+      font-size: 2.5em;
     }
   }
 }

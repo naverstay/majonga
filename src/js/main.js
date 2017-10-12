@@ -50,7 +50,7 @@ $(function ($) {
   scrollFixed = $('.scrollFixed');
   topSection = $('.topSection');
 
-  //resizer = false;
+  resizer = false;
 
   if (!resizer) domReady();
 
@@ -99,17 +99,34 @@ function domReady(cb) {
       hideAside(e);
     })
     .delegate('.checkIt', 'click', function () {
-      var chck = $(this).find('input'), data = {};
+      var chck = $(this).find('input'), data = {}, val = chck.prop('checked');
 
-      data[chck.attr('data-event')] = !chck.prop('checked');
+      data[chck.attr('data-event')] = !val;
 
-      chck.prop('checked', !chck.prop('checked'));
+      chck.prop('checked', !val).closest('.settingsCollapseBtn').toggleClass('_toggled', !val);
 
       sendProfileSettings(data);
+
+      return false;
     })
     .delegate('.giftRmBtn', 'click', function () {
 
       giftRemover(this);
+
+      return false;
+    })
+    .delegate('.settingsCollapseAll', 'click', function () {
+      var btn = $(this);
+
+      if (landscapeFlag === 0) {
+        if (btn.hasClass('_expanded')) {
+          btn.removeClass('_expanded');
+          $('.settingsCollapseBlock').slideDown().prev('.settingsCollapseBtn').addClass('_expanded');
+        } else {
+          btn.addClass('_expanded');
+          $('.settingsCollapseBlock').slideUp().prev('.settingsCollapseBtn').removeClass('_expanded');
+        }
+      }
 
       return false;
     })
@@ -121,6 +138,7 @@ function domReady(cb) {
       });
 
       if (landscapeFlag === 0) {
+        $('.settingsCollapseAll').removeClass('_expanded');
         btn.toggleClass('_expanded').next('.settingsCollapseBlock').slideToggle();
       }
 
@@ -642,7 +660,7 @@ function resizeMe(displayHeight, displayWidth) {
 
   var dpr = window.devicePixelRatio || 1;
 
-  //console.log('devicePixelRatio', dpr);
+  console.log('devicePixelRatio', dpr, (displayWidth / 640).toFixed(2));
 
   dpr = 1;
 
@@ -663,10 +681,10 @@ function resizeMe(displayHeight, displayWidth) {
     //if (browserWindow.width() > 640) {
     //  body_var.css('font-size', '1em');
     //} else {
-    body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+    body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ) / dpr)) + 'em');
     //}
 
-    $('.keepFZ').css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
+    //$('.keepFZ').css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
 
   } else {
 
@@ -676,7 +694,7 @@ function resizeMe(displayHeight, displayWidth) {
     body_var.css('font-size', (baseFZ / dpr) + 'em');
     //}
 
-    $('.keepFZ').css('font-size', (baseFZ / dpr) + 'em');
+    //$('.keepFZ').css('font-size', (baseFZ / dpr) + 'em');
   }
 
   //var newFZ = browserWindow.width() / baseWindowWidth * baseFZ;
