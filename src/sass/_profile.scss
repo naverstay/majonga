@@ -18,6 +18,7 @@
   position: absolute;
   top: .3em;
   right: -.3em;
+  cursor: pointer;
 
   img {
     display: block;
@@ -385,7 +386,7 @@
 }
 
 .profile_settings_control_right {
-  margin-right: 7em;
+  padding-right: 7em;
 }
 
 .profile_settings_mob_collapse {
@@ -415,7 +416,7 @@
 
   .landscape & {
     border-top: 1px solid #ebeef0;
-    padding-bottom: 2em;
+    //padding-bottom: 2em;
     margin: 0 -4em -4em -2.9em;
 
     .profile_settings_row {
@@ -425,6 +426,10 @@
         right: 0;
         left: 0;
       }
+
+      &:last-child {
+        padding-bottom: 5em;
+      }
     }
 
     .profile_settings_caption {
@@ -432,10 +437,15 @@
     }
 
     .profile_settings_icon {
-      width: 2.5em;
+
+      img {
+        display: block;
+        width: 2.5em;
+      }
 
       svg {
         fill: #c9c9c9;
+        width: 2.5em;
 
         path {
           fill: #c9c9c9;
@@ -450,6 +460,16 @@
     .profile_settings_wrapper {
       padding-top: 1em;
       padding-bottom: 1.2em;
+    }
+
+    &._expanded_is_active {
+      .profile_settings_caption._expanded .profile_settings_icon svg {
+        fill: $gl_blue !important;
+
+        path {
+          fill: $gl_blue !important;
+        }
+      }
     }
   }
 }
@@ -562,7 +582,8 @@
 
     > * {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      cursor: pointer;
     }
   }
 }
@@ -593,6 +614,7 @@
 
   .portrait & {
     top: 2.6em;
+    z-index: 4;
 
     .dm {
       margin-right: 2em;
@@ -619,6 +641,7 @@
   margin: -1em 0;
 
   svg {
+    display: block;
     max-width: 100%;
 
     .landscape & {
@@ -647,7 +670,7 @@
     position: absolute;
     top: 3em;
     right: 16em;
-    z-index: 2;
+    z-index: 4;
     color: #b0b0b0;
   }
 
@@ -741,7 +764,7 @@
 
     dd {
       width: 67.5%;
-      margin-bottom: 2em;
+      //margin-bottom: 1.4em;
     }
 
     dt {
@@ -788,10 +811,16 @@
   top: -.2em;
   left: -1.7em;
   width: 2em;
+  cursor: pointer;
 
   svg {
     display: block;
     max-width: 100%;
+    fill: #c9c9c9;
+
+    path {
+      fill: #c9c9c9;
+    }
 
     ._toggled & {
       fill: $gl_blue !important;
@@ -816,6 +845,15 @@
     left: -0.4em;
     width: 2.6em;
   }
+}
+
+.mob_btn_emul {
+  position: absolute !important;
+  z-index: 3 !important;
+  top: 0;
+  bottom: 0;
+  left: -3.5em;
+  right: -3.5em;
 }
 
 .label_icon {
@@ -912,6 +950,28 @@
       + p {
         margin-top: 1.35em;
       }
+    }
+  }
+}
+
+.mob_action_link {
+  @extend .btn_red;
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 1.2em;
+  width: 10.2em;
+  height: 10.2em;
+  line-height: 10.6em;
+  border-radius: 100%;
+  text-align: center;
+  border: none;
+
+  svg {
+    fill: #fff;
+
+    path {
+      fill: #fff;
     }
   }
 }
@@ -1089,9 +1149,19 @@
 .profile_photo_check {
   position: absolute;
   z-index: 1;
-  top: 7%;
-  left: 8.5%;
-  background: #fff;
+
+  .landscape & {
+    top: 7%;
+    left: 8.5%;
+    background: #fff;
+  }
+
+  .portrait & {
+    background: #000;
+    top: 8%;
+    left: 10.5%;
+    font-size: 2em;
+  }
 }
 
 .photo_icon {
@@ -1223,10 +1293,17 @@
   z-index: 2;
   position: absolute;
   top: 100%;
-  left: 55%;
 
   ._menu_opened & {
     display: block;
+  }
+
+  .portrait & {
+    right: 5%;
+  }
+
+  .landscape & {
+    left: 55%;
   }
 }
 
@@ -1251,5 +1328,76 @@
 
   &:hover {
     color: $gl_blue;
+  }
+}
+
+.lg-photomenu {
+  position: relative;
+
+  .profile_menu_icon {
+    width: 1.1em !important;
+    margin: 0 0 0 .7em !important;
+  }
+
+  .profile_photos_menu_holder {
+    font-family: $PFDinDisplayProReg;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: left;
+    left: auto !important;
+    right: 0 !important;
+
+    &.portrait {
+      @include respond-to-max(640px) {
+        font-size: 5px;
+      }
+    }
+  }
+
+  &._menu_opened,
+  &:hover {
+    .lg-menu-dots > span {
+      background: #fff;
+    }
+  }
+}
+
+.lg-menu-dots {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  > span {
+    @include transition_all(background .2s);
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: .6em;
+    height: .6em;
+    margin: -.3em 0 0 -.3em;
+    border-radius: 100%;
+    background: #999;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      border-radius: inherit;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+      top: 0;
+    }
+
+    &:after {
+      right: 1em;
+    }
+
+    &:before {
+      left: 1em;
+    }
   }
 }

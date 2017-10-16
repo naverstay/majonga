@@ -33,7 +33,7 @@ var src = {
   img: 'src/img/**/*',
   favicon: 'src/favicon/*',
   data: 'src/data/*.json',
-  fonts: 'src/fonts/*',
+  fonts: ['src/fonts/*', 'src/vendor/lightGallery-master/dist/fonts/*'],
   vendor: 'src/vendor/**/*'
 };
 
@@ -135,16 +135,26 @@ gulp.task('csso', function () {
   var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'})),
     arr = opt.styles;
 
-  arr.push(dest.css + '**/*.css');
-
-  console.log('csso', arr);
 
   pump([
-    gulp.src(arr),
+    gulp.src(arr)
+      .pipe(gulp.dest(dest.css)),
+    gulp.src([dest.css + '**/*.css', '!' + dest.css + '**/*.min.css']),
     concatCss('styles.min.css'),
     csso(),
     gulp.dest(dest.css)
   ]);
+
+  //arr.push(dest.css + '**/*.css');
+
+  console.log('csso', arr);
+
+  //pump([
+  //  gulp.src(arr),
+  //  concatCss('styles.min.css'),
+  //  csso(),
+  //  gulp.dest(dest.css)
+  //]);
 
 });
 
@@ -220,5 +230,5 @@ gulp.task('dev', ['jade', 'sass', 'js', 'copy', 'browser-sync'], function () {
 });
 
 gulp.task('default', ['dev']);
-gulp.task('build', ['csso', 'image', 'compress']);
+gulp.task('build', ['jade', 'csso', 'image', 'compress']);
 gulp.task('svg', ['svgstore']);

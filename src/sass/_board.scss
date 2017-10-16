@@ -53,14 +53,30 @@
 }
 
 .board_footer {
+  position: relative;
   background: #f6fafc;
   padding: 1.6em 0 1.1em 3.4em;
 
   .portrait & {
-    padding-right: 3.4em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: auto !important;
+    z-index: 13;
+    background: #fcfcfc;
+    font-size: 2.2em;
+    padding: 1.2em 5em 1.1em 1.25em;
+
+    &._menu_opened {
+      .board_footer_controls {
+        display: block;
+      }
+    }
   }
 
   .landscape & {
+    line-height: 2.8em;
 
     @include respond-to-min(91em) {
       padding-right: 38em;
@@ -69,26 +85,95 @@
 }
 
 .board_footer_controls {
-  @extend %clearfix;
+  float: left;
 
   .portrait & {
-    font-size: 1.4em;
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: #fff;
+    font-size: .9em;
+    padding-bottom: .75em;
 
     li {
-      margin-bottom: 1em;
+      margin: 1em 0;
+    }
+
+    .btn_v2.board_footer_btn {
+      border: none;
+      display: block;
+      min-width: 16.4em;
+      padding: .5em 1.8em;
+      background: none !important;
     }
   }
 
   .landscape & {
-    padding-right: 4em;
-    line-height: 2.6;
+    padding-left: 1.8em;
 
     li {
-      float: right;
+      float: left;
+      padding-left: .7em;
+    }
+  }
+}
 
-      &:first-child {
-        float: left;
-      }
+.board_footer_control {
+  float: left;
+
+  .portrait & {
+    padding-right: 2.5em;
+
+    &:first-child {
+      opacity: .5;
+    }
+  }
+
+  .landscape & {
+    &:last-child {
+      float: right;
+      padding-right: 4em;
+    }
+  }
+}
+
+.board_menu_toggle {
+  position: absolute;
+  bottom: .6em;
+  right: 1em;
+  width: 3em;
+  height: 2.8em;
+
+  > span {
+    @include transition_all(background .2s);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: .8em;
+    height: .8em;
+    margin: -.4em 0 0 -.4em;
+    border-radius: 100%;
+    background: #000;
+    font-size: .5em;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      border-radius: inherit;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+      top: 0;
+    }
+
+    &:after {
+      right: 1.2em;
+    }
+
+    &:before {
+      left: 1.2em;
     }
   }
 }
@@ -146,16 +231,28 @@
   right: 0;
   top: 1.6em;
   width: 1.8em;
+  cursor: pointer;
 
   svg {
     width: 100%;
   }
+
+  &._inactive {
+    svg {
+      fill: #ccc;
+    }
+  }
+}
+
+.profile_last_visit {
+  color: rgba(0, 0, 0, .4);
+  padding-left: 2em;
 }
 
 .title_back_btn {
   display: inline-block;
   vertical-align: middle;
-  margin: -1.2em 1.5em 0 -1.2em;
+  margin: -.5em 1.5em 0 -1.2em;
 
   img {
     display: block;
@@ -163,7 +260,7 @@
   }
 
   .portrait & {
-    margin-top: -1em;
+    //margin-top: -1em;
     margin-right: .5em;
   }
 }
@@ -207,6 +304,10 @@ $resp_step: 8em;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.board_block {
+  position: relative;
 }
 
 .grid_item {

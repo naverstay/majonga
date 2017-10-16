@@ -28,6 +28,11 @@ body {
   }
 
   &.portrait {
+
+    @include respond-to-max(640px) {
+      font-size: .5em;
+    }
+
     &.profile_opened,
     &.search_opened {
       overflow: hidden;

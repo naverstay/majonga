@@ -57,3 +57,27 @@ mixin profile_photo_menu(has_check, views, lock, adult, menu, camera, address)
         li: a.profile_menu_link(href='#'): span.fz_16 Только для VIP
         li: a.profile_menu_link(href='#'): span.fz_16 Интим-фото
         li: a.profile_menu_link(href='#'): span.fz_16 Удалить
+
+
+mixin profile_title_controls()
+  .profile_title_controls
+    ul.profile_controls
+      li: a.profile_control(href='#')
+        span.profile_c_icon
+          +menu_icon('home')
+
+      li: a.profile_control(href='#')
+        span.profile_c_icon
+          +menu_icon('pin')
+          span.profile_l_counter
+            span 568
+
+      li: a.profile_control(href='#')
+        span.profile_c_icon
+          +menu_icon('cup')
+          span.profile_l_counter
+            span 25
+
+      li: a.profile_control(href='#')
+        span.profile_c_icon
+          +menu_icon('search_2')

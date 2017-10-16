@@ -186,6 +186,7 @@
         }
       }
 
+      + .f_cell .btn_v1,
       + .f_cell .check_text {
         border-left: 0;
       }
@@ -246,6 +247,7 @@
 }
 
 .f_check {
+  cursor: pointer;
 
   &.radio_v1 {
     .check_text {
@@ -328,7 +330,7 @@
         left: .45em;
         width: 1.2em;
         height: 1.2em;
-        background: url(../img/svg/checkbox.svg) 50% 50%;
+        background: url(../img/svg/checkbox.svg) 50% 50% no-repeat;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -477,6 +479,7 @@
   }
 
   .noUi-handle {
+    cursor: pointer;
     width: 2em;
     height: 2em;
     top: 50%;

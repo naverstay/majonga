@@ -1,37 +1,20 @@
+include ../components/profile_photo_menu
+
 .board_holder
   .board_title._profile_controls
-    a.title_back_btn(href='index.html')
+    a.title_back_btn.dm(href='index.html')
       img(src='img/svg/back-left-arr.svg')
-    span.fz_22
+    span.fz_22.dm
       span.land_only Мои&nbsp;
       span.land_ttl Настройки
 
-    .profile_title_controls
-      ul.profile_controls
-        li: a.profile_control(href='#')
-            span.profile_c_icon
-              +menu_icon('cup')
-
-        li: a.profile_control(href='#')
-            span.profile_c_icon
-              +menu_icon('search')
-              span.profile_l_counter
-                span 568
-
-        li: a.profile_control(href='#')
-            span.profile_c_icon
-              +menu_icon('cup')
-              span.profile_l_counter
-                span 25
-
-        li: a.profile_control(href='#')
-            span.profile_c_icon
-              +menu_icon('search')
+    +profile_title_controls()
 
   .board_block
     form(action='#')
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn._expanded
+        .profile_settings_caption._expanded._toggled
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon(1)
           span.fz_22 Профиль
@@ -86,9 +69,11 @@
                     option Амстердам
 
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+        .profile_settings_caption._toggled
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
-            +menu_icon('search')
+            img(src='img/interface.png')
+            //-+menu_icon('search')
           span.fz_22 Интерфейс
           .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
@@ -127,7 +112,8 @@
                         span.fz_16 Не показывать
 
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+        .profile_settings_caption._toggled
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('lock')
           span.fz_22 Приватность
@@ -211,7 +197,8 @@
                         span.fz_16 Нет
 
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+        .profile_settings_caption._toggled
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('envelope')
           span.fz_22 Сообщения и поиск
@@ -248,7 +235,8 @@
                     option Ни от кого
 
       .profile_settings_row
-        .profile_settings_caption.settingsCollapseBtn
+        .profile_settings_caption._toggled
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('security')
           span.fz_22 Безопасность

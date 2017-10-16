@@ -4,7 +4,10 @@ include ../components/profile_photo_menu
   .board_title._profile_controls
     a.title_back_btn.dm(href='index.html')
       img(src='img/svg/back-left-arr.svg')
-    span.fz_22.dm Моя анкета
+    span.fz_22.dm Виктория, 24
+    span.profile_last_visit.fz_14.dm.land_only Была месяц назад
+    a.title_edit_btn.land_hidden._inactive(href='#')
+      +menu_icon('heart')
 
     +profile_title_controls()
 
@@ -15,7 +18,7 @@ include ../components/profile_photo_menu
           +loop_while(1)
             .profile_photo_unit.gridItem._wide: .profile_photo_w
               a.profile_photo._no_shadow.galItem(data-menu='photo_menu.html' href='img/my_photo_big_2.jpg')
-                img(src='img/my_photo.jpg')
+                img(src='img/user_profile.jpg')
               +profile_photo_menu(false, 0, false, false, false, 25, true)
             .profile_photo_unit.gridItem.land_only: .profile_photo_w
               a.profile_photo._no_shadow.galItem(data-menu='photo_menu.html' href='img/my_photo_big.jpg')
@@ -29,11 +32,24 @@ include ../components/profile_photo_menu
                 p: span Россия, Санкт-Петербург,<br>м. Проспект Большевиков<br>Гороскоп: Близнецы
                 p: span.clr_gray Хочу найти:<br>Парня или Девушку 18–25 лет<br>из Санкт-Петербурга
 
-        .questionnaire_tip.land_only
-          p
-            span.fz_16.clr_gray Это ваша анкета. Именно так её видят другие пользователи.
-          p
-            span.fz_16.clr_gray Вы можете редактировать блоки, а можете их не редактировать.
+        .questionnaire_tip
+          .f_cell.questionnaire_comunication
+            a.btn_v1.btn_red.profile_action_btn(href='#')
+              span.btn_icon
+                +menu_icon('plane')
+              span.btn_text.fz_16.land_only Сообщение
+          .f_cell.land_only
+            .f_row.f_group.text_center
+              .f_cell
+                a.btn_v1.profile_action_btn.btn_white_blue(href='#')
+                  span.btn_icon
+                    +menu_icon('heart')
+                  span.fz_16.btn_text В избранное
+              .f_cell
+                a.btn_v1.profile_action_btn.btn_white_blue(href='#')
+                  span.btn_icon._mod_gift
+                    +menu_icon('gift')
+                  span.fz_16 Подарок
 
       .questionnaire_aside
         .questionnaire_ratings.land_only
@@ -80,9 +96,9 @@ include ../components/profile_photo_menu
                       +menu_icon('close')
                     img(src='img/gift_4.jpg')
 
-          .questionnaire_gifts_more
-            a.gift_more_btn(href='#')
-              span.fz_14 Все
+          .questionnaire_gifts_make.land_hidden
+            a.questionnaire_slide.dm(href='#')
+              img(src='img/make_gift.png')
 
     .profile_settings_mob_collapse.land_hidden
       .fl
@@ -93,43 +109,29 @@ include ../components/profile_photo_menu
           span.profile_settings_arrow
             img(src='img/svg/back-left-arr.svg')
 
-    .profile_settings_container
+    .profile_settings_container._expanded_is_active
       .profile_settings_row._gray_row
-        .profile_settings_caption._toggled
+        .profile_settings_caption
           a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon(1)
           span.fz_22 О себе
-
-          .profile_settings_control
-            .profile_settings_btn.dm
-              +menu_icon('settings')
-            .profile_settings_toggle.dm
-              label.check_v2.f_check.checkIt
-                input.toggleIt.inp_hidden(type='checkbox' checked data-event='toggle_about')
-                span.check_text
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
+            img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
           .profile_settings_block
             p
               span.fz_16 Общительная,любознательная,положительная. Рада буду простому общению,без пафоса и королевских замашек.<br>Я не подарок,но со мной не заскучаешь)))
 
-          .profile_settings_last_edit
-            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
       .profile_settings_row
         .profile_settings_caption
           a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('acquaintance')
           span.fz_22 Знакомства
-
-          .profile_settings_control
-            .profile_settings_btn.dm
-              +menu_icon('settings')
-            .profile_settings_toggle.dm
-              label.check_v2.f_check.checkIt
-                input.toggleIt.inp_hidden(type='checkbox' data-event='toggle_acquaintance')
-                span.check_text
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
+            img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
           .profile_settings_block._col
@@ -176,23 +178,14 @@ include ../components/profile_photo_menu
                 p
                   span Да, живем вместе
 
-          .profile_settings_last_edit
-            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
       .profile_settings_row._gray_row
         .profile_settings_caption
           a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('type')
           span.fz_22 Типаж
-
-          .profile_settings_control
-            .profile_settings_btn.dm
-              +menu_icon('settings')
-            .profile_settings_toggle.dm
-              label.check_v2.f_check.checkIt
-                input.toggleIt.inp_hidden(type='checkbox' data-event='toggle_type')
-                span.check_text
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
+            img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
           .profile_settings_block._col
@@ -249,23 +242,14 @@ include ../components/profile_photo_menu
                 p
                   span Я — жаворонок (люблю рано вставать)
 
-          .profile_settings_last_edit
-            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
       .profile_settings_row
         .profile_settings_caption
           a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('hobbies')
           span.fz_22 Увлечения
-
-          .profile_settings_control
-            .profile_settings_btn.dm
-              +menu_icon('settings')
-            .profile_settings_toggle.dm
-              label.check_v2.f_check.checkIt
-                input.toggleIt.inp_hidden(type='checkbox' data-event='toggle_hobbies')
-                span.check_text
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
+            img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
           .profile_settings_block._col
@@ -292,23 +276,14 @@ include ../components/profile_photo_menu
                 p
                   span ножками надо ходить, нож-ка-ми!
 
-          .profile_settings_last_edit
-            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад
-
       .profile_settings_row._gray_row
         .profile_settings_caption
           a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
           span.profile_settings_icon
             +menu_icon('lips')
           span.fz_22 Секс
-
-          .profile_settings_control
-            .profile_settings_btn.dm
-              +menu_icon('settings')
-            .profile_settings_toggle.dm
-              label.check_v2.f_check.checkIt
-                input.toggleIt.inp_hidden(type='checkbox' data-event='toggle_sex')
-                span.check_text
+          .profile_settings_control: span.profile_settings_arrow.land_hidden
+            img(src='img/svg/back-left-arr.svg')
 
         .profile_settings_wrapper.settingsCollapseBlock
           .profile_settings_block._col
@@ -328,6 +303,3 @@ include ../components/profile_photo_menu
               dd
                 p
                   span Да, живем вместе
-
-          .profile_settings_last_edit
-            span.fz_14 Редактировался 10 дней 14 часов 12 минут назад

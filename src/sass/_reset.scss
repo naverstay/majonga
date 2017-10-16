@@ -172,6 +172,11 @@ textarea:focus::-moz-placeholder {
 
 a {
   text-decoration: none;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
 }
 
 /*-----------------------------form elements###*/

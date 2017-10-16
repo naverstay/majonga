@@ -20,11 +20,48 @@
   }
 }
 
+.questionnaire_comunication {
+
+  .portrait & {
+    position: absolute;
+    right: 3.7em;
+    margin-bottom: 3.7em;
+    bottom: 100%;
+    z-index: 1;
+
+    .profile_action_btn {
+      width: 10.2em;
+      height: 10.2em;
+      line-height: 10.2em;
+      border-radius: 100%;
+
+      .btn_icon {
+        width: 5em;
+        margin: 0 0 0 -.5em;
+      }
+    }
+  }
+}
+
 .questionnaire_tip {
-  margin-bottom: 2.2em;
+  @extend %clearfix;
+  position: relative;
 
   p {
     line-height: 1.7;
+  }
+
+  .landscape & {
+    margin-bottom: 2.2em;
+
+    > .f_cell {
+      float: left;
+
+      &:first-child {
+        min-width: 21em;
+        padding-right: 3em;
+      }
+    }
   }
 }
 
@@ -165,6 +202,15 @@
 
   .portrait & {
     font-size: 1.2em;
+  }
+}
+
+.questionnaire_gifts_make {
+  padding: 3em 3em 0 1em;
+
+  img {
+    display: block;
+    max-height: 7.5em;
   }
 }
 

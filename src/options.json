@@ -13,11 +13,6 @@
     "/js/swiper.js",
     "/js/select2.js",
     "/js/isotop/isotope.pkgd.js",
-    "/js/isotop/cells-by-column.js",
-    "/js/isotop/cells-by-row.js",
-    "/js/isotop/fit-columns.js",
-    "/js/isotop/horizontal.js",
-    "/js/isotop/masonry-horizontal.js",
     "/js/isotop/packery-mode.pkgd.js",
     "/js/main.js"
   ],
