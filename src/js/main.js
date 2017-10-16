@@ -12,6 +12,10 @@ var body_var,
   boardGrid,
   odometer,
   clock,
+  searchResults,
+  currentSearchStep,
+  loadSearchResults,
+  searchPager,
 
   //baseM = 0.0714286666666667,
   //baseWindowWidth = 1920,
@@ -62,6 +66,8 @@ function domReady(cb) {
 
   disableDoubleTap();
 
+  initSearchResults();
+
   startOrientationWatching(); // отслежаваем медиа-квери
 
   initPlaceholder(); // проверка пустых/заполненных инпутов
@@ -101,6 +107,10 @@ function domReady(cb) {
       }
 
       hideAside(e);
+    })
+    .delegate('.viewTogller', 'change', function () {
+      boardGrid.toggleClass('_list', $(this).attr('data-view') === 'list');
+      relayouGrid();
     })
     .delegate('.editBtn', 'tap', function () {
       console.log('editBtn');
@@ -371,25 +381,139 @@ function customAlert(txt) {
   alert('customAlert ' + txt);
 }
 
+function initSearchResults() {
+  loadSearchResults = $('.loadSearchResults');
+
+  if (loadSearchResults.length) {
+    searchPager = $('.searchPager');
+
+    $.getJSON("data/search_result.json", function () {
+
+    })
+      .done(function (data) {
+
+        if (data.success) {
+          searchResults = data;
+          currentSearchStep = data.start_pager;
+
+          searchResultsBuilder(currentSearchStep);
+          searchPager.html(paginationBuilder(currentSearchStep));
+
+          body_var
+            .delegate('.pagPrev', 'tap', function (e) {
+              e.preventDefault();
+
+              if (currentSearchStep > 1) {
+                currentSearchStep -= 1;
+
+                searchResultsBuilder(currentSearchStep);
+                searchPager.html(paginationBuilder(currentSearchStep));
+              }
+
+              return false;
+            })
+            .delegate('.pagLink', 'tap', function (e) {
+              e.preventDefault();
+
+              var link = $(this);
+
+              if (!link.hasClass('_current')) {
+                currentSearchStep = link.attr('data-page') * 1;
+
+                searchResultsBuilder(currentSearchStep);
+                searchPager.html(paginationBuilder(currentSearchStep));
+              }
+
+              return false;
+            })
+            .delegate('.pagNext', 'tap', function (e) {
+              e.preventDefault();
+
+              if (currentSearchStep <= Math.ceil(searchResults.search_result.length / searchResults.items_to_show) - 1) {
+                currentSearchStep += 1;
+
+                searchResultsBuilder(currentSearchStep);
+                searchPager.html(paginationBuilder(currentSearchStep));
+              }
+
+              return false;
+            });
+        }
+      })
+      .error(function () {
+        console.log("error");
+      })
+      .always(function () {
+
+      });
+  }
+}
+
+function searchResultsBuilder(start) {
+  var arr = searchResults.search_result, len = searchResults.items_to_show, $newItems = '', offset = (start - 1) * len;
+
+  for (var i = offset; i < (Math.min(offset + len, arr.length)); i++) {
+    var item = arr[i];
+
+    $newItems += '<div class="profile_photo_unit gridItem">' +
+      '<div class="profile_photo_w"><a class="board_unit galItem" href="' + item.photo_big + '">' +
+      '<div class="board_img"><img src="' + item.photo + '"></div>' +
+      '<div class="board_name"><span class="fz_16">' + item.name + '</span><span class="board_status' + (item.online ? ' _online' : '') + '"></span></div>' +
+      '<div class="board_info"><p>' + item.city + '</p></div>' +
+      '<div class="board_info"><p>' + item.info + '</p></div>' +
+      '</a></div>' +
+      '</div>';
+  }
+
+  boardGrid.data('lightGallery').destroy(true);
+
+  boardGrid.isotope('remove', $('.gridItem'));
+
+  boardGrid.isotope('insert', $($newItems));
+
+  //console.log(boardGrid.data('lightGallery'));
+
+  setTimeout(function () {
+    initGallery();
+  }, 1);
+}
+
+function paginationBuilder(current) {
+  var ret = '<li><a class="pagination_link pagPrev _arrow" href="#"><span>&#8592;</span></a></li>',
+    len = searchResults.max_pagination_links - 1,
+    maxPage = Math.ceil(searchResults.search_result.length / searchResults.items_to_show) + 1,
+    start = Math.min(maxPage - len, current - Math.floor(len / 2));
+
+  start = start < 1 ? 1 : start;
+
+  for (var i = start; i < Math.min(len + start, maxPage); i++) {
+    ret += '<li><a class="pagination_link pagLink' +
+      (current === i ? ' _current' : '') + '" data-page="' + i + '" href="#"><span>' + i + '</span></a></li>';
+
+  }
+
+  return ret + '<li><a class="pagination_link pagNext _arrow" href="#"><span>&#8594;</span></a></li>';
+}
+
 function checkStick() {
 
 
 
-/*  $('.stickIt').on('sticky_kit:stick', function (e) {
-    $(this).addClass('_top');
-  }).on('sticky_kit:unstick', function (e) {
-    $(this).removeClass('_top');
-  }).on('sticky_kit:bottom', function (e) {
-    $(this).addClass('_bottom');
-  }).on('sticky_kit:unbottom', function (e) {
-    $(this).removeClass('_bottom');
-  }).each(function (ind) {
-    var stck = $(this);
+  /*  $('.stickIt').on('sticky_kit:stick', function (e) {
+      $(this).addClass('_top');
+    }).on('sticky_kit:unstick', function (e) {
+      $(this).removeClass('_top');
+    }).on('sticky_kit:bottom', function (e) {
+      $(this).addClass('_bottom');
+    }).on('sticky_kit:unbottom', function (e) {
+      $(this).removeClass('_bottom');
+    }).each(function (ind) {
+      var stck = $(this);
 
-    stck.stick_in_parent({
-      sticky_class: stck.attr('data-sticky-class')
-    });
-  });*/
+      stck.stick_in_parent({
+        sticky_class: stck.attr('data-sticky-class')
+      });
+    });*/
 }
 
 function checkEmptyFields() {
@@ -743,10 +867,6 @@ function startOrientationWatching() {
     }
   });
 
-
-  //} else {
-  //  body_var.addClass('landscape').removeClass('portrait');
-  //}
 }
 
 function windowRisize() {
@@ -833,14 +953,18 @@ function resizeMe(displayHeight, displayWidth) {
     }, 1);
   }
 
-  if (boardGrid && boardGrid.length) {
-    boardGrid.isotope('layout');
-  }
+  relayouGrid();
 
   if (!domR) {
     domReady(function () {
       body_var.css('opacity', 1);
     });
+  }
+}
+
+function relayouGrid() {
+  if (boardGrid && boardGrid.length) {
+    boardGrid.isotope('layout');
   }
 }
 

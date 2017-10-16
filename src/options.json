@@ -1,5 +1,5 @@
 {
-  "prod_ver": false,
+  "prod_ver": true,
   "scripts": [
     "/js/jquery1.10.js",
     "/js/enquire.js",

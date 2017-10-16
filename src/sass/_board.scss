@@ -52,25 +52,102 @@
   }
 }
 
+.board_pagination {
+
+  .portrait & {
+    padding: 2em 0;
+  }
+
+  .landscape & {
+    padding: .5em 0;
+  }
+}
+
+.board_pagination_list {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 1.25em;
+  }
+
+  .portrait & {
+    font-size: 1.5em;
+
+    li {
+      padding: 0 .2em;
+    }
+  }
+}
+
+.pagination_link {
+  display: block;
+  min-width: 3.7em;
+  height: 2.4em;
+  line-height: 2.6em;
+  border-radius: 1.2em;
+  color: #000;
+
+  span {
+    pointer-events: none;
+    font-size: 1.6em;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+  }
+
+  &._current {
+    color: #fff;
+    background: $gl_blue;
+  }
+
+  &._arrow {
+    span {
+      font-size: 2em;
+    }
+  }
+}
+
 .board_footer {
   position: relative;
   background: #f6fafc;
   padding: 1.6em 0 1.1em 3.4em;
 
   .portrait & {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: auto !important;
-    z-index: 13;
-    background: #fcfcfc;
-    font-size: 2.2em;
-    padding: 1.2em 5em 1.1em 1.25em;
+    &._fixed {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: auto !important;
+      z-index: 13;
+      background: #fcfcfc;
+      font-size: 2.2em;
+      padding: 1.2em 5em 1.1em 1.25em;
 
-    &._menu_opened {
-      .board_footer_controls {
-        display: block;
+      &._menu_opened {
+        .board_footer_controls {
+          display: block;
+        }
+      }
+    }
+
+    &._search {
+      padding-left: 0;
+      background: #f3f3f3;
+      margin: 3.5em 0 -1.6em;
+
+      &:before {
+        left: -3.5em;
+        right: -3.5em;
+        bottom: 0;
+        top: 0;
+        background: inherit;
+        content: '';
+        position: absolute;
       }
     }
   }
@@ -80,6 +157,10 @@
 
     @include respond-to-min(91em) {
       padding-right: 38em;
+
+      &._search {
+        padding-right: 3.4em;
+      }
     }
   }
 }
@@ -288,8 +369,11 @@ $resp_step: 8em;
 }
 
 .board_counter {
-  display: inline-block;
   vertical-align: middle;
+
+  .landscape & {
+    display: inline-block;
+  }
 }
 
 .counters {
@@ -471,8 +555,38 @@ $resp_step: 8em;
   span {
     max-height: 4.6em;
     overflow: hidden;
-    display: inline-block;
     vertical-align: middle;
+
+    .landscape & {
+      display: inline-block;
+    }
+  }
+}
+
+.board_info {
+  display: none;
+  color: #7f7f7f;
+  margin-top: .8em;
+
+  .portrait & {
+    + .board_info {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    .portrait & {
+      font-size: 1.8em;
+      line-height: 1.4;
+    }
+
+    .landscape & {
+      font-size: 1.6em;
+    }
+  }
+
+  ._list & {
+    display: block;
   }
 }
 
@@ -480,6 +594,7 @@ $resp_step: 8em;
   padding-left: 1.2em;
   position: relative;
   height: 1.2em;
+  color: #999;
 
   &:before {
     content: '';
@@ -490,6 +605,7 @@ $resp_step: 8em;
     width: .6em;
     height: .6em;
     border-radius: 100%;
+    background: #999;
   }
 
   &._left:before {
@@ -522,6 +638,12 @@ $resp_step: 8em;
 
     &:before {
       margin-top: -.2em;
+    }
+  }
+
+  .profile_photos_list {
+    .board_status:before {
+      margin-top: -.4em;
     }
   }
 }

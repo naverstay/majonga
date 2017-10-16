@@ -311,6 +311,34 @@
   }
 }
 
+.search_view_controls {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+
+  .landscape & {
+    right: 33em;
+    width: 10em;
+  }
+
+  .portrait & {
+    width: 9em;
+    right: -2em;
+  }
+}
+
+.view_controls {
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+
+  li {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 .profile_controls {
   display: table;
   width: 100%;
@@ -875,6 +903,21 @@
 
   .landscape & {
     @extend %global_flex_block_row_nowrap_space_between_stretch;
+
+    &._search {
+      margin-right: -6em;
+      margin-bottom: -4.8em;
+
+      .profile_photo_w {
+        bottom: 5em;
+        right: 5em;
+      }
+
+      .board_name {
+        bottom: 1.2em;
+        left: 2.3em;
+      }
+    }
   }
 }
 
@@ -1055,6 +1098,20 @@
     }
   }
 
+  .landscape ._list & {
+    width: 50%;
+
+    .board_unit {
+      padding-left: 16.4em;
+      padding-top: 3em;
+      min-height: 12.7em;
+    }
+
+    .profile_photo_w {
+      padding-right: 5em;
+    }
+  }
+
   .portrait & {
     width: 50%;
 
@@ -1064,6 +1121,65 @@
 
     &:nth-child(n + 7) {
       //display: none;
+    }
+  }
+
+  .portrait ._list & {
+    width: 100%;
+
+    .profile_photo_w {
+      padding: 4em 3.5em 0;
+    }
+
+    .board_unit {
+      padding-left: 15em;
+      padding-top: 2.2em;
+      min-height: 12.7em;
+    }
+
+    .board_name {
+      font-size: 1.3em;
+    }
+  }
+
+  ._list & {
+    &:before {
+      display: none;
+    }
+
+    .board_unit {
+      min-height: 100%;
+      display: block;
+      background: #f3f3f3;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    .board_img {
+      right: auto;
+      width: 12.7em;
+      height: 12.7em;
+      overflow: hidden;
+    }
+
+    .profile_photo_w {
+      min-height: 16.2em;
+    }
+
+    .board_name {
+      color: #000;
+    }
+
+    .board_name,
+    .board_unit,
+    .profile_photo_w {
+      position: relative !important;
+      top: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
     }
   }
 }

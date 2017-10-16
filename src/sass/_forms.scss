@@ -246,6 +246,43 @@
   }
 }
 
+.label_v3 {
+  display: block;
+  width: 4.6em;
+  text-align: center;
+  padding: 1em;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+  }
+
+  svg {
+    display: block;
+    fill: #000;
+    width: 100%;
+
+    path {
+      fill: #000;
+    }
+  }
+
+  .inp_hidden:checked + .check_text {
+    svg {
+      fill: #c6c9cb;
+
+      path {
+        fill: #c6c9cb;
+      }
+    }
+  }
+
+  .portrait & {
+    width: 3.8em;
+  }
+}
+
 .f_check {
   cursor: pointer;
 
