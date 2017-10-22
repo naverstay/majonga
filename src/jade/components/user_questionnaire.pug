@@ -5,8 +5,22 @@ include ../components/profile_photo_menu
     a.title_back_btn.dm(href='index.html')
       img(src='img/svg/back-left-arr.svg')
     span.fz_22.dm Виктория, 24
-    span.profile_last_visit.fz_14.dm.land_only Была месяц назад
-    a.title_edit_btn.land_hidden._inactive(href='#')
+    span.profile_title_tip.fz_14.dm.land_only Была месяц назад
+
+    a.board_menu_toggle.menuToggleBtn.land_hidden(href='#')
+      span
+    ul.board_footer_controls.land_hidden
+      li
+        a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
+          span.fz_16.fw_m Написать сообщение
+      li
+        a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
+          span.fz_16.fw_m Подарить подарок
+      li
+        a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
+          span.fz_16.fw_m В избранное
+
+    //-a.title_edit_btn.land_hidden._inactive(href='#')
       +menu_icon('heart')
 
     +profile_title_controls()
@@ -14,14 +28,20 @@ include ../components/profile_photo_menu
   .board_block._photos_mode
     form(action='#'): .profile_photos_holder
       .profile_photos_list
-        .boardGrid.keepFZ_.lightgallery.needMenu
+        .boardGrid_.clearfix
           +loop_while(1)
             .profile_photo_unit.gridItem._wide: .profile_photo_w
-              a.profile_photo._no_shadow.galItem(data-menu='photo_menu.html' href='img/my_photo_big_2.jpg')
+              //-a.profile_photo._no_shadow.galItem(href='img/my_photo_big_2.jpg')
                 img(src='img/user_profile.jpg')
+              .profile_photo._no_shadow
+                .swiper-container.myPhotoSlider.my_photo_slider
+                  .swiper-wrapper
+                    +loop_while(7)
+                      .slide.swiper-slide
+                        img(src='img/user_profile.jpg')
               +profile_photo_menu(false, 0, false, false, false, 25, true)
             .profile_photo_unit.gridItem.land_only: .profile_photo_w
-              a.profile_photo._no_shadow.galItem(data-menu='photo_menu.html' href='img/my_photo_big.jpg')
+              a.profile_photo._no_shadow.galItem(href='img/my_photo_big.jpg')
                 img(src='img/my_photo.jpg')
               +profile_photo_menu(false, 0)
             .profile_photo_unit.gridItem.land_only: .profile_photo_w
@@ -51,8 +71,21 @@ include ../components/profile_photo_menu
                     +menu_icon('gift')
                   span.fz_16 Подарок
 
+          .f_cell.land_only._ratings: .questionnaire_ratings
+            .questionnaire_rating_col
+              p
+                span.fz_14 Позиция<br>на сайте
+              .rating_counter._total
+                span.dm 282
+
+            .questionnaire_rating_col
+              p
+                span.fz_14 Просмотры<br>за последний месяц
+              .rating_counter._month
+                span.dm 1 585
+
       .questionnaire_aside
-        .questionnaire_ratings.land_only
+        //-.questionnaire_ratings.land_only
           .questionnaire_rating_col
             p
               span.fz_14 Позиция<br>на сайте
@@ -77,26 +110,18 @@ include ../components/profile_photo_menu
               +loop_while(3)
                 .questionnaire_slide.swiper-slide
                   .questionnaire_gift
-                    a.gift_rm_btn.giftRmBtn(href='#')
-                      +menu_icon('close')
                     img(src='img/gift_1.jpg')
                 .questionnaire_slide.swiper-slide
                   .questionnaire_gift
-                    a.gift_rm_btn.giftRmBtn(href='#')
-                      +menu_icon('close')
                     img(src='img/gift_2.jpg')
                 .questionnaire_slide.land_hidden.swiper-slide
                   .questionnaire_gift
-                    a.gift_rm_btn.giftRmBtn(href='#')
-                      +menu_icon('close')
                     img(src='img/gift_3.jpg')
                 .questionnaire_slide.swiper-slide
                   .questionnaire_gift
-                    a.gift_rm_btn.giftRmBtn(href='#')
-                      +menu_icon('close')
                     img(src='img/gift_4.jpg')
 
-          .questionnaire_gifts_make.land_hidden
+          //-.questionnaire_gifts_make.land_hidden
             a.questionnaire_slide.dm(href='#')
               img(src='img/make_gift.png')
 
@@ -111,29 +136,29 @@ include ../components/profile_photo_menu
 
     .profile_settings_container._expanded_is_active
       .profile_settings_row._gray_row
-        .profile_settings_caption
-          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
+        .profile_settings_caption._expanded
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
           span.profile_settings_icon
             +menu_icon(1)
           span.fz_22 О себе
           .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
-        .profile_settings_wrapper.settingsCollapseBlock
+        .profile_settings_wrapper.settingsCollapseBlock(style="display:block;")
           .profile_settings_block
             p
               span.fz_16 Общительная,любознательная,положительная. Рада буду простому общению,без пафоса и королевских замашек.<br>Я не подарок,но со мной не заскучаешь)))
 
       .profile_settings_row
-        .profile_settings_caption
-          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
+        .profile_settings_caption._expanded
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
           span.profile_settings_icon
             +menu_icon('acquaintance')
           span.fz_22 Знакомства
           .profile_settings_control: span.profile_settings_arrow.land_hidden
             img(src='img/svg/back-left-arr.svg')
 
-        .profile_settings_wrapper.settingsCollapseBlock
+        .profile_settings_wrapper.settingsCollapseBlock(style="display:block;")
           .profile_settings_block._col
             dl.profile_settings_list
               dt
@@ -180,7 +205,7 @@ include ../components/profile_photo_menu
 
       .profile_settings_row._gray_row
         .profile_settings_caption
-          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
           span.profile_settings_icon
             +menu_icon('type')
           span.fz_22 Типаж
@@ -244,7 +269,7 @@ include ../components/profile_photo_menu
 
       .profile_settings_row
         .profile_settings_caption
-          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
           span.profile_settings_icon
             +menu_icon('hobbies')
           span.fz_22 Увлечения
@@ -278,7 +303,7 @@ include ../components/profile_photo_menu
 
       .profile_settings_row._gray_row
         .profile_settings_caption
-          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="" onTap="")
+          a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
           span.profile_settings_icon
             +menu_icon('lips')
           span.fz_22 Секс

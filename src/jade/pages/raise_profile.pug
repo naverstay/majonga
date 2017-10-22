@@ -1,0 +1,24 @@
+extends ../components/layout
+block head
+  - var pageTitle = 'Профиль поднять анкету';
+  - var pageDescription = '';
+  - var activePage = 2;
+  - var leftBtn = 1;
+
+block content
+  .wrapper.page_index
+    include ../components/header
+    include ../components/top
+
+    .main_content
+      .section_inner.content_block
+        .aside.profile_aside.scrollFixed
+          include ../components/profile_aside
+
+        .content.filter_aside.land_hidden
+          include ../components/filter
+
+        .content._blur_it
+          include ../components/profile_raise_up
+
+    include ../components/footer

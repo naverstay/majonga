@@ -3,7 +3,7 @@
 .profile_holder {
 
   .landscape & {
-    padding-bottom: 2em;
+    //padding-bottom: 2em;
   }
 
   .portrait & {
@@ -185,7 +185,7 @@
 .profile_l_counter {
   float: right;
   color: #fff;
-  background: #ff4500;
+  background: $gl_red;
   border-radius: .8em;
   padding: .4em .8em .1em;
   line-height: 1;
@@ -415,6 +415,7 @@
 
 .profile_settings_control_right {
   padding-right: 7em;
+  cursor: pointer;
 }
 
 .profile_settings_mob_collapse {
@@ -511,6 +512,10 @@
     margin-top: 3em;
   }
 
+  .landscape .edit_mode & {
+    margin-bottom: 1.5em;
+  }
+
   .portrait & {
     margin-bottom: 1em;
     font-size: .93em;
@@ -523,6 +528,10 @@
     + .profile_settings_label {
       margin-top: 2em;
     }
+  }
+
+  .portrait .edit_mode & {
+    margin-bottom: 1.5em;
   }
 }
 
@@ -557,6 +566,10 @@
     }
   }
 
+  .portrait .edit_mode & {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
 }
 
 .profile_settings_col {
@@ -566,9 +579,24 @@
     float: left;
     width: 48%;
     padding-left: 2.2em;
+
+    &._full {
+      width: 100%;
+    }
   }
 
   .portrait & {
+
+    &.mob_inline_cells {
+      @extend %clearfix;
+      margin-left: -1.6em;
+
+      .f_cell {
+        padding: .8em 0 1.2em 1.6em;
+        float: left;
+      }
+    }
+
     &._port {
       float: left;
       width: 48%;
@@ -593,6 +621,10 @@
   margin-bottom: 1.5em;
   padding-left: 2.2em;
 
+  .landscape .profile_settings_col & {
+    padding-left: 0;
+  }
+
   .portrait & {
     font-size: 1.45em;
     margin-bottom: .3em;
@@ -612,6 +644,16 @@
       position: relative;
       z-index: 2;
       cursor: pointer;
+    }
+  }
+
+  .portrait .edit_mode & {
+    padding-left: 0;
+    padding-right: 0;
+
+    span.fz_22 {
+      font-size: 2.7em;
+      line-height: 1.1;
     }
   }
 }
@@ -638,6 +680,7 @@
   position: absolute !important;
   right: 0;
   top: .2em;
+  z-index: 4;
   white-space: nowrap;
 
   .portrait & {
@@ -850,7 +893,9 @@
       fill: #c9c9c9;
     }
 
-    ._toggled & {
+    //._toggled & {
+    .landscape &,
+    ._expanded & {
       fill: $gl_blue !important;
 
       path {
@@ -882,6 +927,10 @@
   bottom: 0;
   left: -3.5em;
   right: -3.5em;
+
+  .landscape & {
+    display: none !important;
+  }
 }
 
 .label_icon {
@@ -1087,15 +1136,17 @@
   }
 
   .landscape & {
-    width: 50%;
+    width: 25%;
+    position: relative;
+    float: left;
 
-    $resp_step: 20em;
-
-    @for $i from 1 through 20 {
-      @include respond-to-min(80em + $resp_step * $i) {
-        width: 100%/(2 + $i);
-      }
-    }
+    //$resp_step: 20em;
+    //
+    //@for $i from 1 through 20 {
+    //  @include respond-to-min(80em + $resp_step * $i) {
+    //    width: 100%/(2 + $i);
+    //  }
+    //}
   }
 
   .landscape ._list & {
@@ -1184,6 +1235,15 @@
   }
 }
 
+.my_photo_slider {
+  height: 100%;
+  width: 100%;
+
+  .swiper-slide {
+    min-height: 100%;
+  }
+}
+
 .profile_photo {
   position: absolute;
   top: 0;
@@ -1216,7 +1276,42 @@
 
   &._empty {
     border: 1px solid #eceff1;
-    background: #fbfbfb url(../img/my_photo_empty.jpg) no-repeat 50% 50%;
+    background: #fbfbfb;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 50%;
+      top: 50%;
+      margin: -40px 0 0 -48px;
+      width: 97px;
+      height: 79px;
+      max-width: 75%;
+      background: url(../img/my_photo_empty.jpg) no-repeat 50% 50%;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  }
+
+  &._camera {
+    background: $gl_blue;
+    text-align: center;
+
+    &:before {
+      display: none;
+    }
+
+    svg {
+      fill: #fff;
+      width: 11em;
+
+      path {
+        fill: #fff;
+      }
+    }
   }
 
   &._profile_address {
@@ -1433,6 +1528,7 @@
 
 .profile_menu_btn {
   display: block;
+  cursor: pointer;
 }
 
 .profile_menu_link {
@@ -1445,6 +1541,13 @@
   &:hover {
     color: $gl_blue;
   }
+}
+
+.lg-toolbar .lg-icon.lg-views {
+  white-space: nowrap;
+  width: auto;
+  min-width: 50px;
+  font: 2em $PFDinDisplayProReg;
 }
 
 .lg-photomenu {

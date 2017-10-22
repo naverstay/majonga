@@ -56,10 +56,12 @@
 
     > .f_cell {
       float: left;
+      min-width: 21em;
+      padding-right: 3em;
 
-      &:first-child {
-        min-width: 21em;
-        padding-right: 3em;
+      &._ratings {
+        padding-right: 0;
+        float: right;
       }
     }
   }
@@ -101,6 +103,15 @@
       border-bottom: 1px solid #eceff1;
     }
   }
+
+  .landscape .questionnaire_tip & {
+    padding-bottom: 0;
+    min-width: 25em;
+
+    &:before {
+      border: none;
+    }
+  }
 }
 
 .questionnaire_rating_col {
@@ -125,7 +136,7 @@
   position: relative;
 
   &._total {
-    border: 1px solid #52c5eb;
+    border: 1px solid $gl_blue;
   }
 
   &._month {
@@ -229,7 +240,7 @@
   //right: -.4em;
   right: 0;
   display: block;
-  background: #ff4500;
+  background: $gl_red;
   width: 2em;
   height: 2em;
   padding: .3em;

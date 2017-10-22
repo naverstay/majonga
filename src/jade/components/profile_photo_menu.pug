@@ -20,11 +20,11 @@ mixin profile_photo_menu(has_check, views, lock, adult, menu, camera, address)
       .profile_photo_views._alone
         span.photo_icon._large
           +menu_icon('camera')
-        span= camera
+        span.slideCount= camera
 
     - if (menu)
       .profile_photos_menu
-        .profile_menu_btn.profileMenuBtn
+        a.profile_menu_btn.profileMenuBtn(href='#')
           .profile_menu_icon._menu
             +menu_icon('user_2')
             //img(src='img/svg/user_2.svg')

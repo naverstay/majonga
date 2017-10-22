@@ -1,10 +1,12 @@
 block variables
   - var production = locals['production'];
   - var scripts_arr = locals['scripts'];
+  - var styles_arr = locals['styles'];
   - var months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
 
 include page
 include ../utils/scripts
+include ../utils/styles
 include ../components/mixins
 
 mixin loop_while(counter)

@@ -12,6 +12,12 @@ html, body {
 
 html {
   font-size: 10px;
+
+  &.ios {
+    * {
+      cursor: pointer !important;
+    }
+  }
 }
 
 body {
@@ -109,6 +115,10 @@ body {
 .landscape {
   .content_block {
     @extend %global_flex_block_row_nowrap_space_between_stretch;
+  }
+
+  .land_ttl {
+    text-transform: lowercase;
   }
 }
 

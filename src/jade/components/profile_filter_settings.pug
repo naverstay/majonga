@@ -1,0 +1,299 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm Анкета: Знакомства
+
+    +profile_title_controls()
+
+  .board_block.edit_mode
+    form(action='#')
+      .profile_settings_row
+        .profile_settings_caption._expanded._toggled
+          //-a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
+          span.fz_22 Познакомлюсь с:
+
+        .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
+          //-.profile_settings_col.mob_inline_cells
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.land_ttl.fz_16 Девушкой
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.land_ttl.fz_16 Парнем
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.land_ttl.fz_16 Парой
+
+          .profile_settings_col
+            .f_row.f_group.text_center
+              .f_cell
+                label.f_check.radio_v1.keepFZ_
+                  input.inp_hidden.togglePerson(type='checkbox' name='filter_gender')
+                  span.check_text
+                    span.fz_16 Девушкой
+              .f_cell
+                label.f_check.radio_v1.keepFZ_
+                  input.inp_hidden.togglePerson(type='checkbox' name='filter_gender')
+                  span.check_text
+                    span.fz_16 Парнем
+              .f_cell
+                label.f_check.radio_v1.keepFZ_
+                  input.inp_hidden.togglePerson(type='checkbox' name='filter_gender')
+                  span.check_text
+                    span.fz_16 Парой
+
+          .profile_settings_col
+            .f_cell
+              .profile_settings_label
+                span.fz_16 Возраст
+
+              .profile_settings_box: .toddler_v1
+                .toddler_val.toddler_min
+                  input#filter_age_min.f_input.input_v1(value=25 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
+                .toddler_val.toddler_max
+                  input#filter_age_max.f_input.input_v1(value=40 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
+                .toddler(data-start=25 data-end=40 data-min=18 data-max=100 data-step=1 data-slide-func='updateFilterAge')
+
+      .profile_settings_row
+        .profile_settings_caption._expanded._toggled
+          //-a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
+          span.fz_22 Цели знакомства:
+
+        .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
+          .profile_settings_col
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Дружба и общение
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Переписка, флирт
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Любовь, отношения
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Регулярный секс
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Секс на один-два раза
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Групповой секс, свинг
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Виртуальный секс
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Интим за деньги
+
+          .profile_settings_col
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Брак, создание семьи
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Рождение, воспитание ребенка
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Совместная аренда жилья
+
+            .f_cell
+              .profile_settings_label
+                label.f_check.check_v1
+                  input.inp_hidden(type='checkbox')
+                  span.check_text
+                    span.fz_16 Занятия спортом
+
+            .f_cell.cell_v4
+              .input_w
+                textarea#profile_custom_targets.f_input.input_v2.checkEmpty.mob_h_3(maxlength=200)
+                .focus_accent
+                label.label_v2(for='profile_custom_targets')
+                  span.fz_16 Свой вариант
+
+              p.profile_settings_tip
+                span.fz_14 Если у вас какая-то своя цель, отличная от предложенных выше<br>(max. 200 символов)
+
+      .profile_settings_row
+        .profile_settings_caption._expanded._toggled
+          //-a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
+          span.fz_22 Кого хочу найти
+
+        .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
+          .profile_settings_col._full
+            .f_cell.cell_v4
+              .input_w
+                textarea#search_target.f_input.input_v2.checkEmpty._h5(maxlength=500)
+                .focus_accent
+                label.label_v2(for='search_target')
+                  span.fz_16 Напишите, кого вы ищите
+
+              p.profile_settings_tip
+                span.fz_14 Несколько слов о человеке, которого вы хотите найти<br>(max. 500 символов)
+
+      .profile_settings_row
+        .profile_settings_col
+          .profile_settings_caption._expanded._toggled
+            //-a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
+            span.fz_22 Состою ли в официальном браке?
+
+          .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
+            .land_hidden
+              .input_w.select_box_v1
+                select#official_marriage_select.select2.selectToggle(data-radio='official_marriage' data-placeholder='Без ответа' data-select-class='select_w1')
+                  option(disabled selected)
+                  option(value='1') Нет
+                  option(value='2') Ничего серьёзного
+                  option(value='3') Есть отношения
+                  option(value='4') В браке
+                  option(value='5') нет ответа
+
+            .land_only
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#official_marriage_select' name='official_marriage' value='1' type='radio')
+                    span.check_text
+                      span.fz_16 Нет
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#official_marriage_select' name='official_marriage' value='2' type='radio')
+                    span.check_text
+                      span.fz_16 Ничего серьёзного
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#official_marriage_select' name='official_marriage' value='3' type='radio')
+                    span.check_text
+                      span.fz_16 Есть отношения
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#official_marriage_select' name='official_marriage' value='4' type='radio')
+                    span.check_text
+                      span.fz_16 В браке
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#official_marriage_select' name='official_marriage' value='5' type='radio')
+                    span.check_text
+                      span.fz_16 нет ответа
+
+        .profile_settings_col
+          .profile_settings_caption._expanded._toggled
+            //-a.settingsCollapseBtn.mob_btn_emul(href='javascript:void(0)' onClick="")
+            span.fz_22 Есть ли дети?
+
+          .profile_settings_wrapper.settingsCollapseBlock(style='display:block;')
+            .land_hidden
+              .input_w.select_box_v1
+                select#children_select.select2.selectToggle(data-radio='children' data-placeholder='Без ответа' data-select-class='select_w1')
+                  option(disabled selected)
+                  option(value='1') Нет
+                  option(value='2') Нет, но хотелось бы
+                  option(value='3') Есть, живём вместе
+                  option(value='4') Есть, живём порознь
+                  option(value='5') нет ответа
+
+            .land_only
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#children_select' value='1' name='children' type='radio')
+                    span.check_text
+                      span.fz_16 Нет
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#children_select' value='2' name='children' type='radio')
+                    span.check_text
+                      span.fz_16 Нет, но хотелось бы
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#children_select' value='3' name='children' type='radio')
+                    span.check_text
+                      span.fz_16 Есть, живём вместе
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#children_select' value='4' name='children' type='radio')
+                    span.check_text
+                      span.fz_16 Есть, живём порознь
+
+              .f_cell
+                .profile_settings_label
+                  label.f_check.radio_v2
+                    input.inp_hidden.radioToggle(data-select='#children_select' value='5' name='children' type='radio')
+                    span.check_text
+                      span.fz_16 нет ответа
+
+      .profile_settings_row._save_row
+        .profile_settings_col
+          .profile_settings_box
+            a.btn_v1.btn_red.save_btn(href='#')
+              span.fz_16 Сохранить

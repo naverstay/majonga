@@ -2,13 +2,13 @@
   .profile_holder
     .profile_block
       .profile_b_inner
-        a.profile_settings(href='my_profile.html')
+        a.profile_settings(href='profile.html')
           span.land_only
             img(src='img/svg/tune-black.svg')
           span.land_hidden
             img(src='img/svg/tune.svg')
 
-        .profile_avatar
+        .profile_avatar.startCrop
           img(src='img/profile_1.jpg')
 
         .user_name Константин
@@ -35,7 +35,7 @@
             span.profile_l_text Моя анкета
 
         li
-          a.profile_link(href='#' class=(2 === activePage ? '_active' : ''))
+          a.profile_link(href='raise_profile.html' class=(2 === activePage ? '_active' : ''))
             span.profile_l_icon
               +menu_icon('trend_up')
             span.profile_l_text Поднять анкету
@@ -83,7 +83,7 @@
               b  344
 
         li
-          a.btn_v1.coins_btn.btn_blue(href='#')
+          a.btn_v1.coins_btn.btn_blue(href='by_coins.html')
             span.fz_16 Купить монетки
 
   .aside_footer.land_only

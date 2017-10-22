@@ -1,0 +1,78 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span История операций
+
+    +profile_title_controls()
+
+  .history_account_state
+    .history_acc_img._left.land_only
+      img(src='img/skarb_map.png')
+    .history_acc_img._right.land_only
+      img(src='img/skarb.png')
+
+    .history_acc_val
+      span._text У вас на счету:
+      span._val  155
+      span._icon
+        +menu_icon('coins')
+
+  .payments_block
+    .text_center.raise_caption
+      span Выберите способ оплаты
+
+    ul.payment_variants
+      li
+        a.payment_variant(href='#')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_card.png')
+          .payment_name
+            span Банковская карта
+      li
+        a.payment_variant(href='checkout_sber.html')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_online.png')
+          .payment_name
+            span Интернет-Банкинг
+      li
+        a.payment_variant(href='checkout_wm.html')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_wm.png')
+          .payment_name
+            span WebMoney
+      li
+        a.payment_variant(href='#')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_qiwi.png')
+          .payment_name
+            span Visa QIWI Wallet
+      li
+        a.payment_variant(href='#')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_pp.png')
+          .payment_name
+            span PayPal
+      li
+        a.payment_variant(href='#')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_mobile.png')
+          .payment_name
+            span Мобильный Платеж
+      li
+        a.payment_variant(href='#')
+          .gl_table: .gl_table_cell
+            .payment_img
+              img(src='img/payment_yad.png')
+          .payment_name
+            span Яндекс Кошелек
+

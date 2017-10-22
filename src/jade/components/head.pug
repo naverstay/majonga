@@ -30,7 +30,4 @@ head
   meta(name="theme-color", content="#ffffff")
 
   - if (!production)
-    link(rel='stylesheet', href='vendor/lightGallery-master/dist/css/lg-fb-comment-box.css')
-    link(rel='stylesheet', href='vendor/lightGallery-master/dist/css/lg-transitions.css')
-    link(rel='stylesheet', href='vendor/lightGallery-master/dist/css/lightgallery.css')
-    link(rel='stylesheet', href='css/main_global.css')
+    +styles(styles_arr)

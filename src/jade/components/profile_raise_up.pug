@@ -1,0 +1,115 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span Поднять анкету
+    span.profile_title_tip.fz_14.dm.land_only Последнее поднятие анкеты: 4 марта 2017 в 21:03
+
+    +profile_title_controls()
+
+  .history_account_state.land_hidden
+    .history_acc_val
+      span._text Ваша страница находится<br>на 8982 месте в поиске
+
+  .raise_block
+    .raise_box
+      .raise_box_tip
+        .raise_box_tip_img
+          +menu_icon('trend_up')
+        p.land_only Чем выше позиция вашей анкеты в поиске по вашему региону, тем большее количество посетителей будут её находить!
+
+      .raise_caption.land_only
+        span Как это работает?
+
+      p.clr_gray.land_only
+        span.fz_16 Бесплатный подъём — поднимает анкету только один раз, сразу же после нажатия кнопки.
+      p.clr_gray.land_only
+        span.fz_16 Платный — поднимает анкету один раз сразу и, затем, ещё несколько раз каждый последующий час, в зависимости от количества потраченных монеток.
+
+    .raise_box
+      .raise_type
+        .raise_type_img.land_only
+          img(src='img/rocket.png')
+          .raise_avatar
+            img(src='img/top_1.jpg')
+        p
+          span.fz_16 Вы можете поднимать свою анкету бесплатно каждые 12 часов!
+        p
+          a.btn_v1.btn_red.raise_btn.raiseUpBtn(href='#')
+            span.btn_text.fz_16 Поднять анкету
+
+      .raise_type
+        .raise_type_img.land_only
+          img(src='img/crown.png')
+        p
+          span.fz_16 Купите VIP и сможете поднимать каждые 6 часов
+        p
+          a.btn_v1.raise_btn.btn_white_blue(href='#')
+            span.btn_text.fz_16 Купить VIP
+
+  .raise_propose
+    .raise_caption.text_center
+      span Лучшие варианты поднятия
+    p.text_center
+      span.fz_16
+        span Вы только представьте, анкета будет подниматься сама!
+        span.land_hidden <br>
+        span  Чудо техники, верно? Осталось лишь выбрать количество:
+    ul.raise_type_list
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 1 раз в три часа
+            span.raise_price
+              span._val 5
+              span.raise_icon
+                +menu_icon('coins')
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type' checked)
+          span.check_text
+            span.raise_type_name
+              span 2 раза в три часа
+            span.raise_price
+              span._val 15
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 30%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 3 раза в три часа
+            span.raise_price
+              span._val 45
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              .raise_best.land_only
+                span.fz_11 Лучший выбор!
+              span.fz_16 экономия 20%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 5 раз в три часа
+            span.raise_price
+              span._val 125
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 20%
+
+    .text_center
+      a.btn_v1.btn_red.raise_btn._chose(href='by_coins.html')
+        span.btn_text.fz_16 Я выбрал!

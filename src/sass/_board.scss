@@ -7,6 +7,10 @@
     min-height: 100%;
     background: #fff;
 
+    &.board_checkout {
+      background: #f9f9f9;
+    }
+
     &._footer_mode {
       @extend %global_flex_block_column_nowrap_space_between_stretch;
 
@@ -28,6 +32,10 @@
     background: #fff;
 
     &._photos_mode {
+      padding: 2.4em 4em 4em 2.9em;
+    }
+
+    &._history_mode {
       padding: 2.4em 4em 4em 2.9em;
     }
 
@@ -127,12 +135,6 @@
       background: #fcfcfc;
       font-size: 2.2em;
       padding: 1.2em 5em 1.1em 1.25em;
-
-      &._menu_opened {
-        .board_footer_controls {
-          display: block;
-        }
-      }
     }
 
     &._search {
@@ -163,14 +165,24 @@
       }
     }
   }
+
+  &._history {
+    background: #f3f3f3;
+
+    .portrait & {
+      margin-top: 0;
+      background: #f3f3f3;
+    }
+  }
 }
 
 .board_footer_controls {
   float: left;
 
   .portrait & {
+    z-index: 2 !important;
     display: none;
-    position: absolute;
+    position: absolute !important;
     bottom: 100%;
     right: 0;
     background: #fff;
@@ -188,6 +200,16 @@
       padding: .5em 1.8em;
       background: none !important;
     }
+  }
+
+  .portrait .board_title & {
+    top: 100%;
+    bottom: auto;
+    right: -1em;
+  }
+
+  .portrait ._menu_opened & {
+    display: block;
   }
 
   .landscape & {
@@ -220,7 +242,7 @@
 }
 
 .board_menu_toggle {
-  position: absolute;
+  position: absolute !important;
   bottom: .6em;
   right: 1em;
   width: 3em;
@@ -256,6 +278,10 @@
     &:before {
       left: 1.2em;
     }
+  }
+
+  .board_title & {
+    right: 0;
   }
 }
 
@@ -325,7 +351,7 @@
   }
 }
 
-.profile_last_visit {
+.profile_title_tip {
   color: rgba(0, 0, 0, .4);
   padding-left: 2em;
 }

@@ -49,16 +49,23 @@ var dest = {
 };
 
 gulp.task('jade', function () {
-  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'}));
+  var opt = JSON.parse(fs.readFileSync('src/options.json', {encoding: 'utf-8'})), skip = opt.skip_templates, arr = [];
+
+  if (skip) {
+    arr = opt.skip_pug;
+  }
+
+  arr.push.apply(arr, src.jade_pages);
 
   pump([
-    gulp.src(src.jade_pages),
+    gulp.src(arr),
     plumber(),
     pug({
       pretty: !opt.prod_ver,
       locals: {
         'production': opt.prod_ver,
         'scripts': opt.scripts,
+        'styles': opt.styles,
         'nav': JSON.parse(fs.readFileSync('src/jade/components/nav/data.json', {encoding: 'utf-8'}))
       }
     }).on('error', gutil.log),
@@ -230,5 +237,5 @@ gulp.task('dev', ['jade', 'sass', 'js', 'copy', 'browser-sync'], function () {
 });
 
 gulp.task('default', ['dev']);
-gulp.task('build', ['jade', 'csso', 'image', 'compress']);
+gulp.task('build', ['copy', 'jade', 'csso', 'image', 'compress']);
 gulp.task('svg', ['svgstore']);

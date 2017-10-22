@@ -16,17 +16,31 @@ include ../components/profile_photo_menu
   .board_block._has_aside._photos_mode
     form(action='#'): .profile_photos_holder
       .profile_photos_list: .boardGrid.lightgallery.needMenu
-        +loop_while(4)
+        .profile_photo_unit.gridItem: .profile_photo_w
+          a.profile_photo._camera(href='#')
+            .gl_table
+              .gl_table_cell
+                +menu_icon('camera_plus')
+        .profile_photo_unit.gridItem: .profile_photo_w
+          a.profile_photo.galItem(href='img/my_photo_big.jpg')
+            img(src='img/my_photo.jpg')
+          +profile_photo_menu(true, 1250, true)
+        .profile_photo_unit.gridItem: .profile_photo_w
+          a.profile_photo.galItem(href='img/my_photo_adult.jpg')
+            img(src='img/my_photo_adult.jpg')
+          +profile_photo_menu(true, 1250, false, true)
+
+        +loop_while(3)
           .profile_photo_unit.gridItem: .profile_photo_w
-            a.profile_photo.galItem(data-menu='photo_menu.html' href='img/my_photo_big_2.jpg')
+            a.profile_photo.galItem(href='img/my_photo_big_2.jpg')
               img(src='img/my_photo.jpg')
             +profile_photo_menu(true, 1250, false, false, true)
           .profile_photo_unit.gridItem: .profile_photo_w
-            a.profile_photo.galItem(data-menu='photo_menu.html' href='img/my_photo_big.jpg')
+            a.profile_photo.galItem(href='img/my_photo_big.jpg')
               img(src='img/my_photo.jpg')
             +profile_photo_menu(true, 1250, true)
           .profile_photo_unit.gridItem: .profile_photo_w
-            a.profile_photo.galItem(data-menu='photo_menu.html' href='img/my_photo_adult.jpg')
+            a.profile_photo.galItem(href='img/my_photo_adult.jpg')
               img(src='img/my_photo_adult.jpg')
             +profile_photo_menu(true, 1250, false, true)
 
@@ -57,7 +71,7 @@ include ../components/profile_photo_menu
                 +menu_icon('plus')
 
   .board_footer.boardFooter._fixed
-    a.board_menu_toggle.boardMenuToggle.land_hidden(href='#')
+    a.board_menu_toggle.menuToggleBtn.land_hidden(href='#')
       span
     .board_footer_control
       span.dm.fz_14

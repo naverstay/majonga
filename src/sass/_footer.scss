@@ -149,6 +149,10 @@
   text-transform: uppercase;
 }
 
+.fz_11 {
+  font-size: 1.1em;
+}
+
 .fz_12 {
   font-size: 1.2em;
 }
@@ -201,12 +205,28 @@
   }
 }
 
+.clr_red {
+  color: #ed2d5b;
+}
+
+.clr_blue {
+  color: $gl_blue;
+}
+
 .clr_gray {
   color: #7f7f7f;
 }
 
 .clr_white {
   color: #fff;
+}
+
+.clr_black_5 {
+  color: rgba(0, 0, 0, .5);
+}
+
+.clr_black_8 {
+  color: rgba(0, 0, 0, .8);
 }
 
 ._wnw {

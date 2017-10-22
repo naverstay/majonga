@@ -1,0 +1,1095 @@
+.checkout_provider {
+  text-align: center;
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+  }
+
+  .landscape & {
+    height: 14em;
+    position: relative;
+  }
+
+  .portrait & {
+    height: 14.5em;
+    margin: 0 -3.5em;
+  }
+
+  &.provider_sber {
+    background: #1a9f29;
+  }
+
+  &.provider_wm {
+    background: #006ab4;
+  }
+}
+
+.raise_block {
+  @extend %clearfix;
+  position: relative;
+
+  .landscape & {
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      border-left: 1px solid #ebeff2;
+    }
+  }
+}
+
+.raise_propose {
+  position: relative;
+
+  .portrait & {
+    background: #f3f3f3;
+    margin: 3em -3.5em -1.6em;
+    padding: 6em 3.5em 5.6em;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 10px;
+      background: url(../img/border_wave.png) repeat-x 50% 0;
+    }
+
+    p {
+      font-size: 1.35em;
+      color: rgba(0, 0, 0, .5);
+    }
+
+    &._checkout {
+      margin-top: 0;
+      padding-top: 4.2em;
+      padding-bottom: 2.5em;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .landscape & {
+    padding: 3.4em;
+    border-top: 1px solid #ebeff2;
+
+    &._checkout {
+      padding-top: 4em;
+      border-top: none;
+
+      .raise_type_list {
+        padding-top: 1.5em;
+
+        .check_text {
+          padding-top: 2.5em;
+        }
+      }
+    }
+  }
+}
+
+.raise_type_list {
+  @extend %clearfix;
+
+  .landscape & {
+    margin-left: -4%;
+    padding: 3.5em 0 .5em;
+
+    li {
+      float: left;
+      width: 25%;
+      margin-bottom: 2.5em;
+      padding-left: 4%;
+
+      @include respond-to-max(111em) {
+        width: 50%;
+      }
+    }
+
+    .check_v4 {
+      .check_text {
+        height: 11.7em;
+        padding: 2.3em 12.7%;
+      }
+    }
+
+    .check_v5 {
+      .check_text {
+        height: 16.5em;
+        padding: 2.3em 12.7%;
+      }
+    }
+  }
+
+  .portrait & {
+    padding: 5em 0 2.5em;
+
+    li {
+      margin-bottom: 2em;
+    }
+
+    .check_v4 .check_text {
+      height: 12em;
+      padding: 4.3em 1.8em 1em 9.2em;
+    }
+  }
+
+  .portrait ._checkout & {
+    margin-left: -3.2em;
+    padding-top: 1.3em;
+    padding-bottom: 0;
+
+    li {
+      float: left;
+      width: 50%;
+      padding-left: 3.2em;
+      margin-bottom: 3.4em;
+    }
+
+    .check_v5 .check_text {
+      height: 21em;
+      padding: 2.2em 2.5em 1em;
+    }
+  }
+}
+
+.raise_box_tip {
+  @extend %clearfix;
+
+  p {
+    color: #000;
+    font: 1.6em/1.45 $PFDinDisplayProBold;
+
+    .landscape & {
+      max-width: 30em;
+    }
+  }
+
+  .landscape & {
+    margin-bottom: 2.7em;
+  }
+
+  .portrait & {
+    margin-top: 4.2em;
+    margin-bottom: .4em;
+    text-align: center;
+  }
+}
+
+.raise_box_tip_img {
+
+  svg {
+    fill: $gl_blue;
+  }
+
+  .landscape & {
+    float: left;
+    padding-right: 2.3em;
+    margin: -1em 0 0 -1.5em;
+
+    svg {
+      width: 8.2em;
+    }
+  }
+
+  .portrait & {
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+      width: 10.2em;
+    }
+  }
+}
+
+.raise_box {
+  .landscape & {
+    padding: 3.4em 3.4em 1.2em;
+    float: left;
+    width: 50%;
+
+    > p {
+      color: rgba(0, 0, 0, .5);
+      margin-bottom: 1.8em;
+      line-height: 1.35;
+      max-width: 52em;
+      letter-spacing: .01em;
+    }
+  }
+}
+
+.raise_type {
+  @extend %clearfix;
+
+  .landscape & {
+    + .raise_type {
+      margin-top: 4.5em;
+    }
+
+    p {
+      max-width: 45em;
+      margin-bottom: 1.2em;
+      letter-spacing: .01em;
+
+      + p {
+        margin-top: 1.2em;
+      }
+    }
+  }
+
+  .portrait & {
+    text-align: center;
+
+    p {
+      font-size: 1.25em;
+      max-width: 32em;
+      line-height: 1.3;
+      margin: 0 auto 2em;
+      color: rgba(0, 0, 0, .5);
+    }
+
+    + .raise_type {
+      margin-top: 1.5em;
+    }
+  }
+}
+
+.raise_type_img {
+  position: relative;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  > img {
+    margin-top: -.5em;
+  }
+
+  .landscape & {
+    float: left;
+    margin: 0 6em 2em 4em;
+  }
+}
+
+.raise_avatar {
+  position: absolute;
+  z-index: 1;
+  top: 12%;
+  left: 44%;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  border: .5em solid #40596b;
+
+  img {
+    border-radius: 100%;
+  }
+}
+
+.raise_type_name {
+  position: relative;
+  display: block;
+
+  .landscape & {
+    min-height: 4.2em;
+
+    span {
+      font-size: 2.2em;
+    }
+  }
+
+  .portrait & {
+    float: left;
+
+    span {
+      font-size: 4em;
+    }
+  }
+}
+
+.raise_share {
+  position: relative;
+  color: $gl_red;
+  float: right;
+
+  .landscape & {
+    margin-top: 1.5em;
+    margin-left: -5em;
+  }
+
+  .portrait & {
+    clear: both;
+    padding: 0 .75em;
+    letter-spacing: .03em;
+    margin-top: -.5em;
+  }
+
+  .portrait .check_v5 & {
+    float: left;
+  }
+
+  .landscape ._checkout & {
+    float: left;
+    clear: both;
+    margin: -.5em 0 0;
+  }
+}
+
+.raise_best {
+  float: right;
+  position: relative;
+  padding: .5em 1em .2em .5em;
+  background: $gl_blue;
+  color: #fff;
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    border-right: .9em solid transparent;
+  }
+
+  &:before {
+    border-top: .9em solid $gl_blue;
+    top: 0;
+  }
+
+  &:after {
+    bottom: 0;
+    border-bottom: .9em solid $gl_blue;
+  }
+
+  .raise_share & {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: .7em;
+  }
+
+  ._checkout & {
+    margin: 1em -1em 0 0;
+  }
+
+  .portrait .check_v5 & {
+    transform: rotate(45deg) translate(25%, 25%);
+    position: absolute;
+    margin: 0;
+    top: 0;
+    right: 0;
+    font-size: 1.3em;
+    width: 45%;
+    padding: .5em 0 .3em;
+    text-align: center;
+
+    &:after,
+    &:before {
+      border: none;
+      width: 50%;
+      height: 100%;
+      background: inherit;
+    }
+
+    &:before {
+      left: auto;
+      right: 100%;
+      margin-right: -1px;
+    }
+
+    &:after {
+      margin-left: -1px;
+    }
+
+    //&:before {
+    //  left: auto;
+    //  right: 100%;
+    //  margin-right: -1px;
+    //  border-left: 2em solid transparent;
+    //  border-bottom: 2em solid #52c5eb;
+    //  border-right: 0;
+    //  border-top: 0;
+    //}
+    //
+    //&:after {
+    //  border-right-width: 2em;
+    //  border-bottom-width: 2em;
+    //  margin-left: -1px;
+    //}
+  }
+}
+
+.raise_price {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  ._val {
+    display: inline-block;
+    vertical-align: middle;
+
+    .landscape & {
+      font-size: 3.2em;
+    }
+
+    .portrait & {
+      font-size: 4em;
+
+      &._coins {
+        font-size: 6em;
+      }
+    }
+  }
+
+  .portrait & {
+    float: right;
+  }
+
+  .portrait .check_v5 & {
+    font-family: $PFDinDisplayProBold;
+  }
+
+  .landscape ._checkout & {
+    float: left;
+
+    ~ .raise_price {
+      margin-top: 3em;
+    }
+  }
+
+  .portrait ._checkout & {
+    float: left;
+
+    ~ .raise_price {
+      margin-top: 4em;
+    }
+  }
+}
+
+.raise_pack {
+  float: right;
+  position: relative;
+  clear: both;
+  margin: 3em -1em -2em 0;
+
+  img {
+    display: block;
+  }
+
+  .portrait & {
+    margin-right: 0;
+  }
+}
+
+.raise_icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1em 0;
+  padding-left: .5em;
+
+  svg {
+    width: 4em;
+  }
+
+  .portrait & {
+    padding-left: 1em;
+    margin-top: -1.7em;
+
+    svg {
+      width: 6em;
+    }
+  }
+}
+
+.raise_caption {
+  margin-bottom: 2em;
+
+  span {
+
+    .landscape & {
+      font-size: 2.2em;
+    }
+
+    .portrait & {
+      font-size: 3em;
+    }
+  }
+}
+
+.history_account_state {
+  position: relative;
+  text-align: center;
+
+  .landscape & {
+    padding: 7em 26em 3em 25em;
+    height: 15.5em;
+    border-bottom: 1px solid #ebeff2;
+  }
+
+  .portrait & {
+    height: 13.5em;
+    display: table;
+    width: 100%;
+    color: #fff;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -3.5em;
+      right: -3.5em;
+      z-index: -1;
+      background: #ed2d5b;
+    }
+  }
+}
+
+.history_acc_img {
+  position: absolute;
+  bottom: 0;
+
+  &._left {
+    left: 3.8em;
+  }
+
+  &._right {
+    right: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.history_acc_val {
+  display: inline-block;
+  vertical-align: middle;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+
+    &._text {
+      font-size: 2.2em;
+
+      .portrait & {
+        font-size: 3em;
+        line-height: 1.3;
+        padding-top: .2em;
+      }
+    }
+  }
+
+  ._val {
+    font-size: 3.6em;
+    font-weight: bold;
+    padding-left: .25em;
+
+    .portrait & {
+      font-size: 4em;
+    }
+  }
+
+  ._icon {
+    margin: -1em 0;
+
+    svg {
+      width: 6em;
+    }
+  }
+
+  .portrait & {
+    display: table-cell;
+  }
+}
+
+.history_block {
+
+  .landscape & {
+    @extend %global_flex_block_column_nowrap_space_between_stretch;
+    @include flex(1 0);
+  }
+
+}
+
+.history_operation {
+
+  //float: left;
+
+  .landscape & {
+    //width: 50%;
+    margin-right: 15em;
+  }
+
+  .portrait & {
+    padding-top: .5em;
+    width: 68%;
+  }
+}
+
+.history_operation_name {
+  font-size: 1.6em;
+  color: #000;
+
+  .portrait & {
+    font-size: 2.4em;
+    margin-bottom: .2em;
+  }
+}
+
+.history_info {
+  float: right;
+
+  .landscape & {
+    //max-width: 50%;
+    width: 15em;
+  }
+
+  .portrait & {
+    text-align: right;
+    white-space: nowrap;
+    width: 30%;
+  }
+}
+
+.history_date {
+  font-size: 1.6em;
+  color: #7f7f7f;
+
+  .landscape & {
+    float: right;
+  }
+
+  .portrait & {
+    font-size: 2.2em;
+  }
+}
+
+.history_operation_sum {
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  ._val {
+    font: 2.6em $PFDinDisplayProBold;
+
+    .portrait & {
+      font-size: 4em;
+    }
+  }
+
+  ._icon {
+    padding-left: 1.2em;
+
+    svg {
+      width: 6em;
+    }
+  }
+
+  .landscape & {
+    min-width: 15em;
+    text-align: right;
+
+    ._icon {
+      margin-bottom: -2em;
+
+      svg {
+        width: 4em;
+      }
+    }
+  }
+}
+
+.history_list {
+  @extend %clearfix;
+  @include flex(1 0);
+  position: relative;
+  padding-top: .5em;
+
+  .landscape & {
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      border-left: 1px solid #ebeff2;
+    }
+
+    li {
+      float: left;
+      width: 50%;
+      line-height: 5.4em;
+
+      &._arrival {
+        float: right;
+      }
+
+      &._bg_gray {
+        background: #f9f9f9;
+      }
+
+      &._title {
+        padding-top: 1.2em;
+      }
+    }
+  }
+
+  .portrait & {
+    &[data-filter='_show_outgo'] {
+      li {
+        display: none;
+
+        &._outgo {
+          display: block;
+        }
+      }
+    }
+
+    &[data-filter='_show_arrival'] {
+      li {
+        display: none;
+
+        &._arrival {
+          display: block;
+        }
+      }
+    }
+  }
+
+  li {
+
+  }
+}
+
+.history_unit {
+  @extend %clearfix;
+  position: relative;
+
+  .landscape & {
+    padding: 0 4.5em 0 3.5em;
+  }
+
+  .portrait & {
+    padding: 3.5em 0 2.9em;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -3.5em;
+      left: -3.5em;
+      border-bottom: 1px solid #dfdfdf;
+    }
+  }
+}
+
+.tab_holder {
+  margin: 0 -3.5em;
+}
+
+.tab_block {
+  display: table;
+  width: 100%;
+  text-align: center;
+
+  li {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .portrait & {
+
+    .check_text {
+      padding: .9em .5em .7em;
+      font-size: 3.2em;
+    }
+  }
+}
+
+._filter_count {
+  color: rgba(0, 0, 0, .5);
+  padding-left: .5em;
+
+  .portrait & {
+    font-size: .8125em;
+  }
+}
+
+.payments_block {
+
+  .landscape & {
+    padding: 5em 3.5em;
+  }
+
+  .portrait & {
+    padding: 4.2em 0 1.5em;
+  }
+}
+
+.payment_variants {
+  @extend %clearfix;
+
+  .landscape & {
+    margin-top: 3.5em;
+    margin-left: -5em;
+
+    li {
+      float: left;
+      width: 25%;
+      padding-left: 5em;
+      margin-bottom: 4.5em;
+    }
+  }
+
+  .portrait & {
+    padding-top: 1em;
+
+    li {
+      margin-bottom: 2em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.payment_variant {
+  display: block;
+  width: 100%;
+  position: relative;
+  background: #f9f9f9;
+
+  .landscape & {
+    height: 15.2em;
+    text-align: center;
+    padding: 1.5em 0 3.5em;
+  }
+
+  .portrait & {
+    @extend %clearfix;
+    display: table;
+    height: 11.8em;
+
+    .gl_table {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 13em;
+    }
+
+    .gl_table_cell {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+}
+
+.payment_img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.payment_name {
+  color: #000;
+
+  .landscape & {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 3.8em;
+
+    span {
+      font-size: 2.2em;
+    }
+  }
+
+  .portrait & {
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 1em;
+
+    span {
+      font-size: 2.4em;
+    }
+  }
+}
+
+.checkout_control_holder {
+
+  .landscape & {
+    text-align: center;
+  }
+}
+
+.checkout_tip {
+  text-align: center;
+
+  .landscape & {
+    padding: 3em 0;
+
+    span {
+      font-size: 1.4em;
+    }
+  }
+
+  .portrait & {
+    padding: 2em 0;
+    margin: 0 auto;
+    max-width: 45em;
+
+    span {
+      font-size: 2em;
+    }
+  }
+}
+
+.checkout_controls {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  max-width: 68em;
+  padding: 2em 0;
+
+  .landscape & {
+    padding: 2em 0;
+
+    .f_cell {
+      float: left;
+      text-align: left;
+      padding-right: 1em;
+
+      &._wide {
+        width: 100%;
+      }
+    }
+
+    .f_label_v3 {
+
+      span {
+        font-size: 1.6em;
+      }
+    }
+
+    .checkout_col {
+      float: left;
+      width: 50%;
+      padding-left: 3em;
+
+      &._currency {
+        width: 100%;
+      }
+    }
+  }
+
+  .portrait & {
+    padding: 0 0 1.5em;
+
+    .f_label_v3 {
+      span {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+.checkout_col {
+
+  &._currency {
+    padding-bottom: 2.4em;
+  }
+
+  .portrait & {
+    &._phone {
+      text-align: center;
+      padding-top: 1.5em;
+    }
+
+    .f_cell._wide {
+      margin: 0 auto;
+      max-width: 100%;
+      width: 34em;
+    }
+
+    &._currency {
+      font-size: 1.85em;
+      margin-top: -.8em;
+    }
+
+    &._count {
+      @extend %clearfix;
+      position: relative;
+      padding-top: 4em;
+      margin-top: 1em;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -3.5em;
+        left: -3.5em;
+        border-top: 1px solid #ccc;
+      }
+
+      .f_cell {
+        float: left;
+        width: 56%;
+
+        &:first-child {
+          width: 44%;
+          padding-right: 3em;
+        }
+      }
+
+      .f_label_v3 {
+        margin-bottom: 1.5em;
+      }
+
+      .btn_v1 {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.counter_holder {
+  background: #fff;
+  border-radius: 2em;
+  width: 11.2em;
+  position: relative;
+  padding: .5em 3.8em;
+
+  .portrait & {
+    font-size: 2.1em;
+    width: 10.5em;
+  }
+}
+
+

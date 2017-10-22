@@ -1,0 +1,131 @@
+include ../components/profile_photo_menu
+
+.board_holder.board_checkout
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      - if (checkout_mode === 'sber')
+        span Сбербанк онлайн
+      - if (checkout_mode === 'wm')
+        span Webmoney
+
+    +profile_title_controls()
+
+  .checkout_provider(class= 'provider_' + checkout_mode)
+    .gl_table: .gl_table_cell
+      img(src='img/provider_' + checkout_mode + '.png')
+  .raise_propose._checkout: form(action='#')
+    .raise_caption.text_center
+      span Выберите подходящий вам пакет:
+
+    ul.raise_type_list
+      li
+        label.f_check.check_v5
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_price
+              span._val._coins 10
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_pack
+              img.land_only(src='img/checkout_coins.png')
+              img.land_hidden(src='img/checkout_coins_b.png')
+            span.raise_price
+              span._val
+                span.clr_black_5 100
+                span.clr_black_8 &#8381;
+
+      li
+        label.f_check.check_v5
+          input.inp_hidden(type='radio' name='raise_type' checked)
+          span.check_text
+            span.raise_price
+              span._val._coins 30
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_pack
+              img.land_only(src='img/checkout_wallet.png')
+              img.land_hidden(src='img/checkout_wallet_b.png')
+            span.raise_price
+              span._val
+                span.clr_black_5 100
+                span.clr_black_8 &#8381;
+            span.raise_share
+              span.fz_16 экономия 30%
+
+      li
+        label.f_check.check_v5
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_price
+              span._val._coins 45
+              span.raise_icon
+                +menu_icon('coins')
+            .raise_best
+              span.fz_11 Лучший выбор!
+            span.raise_pack
+              img.land_only(src='img/checkout_moneybox.png')
+              img.land_hidden(src='img/checkout_moneybox_b.png')
+            span.raise_price
+              span._val
+                span.clr_black_5 100
+                span.clr_black_8 &#8381;
+            span.raise_share
+              span.fz_16 экономия 20%
+
+      li
+        label.f_check.check_v5
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_price
+              span._val._coins 100
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_pack
+              img.land_only(src='img/checkout_ingots.png')
+              img.land_hidden(src='img/checkout_ingots_b.png')
+            span.raise_price
+              span._val
+                span.clr_black_5 100
+                span.clr_black_8 &#8381;
+            span.raise_share
+              span.fz_16 экономия 20%
+
+    .checkout_control_holder
+      .checkout_controls
+        .checkout_col._currency
+          - if (checkout_mode === 'wm')
+            .select_box_v1
+              select.select2(data-placeholder='В какой валюте отображать цену?' data-select-class='select_w1')
+                option(disabled selected)
+                option В какой валюте отображать цену?     wmz
+                option В какой валюте отображать цену?     wmr
+                option В какой валюте отображать цену?     wmu
+                option В какой валюте отображать цену?     wmd
+
+        .checkout_col._phone
+          .f_cell._wide
+            label.f_label_v3
+              span.clr_black_5 Ваш телефон
+            .input_w
+              input.f_input.input_v3(data-validation='_complete' data-inputmask="'alias': 'phone', 'clearIncomplete' : 'false'" autocomplete='off' placeholder='+_(___)___-____')
+
+        .checkout_col._count
+          .f_cell
+            label.f_label_v3
+              span.clr_black_5 Кол-во пакетов
+            .valCell.input_w.counter_holder
+              input.f_input.input_v4.text_center(value='1' data-min='1' data-max='99' data-step='1' data-inputmask="'alias': 'numeric', 'rightAlign': false, 'allowMinus': false, 'allowPlus': false, 'autoGroup': false, 'groupSeparator': '', 'autoUnmask': true, 'digits': 0, 'placeholder': '0', 'repeat': 2, 'digitsOptional': false" )
+              span.btn_v2.counter_btn._minus.valMinus.btn_gray_2
+              span.btn_v2.counter_btn._plus.valPlus.btn_gray_2
+
+          .f_cell
+            label.f_label_v3
+              span &nbsp;
+            .input_w
+              button.btn_v1.btn_red.raise_btn._chose
+                span.btn_text.fz_16 Купить
+
+      .checkout_tip
+        span.clr_black_5 После нажатия кнопки мы перенаправим вас на сайт Сбербанка, а там вы уже знаете, что делать.

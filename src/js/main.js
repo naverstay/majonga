@@ -1,4 +1,6 @@
 var body_var,
+  h,
+  pointer_event,
   browserWindow,
   scrollFixed,
   topSection,
@@ -6,6 +8,7 @@ var body_var,
   userSlider,
   userSliderTimer,
   topSlider,
+  myPhotoSlider,
   giftSlider,
   topSliderTimer,
   giftSliderTimer,
@@ -16,6 +19,7 @@ var body_var,
   currentSearchStep,
   loadSearchResults,
   searchPager,
+  eventTime = 0,
 
   //baseM = 0.0714286666666667,
   //baseWindowWidth = 1920,
@@ -43,7 +47,7 @@ var body_var,
   baseFZ = 1,
   minFZ = [.5, .75],
   maxFZ = [1, 1.5],
-  landscapeFlag = 0,
+  landscapeFlag = 0, // 0 - portrait, 1 - landscape
   preferredHeight = [1388, 1270],
   preferredWidth = [640, 1920];
 
@@ -54,7 +58,7 @@ $(function ($) {
   scrollFixed = $('.scrollFixed');
   topSection = $('.topSection');
 
-  resizer = false;
+  //resizer = false;
 
   if (!resizer) domReady();
 
@@ -64,13 +68,21 @@ function domReady(cb) {
 
   initHummer();
 
+  browserCheck();
+
   disableDoubleTap();
 
   initSearchResults();
 
+  confirmDialogDefaults();
+
   startOrientationWatching(); // отслежаваем медиа-квери
 
   initPlaceholder(); // проверка пустых/заполненных инпутов
+
+  initBoard(); // изотоп
+
+  // слайдеры
 
   initTopSlider();
 
@@ -80,7 +92,7 @@ function domReady(cb) {
 
   initGallery();
 
-  initBoard(); // изотоп
+  initMyPhotoSlider();
 
   initSelect(); // селекты
 
@@ -95,35 +107,84 @@ function domReady(cb) {
   all_dialog_close();
 
   body_var
-    .on('tap', function (e) {
+    .css('opacity', 1)
+    .on(pointer_event, function (e) {
       var trgt = $(e.target);
-      console.log(trgt.closest('.select2-container').length);
-      if (!(trgt.closest('.profile_photos_menu_holder').length
-          && trgt.closest('.board_footer_controls').length
-          && trgt.closest('.select2-container').length
-        )) {
-        console.log('hide dd');
-        hideDropDowns(trgt);
-      }
 
-      hideAside(e);
+      if ((e.target.tagName).toLowerCase() === 'a' || trgt.closest('a').length) {
+        //console.log('skip tap');
+      } else {
+        //console.log(e.type
+        //  , trgt.closest('.profile_photos_menu_holder').length
+        //  , trgt.closest('.board_footer_controls').length
+        //  , trgt.closest('.select2-container').length);
+
+        if (!(trgt.closest('.profile_photos_menu_holder').length
+            && trgt.closest('.board_footer_controls').length
+            && trgt.closest('.select2-container').length
+          )) {
+          setTimeout(function () {
+            hideDropDowns(trgt);
+          }, 50);
+        }
+
+        if (!(trgt.closest('.preventClosing').length > 0)) {
+          setTimeout(function () {
+            //console.log('state_off click');
+            $('.state_off').trigger(pointer_event);
+          }, 50);
+        }
+      }
     })
     .delegate('.viewTogller', 'change', function () {
       boardGrid.toggleClass('_list', $(this).attr('data-view') === 'list');
       relayouGrid();
     })
-    .delegate('.editBtn', 'tap', function () {
-      console.log('editBtn');
+    .delegate('.selectToggle', 'change', function () {
+      var selectToggle = $(this);
+
+      $('input[name="' + selectToggle.attr('data-radio') + '"][value="' + selectToggle.val() + '"]').prop('checked', 'checked');
+
+    })
+    .delegate('.radioToggle', 'change', function () {
+      var radio = $(this);
+
+      $(radio.attr('data-select')).val(radio.val()).trigger('change');
+
+    })
+    .delegate('.valPlus', pointer_event, function () {
+      var valCell = $(this).closest('.valCell'),
+        inp = valCell.find('input'),
+        val = parseInt(inp.val().replace(/\D/g, '')),
+        min_val = 1 * inp.attr('data-min'),
+        max_val = 1 * inp.attr('data-max'),
+        new_val = val + (1 * inp.attr('data-step'));
+
+      inp.val(new_val <= max_val ? (new_val >= min_val ? new_val : min_val) : max_val).focus();
+
       return false;
     })
-    .delegate('.boardMenuToggle', 'tap', function () {
-      $('.boardFooter').toggleClass('_menu_opened');
+    .delegate('.valMinus', pointer_event, function () {
+      var valCell = $(this).closest('.valCell'),
+        inp = valCell.find('input'),
+        val = parseInt(inp.val().replace(/\D/g, '')),
+        min_val = 1 * inp.attr('data-min'),
+        max_val = 1 * inp.attr('data-max'),
+        new_val = val - (1 * inp.attr('data-step'));
+
+      inp.val(new_val >= min_val ? (new_val <= max_val ? new_val : max_val) : min_val).focus();
+
+      return false;
+    })
+    .delegate('.editBtn', pointer_event, function () {
+      return false;
+    })
+    .delegate('.menuToggleBtn', pointer_event, function () {
+      toggleMenuClass($(this).parent(), '_menu_opened');
       return false;
     })
     .delegate('.toggleIt', 'change', function () {
       var chck = $(this), data = {}, val = chck.prop('checked');
-
-      console.log(chck, chck.closest('.settingsCollapseBtn'));
 
       data[chck.attr('data-event')] = val;
 
@@ -132,15 +193,16 @@ function domReady(cb) {
       sendProfileSettings(data);
 
     })
-    .delegate('.giftRmBtn', 'tap', function (e) {
+    .delegate('.tabToggle', 'change', function () {
+      $('.filterList').attr('data-filter', $(this).attr('data-filter'));
+    })
+    .delegate('.giftRmBtn', pointer_event, function (e) {
       e.preventDefault();
       giftRemover(e.target);
       return false;
     })
-    .delegate('.settingsCollapseAll', 'tap', function () {
+    .delegate('.settingsCollapseAll', pointer_event, function () {
       var btn = $(this);
-
-      console.log(btn);
 
       if (landscapeFlag === 0) {
         if (btn.hasClass('_expanded')) {
@@ -154,7 +216,7 @@ function domReady(cb) {
 
       return false;
     })
-    .delegate('.settingsCollapseBtn', 'tap', function (e) {
+    .delegate('.settingsCollapseBtn', pointer_event, function (e) {
       var btn = $(this);
 
       console.log(btn);
@@ -172,14 +234,33 @@ function domReady(cb) {
 
       return false;
     })
-    .delegate('.profileMenuBtn', 'tap', function (e) {
-      e.preventDefault();
+    .delegate('.profileMenuBtn', pointer_event, function (e) {
+      //e.preventDefault();
 
       var btn = $(this), parent = btn.closest('.gridItem');
 
-      $('.gridItem').not(parent).removeClass('_menu_opened');
+      console.log(btn);
 
-      parent.toggleClass('_menu_opened');
+      toggleMenuClass(parent, '_menu_opened');
+
+      return false;
+    })
+    .delegate('.photoPopup', pointer_event, function (e) {
+
+      if (landscapeFlag === 0) {
+        var btn = $(this);
+
+        showPhotoDialog(btn);
+
+        return false;
+      }
+    })
+    .delegate('.startCrop', pointer_event, function (e) {
+      openCropDialog();
+      return false;
+    })
+    .delegate('.raiseUpBtn', pointer_event, function (e) {
+      raiseUpDialog();
 
       return false;
     })
@@ -197,7 +278,7 @@ function domReady(cb) {
 
       setTimeout(function () {
         inp.closest('.select2-container').prevAll('select.select2').select2("close");
-      }, 1);
+      }, 500);
     })
     .delegate('.photoCheck', 'change', function () {
       $('.checkCounter').text($('.photoCheck:checked').length);
@@ -221,35 +302,40 @@ function domReady(cb) {
 
       return false;
     })
-    .delegate('.closeAsideBtn', 'tap', function () {
-      $('.openUserMenu').trigger('tap');
+    .delegate('.closeAsideBtn', pointer_event, function () {
+      $('.openUserMenu').trigger(pointer_event);
 
       return false;
     })
-    .delegate('.openSearch', 'tap', function () {
-      $(this).toggleClass('state_off');
+    .delegate('.openSearch', pointer_event, function () {
+      if (checkEventTimeout()) {
+        $(this).toggleClass('state_off');
 
-      body_var.toggleClass('search_opened').removeClass('profile_opened').removeClass('user_menu_opened');
-      $('.openUserMenu').removeClass('state_off');
-      $('.openProfileMenu').removeClass('state_off');
-
+        body_var.toggleClass('search_opened').removeClass('profile_opened').removeClass('user_menu_opened');
+        $('.openUserMenu').removeClass('state_off');
+        $('.openProfileMenu').removeClass('state_off');
+      }
       return false;
     })
-    .delegate('.openProfileMenu', 'tap', function () {
-      $(this).toggleClass('state_off');
+    .delegate('.openProfileMenu', pointer_event, function () {
+      if (checkEventTimeout()) {
+        $(this).toggleClass('state_off');
 
-      body_var.toggleClass('profile_opened').removeClass('user_menu_opened').removeClass('search_opened');
-      $('.openSearch').removeClass('state_off');
+        body_var.toggleClass('profile_opened').removeClass('user_menu_opened').removeClass('search_opened');
+        $('.openSearch').removeClass('state_off');
+      }
       return false;
     })
-    .delegate('.openUserMenu', 'tap', function () {
-      $(this).toggleClass('state_off');
+    .delegate('.openUserMenu', pointer_event, function () {
+      if (checkEventTimeout()) {
+        $(this).toggleClass('state_off');
 
-      body_var.toggleClass('user_menu_opened').removeClass('search_opened');
-      $('.openSearch').removeClass('state_off');
+        body_var.toggleClass('user_menu_opened').removeClass('search_opened');
+        $('.openSearch').removeClass('state_off');
+      }
       return false;
     })
-    .delegate('.tabBtn', 'tap', function () {
+    .delegate('.tabBtn', pointer_event, function () {
       var firedEl = $(this), target = $(firedEl.attr('href'));
 
       if (target.length) {
@@ -270,20 +356,170 @@ function checkTagParent(el, tag) {
   return el.tagName.toUpperCase() === tag.toUpperCase() || $(el).closest(tag).length > 0;
 }
 
-function hideDropDowns(el) {
-  $('._menu_opened').removeClass('_menu_opened');
+function checkEventTimeout() {
+  var ret = (new Date()).getTime() - eventTime;
+  eventTime = (new Date()).getTime();
 
-  //console.log(el);
+  return ret > 100;
+}
+
+function browserCheck() {
+  var myNav = navigator.userAgent.toLowerCase(), ie,
+    html = document.documentElement;
+
+  if ((myNav.indexOf('msie') != -1)) {
+    ie = ((myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false);
+    html.className += ' mustdie';
+    html.className += ' ie' + ie;
+  } else if (!!myNav.match(/trident.*rv\:11\./)) {
+    ie = 11;
+    html.className += ' ie' + ie;
+  }
+
+  if (myNav.indexOf('safari') != -1) {
+    if (myNav.indexOf('chrome') == -1) {
+      html.className += ' safari';
+    } else {
+      html.className += ' chrome';
+    }
+  }
+
+  if (myNav.indexOf('firefox') != -1) {
+    html.className += ' firefox';
+  }
+
+  if ((myNav.indexOf('windows') != -1)) {
+    html.className += ' windows';
+  }
+
+  if (/ipad|iphone|ipod/ig.test(myNav) && !window.MSStream) {
+    html.className += ' ios';
+  }
+}
+
+function toggleMenuClass(el, cls) {
+  $('.' + cls).not(el).toggleClass(cls);
+  el.toggleClass(cls);
+}
+
+function hideDropDowns(el) {
+  //console.log('hideDropDowns');
+
+  $('._menu_opened').removeClass('_menu_opened');
 
   //$('select.select2').each(function () {
   //  $(this).select2('close');
   //});
 }
 
+function openCropDialog() {
+
+
+
+}
+
 function giftRemover(link) {
-  $(link).closest('.questionnaire_slide').remove();
-  giftSlider.update();
-  return false;
+  $.confirm({
+    title: 'Удаление подарка',
+    content: '<span class="fz_16">Подтверждаете?</span>',
+    type: 'red',
+    columnClass: 'gift_remove_dialog',
+    buttons: {
+      confirm: {
+        btnClass: 'btn_red',
+        text: 'Удалить',
+        action: function () {
+          $(link).closest('.questionnaire_slide').remove();
+          giftSlider.update();
+        }
+      },
+      cancel: {
+        btnClass: 'btn_gray',
+        text: 'Отмена'
+      }
+    },
+    onOpenBefore: function (e) {
+
+    }
+  });
+}
+
+function raiseUpDialog() {
+  $.confirm({
+    title: '',
+    content: '<div class="raise_up_block">' +
+    '<div class="raise_up_robot"><img src="img/robot.png" alt=""></div>' +
+    '<div class="raise_up_title"><span>Простите, нам важно знать, <span class="land_hidden"><br></span> что вы не робот.</span></div>' +
+    '<div class="raise_up_captcha"><img class="land_hidden" src="img/captcha_mob.jpg" alt=""><img class="land_only" src="img/captcha.jpg" alt=""></div>' +
+    '</div>',
+    columnClass: 'raise_up_dialog',
+    buttons: {
+      confirm: {
+        btnClass: 'btn_v1 btn_red raise_btn',
+        text: '<span class="fz_16 btn_text">Поднять анкету</span>',
+        action: function () {
+          console.log('call raise up func');
+        }
+      }
+    }
+  });
+}
+
+function showPhotoDialog(trgt) {
+  $.dialog({
+    title: '',
+    columnClass: 'photo_dialog',
+    buttons: {},
+    onOpenBefore: function (e) {
+
+    },
+    content: function () {
+      var self = this;
+      return $.ajax({
+        url: "data/photoinfo.json",
+        dataType: 'json',
+        method: 'get'
+      }).done(function (response) {
+        console.log(response);
+
+        if (response.success) {
+
+          /*if (response.success) {
+            self.setContent('<div class="photo_dialog_user">' +
+              '<div class="photo_dialog_image"><img src="' + trgt.find('img').attr('src') + '" alt=""></div>' +
+              '<div class="photo_dialog_name"></div>' +
+              '<div class="photo_dialog_info"></div>' +
+              '<div class="photo_dialog_msg"><div class="photo_dialog_msg_corner"></div></div>' +
+              '<div class="photo_dialog_control"><a class="btn_v1 btn_red raise_btn" href="' + trgt.attr('href') + '"><span class="btn_text fz_16">Смотреть полную анкету</span></a></div>' +
+              '</div>'
+            );
+
+            self.$content.find('.photo_dialog_name').append('<span>' + response.name + '</span>');
+            self.$content.find('.photo_dialog_info').append('<p><span>' + response.city + '</span></p>');
+            self.$content.find('.photo_dialog_info').append('<p><span>' + response.info + '</span></p>');
+            self.$content.find('.photo_dialog_msg').append('<span>' + response.msg + '</span>');
+          }*/
+
+          self.setContent('<div class="photo_dialog_user">' +
+            '<div class="photo_dialog_image"><img src="' + trgt.find('img').attr('src') + '" alt=""></div>' +
+            '<div class="photo_dialog_name"><span>' + response.name + '</span></div>' +
+            '<div class="photo_dialog_info">' +
+            '<p><span>' + response.city + '</span></p>' +
+            '<p><span>' + response.info + '</span></p>' +
+            '</div>' +
+            '<div class="photo_dialog_msg">' +
+            '<div class="photo_dialog_msg_corner"></div>' +
+            '<span>' + response.msg + '</span>' +
+            '</div>' +
+            '<div class="photo_dialog_control"><a class="btn_v1 btn_red raise_btn" href="' + trgt.attr('href') + '"><span class="btn_text fz_16">Смотреть полную анкету</span></a></div>' +
+            '</div>');
+        }
+
+      }).fail(function () {
+        self.setContent('Something went wrong.');
+      });
+    }
+  });
 }
 
 function sendProfileSettings(data) {
@@ -297,10 +533,14 @@ function initGallery() {
     if (lg.hasClass('needMenu')) {
       lg.on('onAfterSlide.lg', function (event, prevIndex, index) {
         var tb = $('.lg-toolbar'),
+          //tb_camera_btn = $('<span class="lg-icon lg-camera"></span>'),
+          tb_views_btn = $('<span class="lg-icon lg-views"></span>'),
           tb_menu_btn = $('<span class="lg-icon lg-photomenu gridItem"><span class="lg-menu-dots profileMenuBtn"><span></span></span><span class="profile_photos_menu_holder"></span></span>'),
-          item = $(event.currentTarget).find('.gridItem').eq(index),
+          item = $($(event.currentTarget).find('.galItem')[index]).closest('.gridItem'),
           menu = item.find('.profile_photos_menu_holder'),
-          menu_btn = item.find('.profile_menu_btn');
+          menu_btn = item.find('.profile_menu_btn'),
+          //camera_btn = item.find('.profile_menu_btn'),
+          views_btn = item.find('.profile_photo_views');
 
         if (tb.find('.lg-photomenu').length) {
           tb_menu_btn = tb.find('.lg-photomenu').removeClass('_menu_opened').empty();
@@ -308,7 +548,21 @@ function initGallery() {
           tb.append(tb_menu_btn);
         }
 
+        if (tb.find('.lg-views').length) {
+          tb_views_btn = tb.find('.lg-views').empty();
+        } else {
+          tb.append(tb_views_btn);
+        }
+
+        //if (tb.find('.lg-camera').length) {
+        //  tb_camera_btn = tb.find('.lg-camera').empty();
+        //} else {
+        //  tb.append(tb_camera_btn);
+        //}
+
         tb_menu_btn.html(menu_btn.clone()).append(menu.clone());
+        //tb_camera_btn.html(camera_btn.clone());
+        tb_views_btn.html(views_btn.clone());
 
       });
     }
@@ -335,11 +589,15 @@ function hideAside(e) {
   } else {
     //console.log(e.type, e.target.tagName, trgt.closest('.auth_aside').length, trgt.closest('.filter_holder').length, trgt.closest('.filter_aside').length);
 
+    e.preventDefault();
+
     if (!(trgt.closest('.preventClosing').length > 0)) {
       setTimeout(function () {
         //console.log('state_off click');
-        $('.state_off').trigger('tap');
+        $('.state_off').trigger(pointer_event);
       }, 0);
+
+      return false;
     }
   }
 }
@@ -400,7 +658,7 @@ function initSearchResults() {
           searchPager.html(paginationBuilder(currentSearchStep));
 
           body_var
-            .delegate('.pagPrev', 'tap', function (e) {
+            .delegate('.pagPrev', pointer_event, function (e) {
               e.preventDefault();
 
               if (currentSearchStep > 1) {
@@ -412,7 +670,7 @@ function initSearchResults() {
 
               return false;
             })
-            .delegate('.pagLink', 'tap', function (e) {
+            .delegate('.pagLink', pointer_event, function (e) {
               e.preventDefault();
 
               var link = $(this);
@@ -426,7 +684,7 @@ function initSearchResults() {
 
               return false;
             })
-            .delegate('.pagNext', 'tap', function (e) {
+            .delegate('.pagNext', pointer_event, function (e) {
               e.preventDefault();
 
               if (currentSearchStep <= Math.ceil(searchResults.search_result.length / searchResults.items_to_show) - 1) {
@@ -550,6 +808,20 @@ function initTopSlider() {
     autoResize: false,
     spaceBetween: 1,
     slidesPerView: 'auto'
+  });
+}
+
+function initMyPhotoSlider() {
+  myPhotoSlider = new Swiper('.myPhotoSlider', {
+    loop: false,
+    spaceBetween: 0,
+    slidesPerView: 1,
+    onInit: function (swiper) {
+      $(swiper.container).closest('.gridItem').find('.slideCount').text(1 + swiper.activeIndex + ' из ' + swiper.slides.length);
+    },
+    onSlideChangeEnd: function (swiper) {
+      $(swiper.container).closest('.gridItem').find('.slideCount').text(1 + swiper.activeIndex + ' из ' + swiper.slides.length);
+    }
   });
 }
 
@@ -763,6 +1035,11 @@ function updateAge(values, handle, unencoded, isTap, positions) {
   $('#age_max').val(parseInt(values[1]));
 }
 
+function updateFilterAge(values, handle, unencoded, isTap, positions) {
+  $('#filter_age_min').val(parseInt(values[0]));
+  $('#filter_age_max').val(parseInt(values[1]));
+}
+
 $(window).on('resize', function () {
 
   windowRisize();
@@ -813,10 +1090,17 @@ function checkPlaceholder(inp) {
 function initHummer() {
   delete Hammer.defaults.cssProps.userSelect;
 
-  new Hammer(body_var[0], {
+  h = new Hammer(body_var[0], {
     domEvents: true,
+    //interval: 1000,
     touchAction: 'pan-x pan-y'
   });
+
+  pointer_event = h ? 'tap' : 'click';
+
+  pointer_event = 'click';
+
+  initSwipe();
 }
 
 function disableDoubleTap() {
@@ -832,8 +1116,75 @@ function disableDoubleTap() {
       e.preventDefault(); // double tap - prevent the zoom
       // also synthesize click events we just swallowed up
       console.log(this);
-      //$(this).trigger('tap');
+      //$(this).trigger(pointer_event);
     });
+  };
+}
+
+function confirmDialogDefaults() {
+  jconfirm.defaults = {
+    title: '',
+    titleClass: '',
+    type: 'default',
+    typeAnimated: true,
+    draggable: true,
+    dragWindowGap: 15,
+    dragWindowBorder: true,
+    animateFromElement: true,
+    smoothContent: true,
+    content: '',
+    buttons: {},
+    defaultButtons: {
+      ok: {
+        action: function () {
+        }
+      },
+      close: {
+        action: function () {
+        }
+      }
+    },
+    contentLoaded: function (data, status, xhr) {
+    },
+    icon: '',
+    lazyOpen: false,
+    bgOpacity: null,
+    theme: 'light',
+    animation: 'scale',
+    closeAnimation: 'scale',
+    animationSpeed: 400,
+    animationBounce: 1,
+    rtl: false,
+    container: 'body',
+    containerFluid: true,
+    backgroundDismiss: false,
+    backgroundDismissAnimation: 'shake',
+    autoClose: false,
+    closeIcon: true,
+    closeIconClass: '',
+    watchInterval: 100,
+    columnClass: '',
+    boxWidth: '95%',
+    scrollToPreviousElement: true,
+    scrollToPreviousElementAnimate: true,
+    useBootstrap: true,
+    offsetTop: 80,
+    offsetBottom: 20,
+    onContentReady: function () {
+    },
+    onOpenBefore: function () {
+    },
+    onOpen: function () {
+      body_var.addClass('confirm_opened');
+    },
+    onClose: function () {
+      body_var.removeClass('confirm_opened');
+    },
+    onDestroy: function () {
+      body_var.removeClass('confirm_opened');
+    },
+    onAction: function () {
+    }
   };
 }
 
@@ -877,8 +1228,6 @@ function windowRisize() {
     resizeTimer = setTimeout(function () {
       resizeMe(browserWindow.height(), browserWindow.width());
     }, 0);
-  } else {
-    body_var.css('opacity', 1);
   }
 }
 
@@ -909,7 +1258,7 @@ function resizeMe(displayHeight, displayWidth) {
     //if (browserWindow.width() > 640) {
     //  body_var.css('font-size', '1em');
     //} else {
-    body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ) / dpr)) + 'em');
+    //body_var.css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ) / dpr)) + 'em');
     //}
 
     //$('.keepFZ').css('font-size', (Math.max(minFZ[landscapeFlag], Math.min(maxFZ[landscapeFlag], newFontSize * baseFZ)) / dpr) + 'em');
@@ -919,7 +1268,7 @@ function resizeMe(displayHeight, displayWidth) {
     //if (browserWindow.width() > 640) {
     //  body_var.css('font-size', '1em');
     //} else {
-    body_var.css('font-size', (baseFZ / dpr) + 'em');
+    //body_var.css('font-size', (baseFZ / dpr) + 'em');
     //}
 
     //$('.keepFZ').css('font-size', (baseFZ / dpr) + 'em');
@@ -957,7 +1306,7 @@ function resizeMe(displayHeight, displayWidth) {
 
   if (!domR) {
     domReady(function () {
-      body_var.css('opacity', 1);
+      console.log('dom ready');
     });
   }
 }
@@ -969,7 +1318,7 @@ function relayouGrid() {
 }
 
 function all_dialog_close() {
-  body_var.on('tap', '.ui-widget-overlay', all_dialog_close_gl);
+  body_var.on(pointer_event, '.ui-widget-overlay', all_dialog_close_gl);
 }
 
 function all_dialog_close_gl() {
@@ -1057,4 +1406,50 @@ function getUsers() {
     .always(function () {
 
     });
+}
+
+function toggleHistoryRemover(el, show) {
+  $(el).toggleClass('show_remover', show);
+}
+
+function switchTab(el, next) {
+  var tabs = $(el).find('.tabToggle');
+
+  if ((tabs[0].tagName).toLowerCase() === 'input') {
+    var goto = tabs.filter(function () {
+      return $(this).prop('checked');
+    }).closest('.tabItem').index() + (next ? -1 : 1);
+
+    tabs.eq((goto < 0 ? tabs.length - 1 : (goto > tabs.length - 1 ? 0 : goto))).prop('checked', 'checked');
+  }
+}
+
+function initSwipe() {
+  var historyUnits = $('.history_unit'), tabSwitcher = $('.tabSwitcher');
+
+  tabSwitcher.hammer({threshold: 5}).on("swipeleft", function (e) {
+    if (landscapeFlag === 0) {
+      switchTab(e.currentTarget, false);
+    }
+  });
+
+  tabSwitcher.hammer({threshold: 5}).on("swiperight", function (e) {
+    if (landscapeFlag === 0) {
+      switchTab(e.currentTarget, true);
+    }
+  });
+
+  historyUnits.hammer({threshold: 5}).on("swipeleft", function (e) {
+
+    if (landscapeFlag === 0) {
+      toggleHistoryRemover(e.currentTarget, true);
+    }
+  });
+
+  historyUnits.hammer({threshold: 5}).on("swiperight", function (e) {
+
+    if (landscapeFlag === 0) {
+      toggleHistoryRemover(e.currentTarget, false);
+    }
+  });
 }

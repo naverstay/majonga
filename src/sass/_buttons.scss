@@ -28,6 +28,25 @@
     //letter-spacing: -.09em;
   }
 
+  &.raise_btn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2em;
+    padding: 0 2em;
+    min-width: 17em;
+    text-align: center;
+    font: 1em/2.4 $PFDinDisplayProBold;
+    //letter-spacing: -.09em;
+
+    .portrait & {
+      font: 1.8em/2.4 $PFDinDisplayProReg;
+
+      &._chose {
+        font-size: 2.2em;
+      }
+    }
+  }
+
   &.login_btn {
     display: inline-block;
     vertical-align: top;
@@ -82,6 +101,48 @@
   cursor: pointer;
   height: 2.7em;
 
+  &.counter_btn {
+    position: absolute;
+    border-radius: 1.3em;
+    top: .7em;
+    width: 2.7em;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      background: #b2b2b2;
+      top: 50%;
+      left: 50%;
+    }
+
+    &:before {
+      width: 1em;
+      height: .2em;
+      margin: -.1em 0 0 -.5em;
+    }
+
+    &._minus {
+      left: 1em;
+    }
+
+    &._plus {
+      right: 1em;
+
+      &:after {
+        height: 1em;
+        width: .2em;
+        margin: -.5em 0 0 -.1em;
+      }
+    }
+
+    .portrait & {
+      font-size: .8em;
+      top: 1.1em;
+      border-width: 2px;
+    }
+  }
+
   &.board_footer_btn {
     padding: .5em 2.3em;
     border-radius: 1.3em;
@@ -113,15 +174,15 @@
 .btn_red {
   @include transition_all(background .3s);
   color: #fff;
-  background: #ff4500;
+  background: $gl_red;
 
   &:hover {
-    background: darken(#ff4500, 5%);
+    background: darken($gl_red, 5%);
   }
 
   &:focus,
   &:active {
-    background: darken(#ff4500, 10%);
+    background: darken($gl_red, 10%);
   }
 }
 
@@ -141,6 +202,37 @@
   }
 }
 
+.btn_gray_2 {
+  @include transition_all(background .3s, border-color .3s);
+  color: #b2b2b2;
+  background: #fff;
+  border: 1px solid #b5b5b5;
+
+  &:hover {
+    background: #b5b5b5;
+
+    &.counter_btn {
+      &:after,
+      &:before {
+        background: #fff;
+      }
+    }
+  }
+
+  &:focus,
+  &:active {
+    border-color: darken(#b5b5b5, 5%);
+    background: darken(#b5b5b5, 5%);
+
+    &.counter_btn {
+      &:after,
+      &:before {
+        background: #fff;
+      }
+    }
+  }
+}
+
 .btn_blue {
   @include transition_all(background .3s);
   background: $gl_blue;
@@ -156,7 +248,7 @@
   }
 
   .portrait & {
-    background: #ff4500;
+    background: $gl_red;
   }
 }
 

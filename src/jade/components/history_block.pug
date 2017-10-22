@@ -1,0 +1,169 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span История операций
+
+    +profile_title_controls()
+
+  .history_account_state
+    .history_acc_img._left.land_only
+      img(src='img/skarb_map.png')
+    .history_acc_img._right.land_only
+      img(src='img/skarb.png')
+
+    .history_acc_val
+      span._text У вас на счету:
+      span._val  155
+      span._icon
+        +menu_icon('coins')
+
+  .history_block
+    .tab_holder.land_hidden: ul.tab_block.tabSwitcher
+      li.tabItem
+        label.check_v3.f_check
+          input.inp_hidden.tabToggle(data-filter='' type='radio' name='history_filter' checked)
+          span.check_text
+            span Все
+            span._filter_count 45
+      li.tabItem
+        label.check_v3.f_check
+          input.inp_hidden.tabToggle(data-filter='_show_outgo' type='radio' name='history_filter')
+          span.check_text
+            span Списания
+            span._filter_count 9
+      li.tabItem
+        label.check_v3.f_check
+          input.inp_hidden.tabToggle(data-filter='_show_arrival' type='radio' name='history_filter')
+          span.check_text
+            span Поступления
+            span._filter_count 23
+
+    ul.history_list.filterList
+      li._title.land_only
+        .history_unit
+          span.fz_22 Списания
+      li._title.land_only
+        .history_unit
+          span.fz_22 Поступления
+
+      li._bg_gray._outgo
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_red -500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Покупка статуса VIP
+            .history_date 05.10.2017
+
+      li._bg_gray._arrival
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_blue +500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Зачисление через Сбербанк Онлайн
+            .history_date 05.10.2017
+
+      li._outgo
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_red -500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Покупка статуса VIP
+            .history_date 05.10.2017
+
+      li._arrival
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_blue +500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Зачисление через Сбербанк Онлайн
+            .history_date 05.10.2017
+
+      li._bg_gray._outgo
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_red -500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Покупка статуса VIP
+            .history_date 05.10.2017
+
+      li._bg_gray._arrival
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_blue +500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Зачисление через Сбербанк Онлайн
+            .history_date 05.10.2017
+
+      li._outgo
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_red -500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Покупка статуса VIP
+            .history_date 05.10.2017
+
+      li._arrival
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_blue +500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Зачисление через Сбербанк Онлайн
+            .history_date 05.10.2017
+
+      li._bg_gray._arrival
+        .history_unit
+          .history_info
+            .dm.history_operation_sum
+              span._val.clr_blue +500
+              span._icon
+                +menu_icon('coins')
+          .history_operation
+            .dm.history_operation_name Зачисление через Сбербанк Онлайн
+            .history_date 05.10.2017
+
+
+  .board_footer._search._history
+    .board_pagination
+      ul.board_pagination_list.searchPager
+        li
+          a.pagination_link.pagPrev(href='#')
+            span &#8592;
+
+        - var p = 0
+        while p < 6
+          - p++;
+          li
+            a.pagination_link.pagLink(data-page= p href='#' class= (p === 2 ? '_current' : ''))
+              span= p
+
+        li
+          a.pagination_link.pagNext(href='#')
+            span &#8594;
