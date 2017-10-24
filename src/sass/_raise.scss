@@ -5,6 +5,7 @@
     display: inline-block;
     vertical-align: middle;
     max-width: 100%;
+    max-height: 12em;
   }
 
   .landscape & {
@@ -40,6 +41,15 @@
       bottom: 0;
       border-left: 1px solid #ebeff2;
     }
+
+    &._king {
+      min-height: 33.5em;
+      background: url(../img/king_bg.png) no-repeat 100% 100%;
+
+      &:before {
+        display: none;
+      }
+    }
   }
 }
 
@@ -58,7 +68,16 @@
       right: 0;
       left: 0;
       height: 10px;
-      background: url(../img/border_wave.png) repeat-x 50% 0;
+      background: url(../img/border_wave_b.png) repeat-x 50% 0;
+    }
+
+    &._king {
+      margin-top: 4em;
+      padding-top: 4em;
+
+      &:before {
+        display: none;
+      }
     }
 
     p {
@@ -206,6 +225,405 @@
 
     svg {
       width: 10.2em;
+    }
+  }
+}
+
+.king_popup_block {
+
+  .landscape & {
+    padding: 0 2.3em;
+  }
+}
+
+.king_image_list {
+  @extend %clearfix;
+
+  .landscape & {
+    margin-left: -3.2em;
+
+    li {
+      float: left;
+      width: 33%;
+      padding-left: 3.2em;
+      margin-bottom: 3.2em;
+    }
+  }
+
+  .portrait & {
+    margin-left: -1.2em;
+
+    li {
+      float: left;
+      width: 50%;
+      padding-left: 1.2em;
+      margin-bottom: 1.2em;
+
+      @include respond-to-max($resp_step_1) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.king_image {
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: relative;
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &:before {
+    @include transition_all(opacity .3s);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: .5em solid $gl_red;
+    opacity: 0;
+    z-index: 2;
+  }
+
+  &._current,
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  img {
+    @extend %hor_vert_centr;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1;
+  }
+}
+
+.king_photo_tip {
+  position: absolute;
+  bottom: 2em;
+  right: 0;
+  left: 0;
+  text-align: center;
+  z-index: 1;
+  color: #fff;
+}
+
+.king_slider_holder {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+
+  .landscape & {
+    flex: 1 0;
+    max-width: 100%;
+    padding: 3em 3.4em;
+  }
+
+  .portrait & {
+    margin: 0 -3.5em -1.6em;
+  }
+}
+
+.king_slider_w {
+  //width: 100%;
+  //max-width: 1190px;
+  position: relative;
+  background: #f3f3f3;
+  overflow: hidden;
+
+  .landscape & {
+    position: absolute;
+    top: 3em;
+    bottom: 3em;
+    left: 3.4em;
+    right: 3.4em;
+    padding: 0 11.2em;
+
+    .swiper-container {
+      &:before {
+        content: '';
+        z-index: 2;
+        position: absolute;
+        bottom: 0;
+        //right: 11.2em;
+        //left: 11.2em;
+        right: 0;
+        left: 0;
+        height: 34.5em;
+        max-height: 50%;
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#000000', GradientType=0);
+      }
+    }
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+
+}
+
+.king_description {
+
+  .portrait & {
+    position: relative;
+  }
+
+}
+
+.king_info {
+
+  .landscape & {
+    color: #fff;
+    position: absolute;
+    bottom: 3.2em;
+    left: 16.2em;
+    z-index: 3;
+    max-width: 35%;
+  }
+
+  .portrait & {
+    padding: 5em 3.5em 2.5em;
+  }
+}
+
+.king_favorite {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  border-radius: 100%;
+  border: 2px solid #fff;
+  text-align: center;
+
+  svg {
+    fill: #fff;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .portrait & {
+    bottom: 100%;
+    width: 13.6em;
+    height: 13.6em;
+    line-height: 13em;
+    margin-bottom: 3.2em;
+    margin-left: -6.8em;
+
+    svg {
+      width: 7.4em;
+      height: 6.8em;
+    }
+  }
+
+  .landscape & {
+    width: 8.6em;
+    height: 8.6em;
+    line-height: 8em;
+    bottom: 4.8em;
+    margin-left: -2em;
+
+    svg {
+      width: 5em;
+      height: 4.5em;
+    }
+  }
+}
+
+.king_photo_counter {
+  background: rgba(8, 5, 19, .62);
+  padding: .6em 1.5em;
+  color: #fff;
+  z-index: 2;
+  white-space: nowrap;
+
+  svg {
+    width: 2.5em;
+    fill: #fff;
+  }
+
+  span {
+    &:first-child {
+      padding-right: .5em;
+    }
+  }
+
+  .portrait & {
+    position: absolute;
+    top: 2em;
+    left: 1.2em;
+    padding-left: .5em;
+    font-size: 1.5em;
+
+    svg {
+      width: 3.35em;
+    }
+
+    span {
+      &:first-child {
+        margin: -.75em 0;
+      }
+    }
+  }
+
+  .landscape & {
+    position: absolute;
+    right: 14.2em;
+    bottom: 2.7em;
+  }
+}
+
+.king_name {
+
+  .landscape & {
+    margin-bottom: .75em;
+  }
+
+  .portrait & {
+    font-size: 1.75em;
+    margin-bottom: .5em;
+  }
+}
+
+.king_city {
+  .portrait & {
+    font-size: 1.6em;
+  }
+}
+
+.king_slide {
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.king_control {
+  position: absolute;
+  top: 45%;
+  width: 1.6em;
+  height: 4.5em;
+  margin-top: -2.2em;
+  z-index: 1;
+
+  svg,
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &._prev {
+    left: 4.2em;
+  }
+
+  &._next {
+    right: 4.2em;
+  }
+
+  .portrait & {
+    width: 4.6em;
+    height: 11.5em;
+    margin-top: -5.8em;
+
+    svg {
+
+      #right-black,
+      #left-black {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+.king_photo_icon {
+  width: 4.4em;
+  height: 4.4em;
+  margin: -1.2em 1em -.8em 0;
+
+  svg {
+    fill: #fff;
+  }
+}
+
+.king_box {
+  .landscape & {
+    padding: 8.7em 2.4em 1.2em 6em;
+    float: left;
+    width: 25%;
+
+    > p {
+      color: rgba(0, 0, 0, .5);
+      margin-bottom: 1.8em;
+      line-height: 1.35;
+      max-width: 52em;
+      letter-spacing: .01em;
+    }
+  }
+
+  .portrait & {
+    text-align: center;
+    padding: 3.5em 0 2.6em;
+
+    p {
+      color: #a5a5a5;
+      font-size: 1.25em;
+      line-height: 1.3;
+      text-align: left;
+    }
+  }
+}
+
+.king_photo {
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .portrait & {
+    display: inline-block;
+    vertical-align: top;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 22.5em;
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#000000', GradientType=0);
+    }
+
+  }
+
+  .landscape & {
+    border-radius: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 27.2em;
+    height: 27.2em;
+    top: 49%;
+    left: 50%;
+    cursor: pointer;
+    margin: -13.6em 0 0 -13.6em;
+
+    img {
+      border-radius: 100%;
     }
   }
 }
@@ -380,8 +798,16 @@
     margin: 1em -1em 0 0;
   }
 
+  .portrait .check_v4 .check_text > & {
+    float: left;
+    font-size: 1.35em;
+    margin-left: 1.5em;
+    margin-top: .7em;
+    padding: .35em 1.4em .2em 0.85em;
+  }
+
   .portrait .check_v5 & {
-    transform: rotate(45deg) translate(25%, 25%);
+    transform: rotate(45deg) translate(26%, 25%);
     position: absolute;
     margin: 0;
     top: 0;
@@ -482,10 +908,12 @@
 
   img {
     display: block;
+    max-width: 100%;
   }
 
   .portrait & {
     margin-right: 0;
+    max-width: 8.5em;
   }
 }
 
@@ -521,6 +949,12 @@
 
     .portrait & {
       font-size: 3em;
+    }
+  }
+
+  .landscape & {
+    + .raise_type_list {
+      padding-top: 1.5em;
     }
   }
 }
@@ -750,24 +1184,22 @@
     }
   }
 
-  .portrait & {
-    &[data-filter='_show_outgo'] {
-      li {
-        display: none;
+  &[data-filter='_show_outgo'] {
+    li {
+      display: none;
 
-        &._outgo {
-          display: block;
-        }
+      &._outgo {
+        display: block;
       }
     }
+  }
 
-    &[data-filter='_show_arrival'] {
-      li {
-        display: none;
+  &[data-filter='_show_arrival'] {
+    li {
+      display: none;
 
-        &._arrival {
-          display: block;
-        }
+      &._arrival {
+        display: block;
       }
     }
   }
@@ -801,7 +1233,10 @@
 }
 
 .tab_holder {
-  margin: 0 -3.5em;
+
+  .portrait & {
+    margin: 0 -3.5em;
+  }
 }
 
 .tab_block {
@@ -812,6 +1247,18 @@
   li {
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .landscape & {
+
+    .check_text {
+      padding: 1.05em .5em 1.5em;
+      font-size: 1.55em;
+
+      &:before {
+        border-color: #f6f6f6;
+      }
+    }
   }
 
   .portrait & {
@@ -911,6 +1358,18 @@
   img {
     display: block;
     max-width: 100%;
+
+    .landscape & {
+      max-height: 7em;
+    }
+  }
+
+  .portrait & {
+    max-width: 8em;
+
+    img {
+      max-height: 8em;
+    }
   }
 }
 
@@ -940,13 +1399,6 @@
   }
 }
 
-.checkout_control_holder {
-
-  .landscape & {
-    text-align: center;
-  }
-}
-
 .checkout_tip {
   text-align: center;
 
@@ -970,8 +1422,7 @@
 }
 
 .checkout_controls {
-  display: inline-block;
-  vertical-align: top;
+  margin: 0 auto;
   width: 100%;
   max-width: 68em;
   padding: 2em 0;
@@ -1091,5 +1542,445 @@
     width: 10.5em;
   }
 }
+
+.vip_block {
+  position: relative;
+
+  .landscape & {
+    overflow: hidden;
+    background: #f9f9f9;
+  }
+
+  .portrait & {
+
+  }
+}
+
+.vip_right {
+  position: absolute;
+  bottom: -11em;
+  right: -2em;
+
+  img {
+    display: block;
+    width: 23em;
+    height: 30em;
+  }
+}
+
+.vip_left {
+  position: absolute;
+  bottom: -9em;
+  left: -10.4em;
+
+  img {
+    display: block;
+    width: 29em;
+    height: 49em;
+  }
+}
+
+.bg_island {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  height: 38.5em;
+  left: 0;
+  right: 0;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 100%;
+    margin-left: -.5em;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 2em;
+    right: 0;
+    left: 0;
+    bottom: -1px;
+    z-index: 2;
+    display: block;
+    background: url(../img/border_wave_t.png) repeat-x 50% 100%;
+  }
+}
+
+.vip_option_holder {
+  position: relative;
+
+  .gl_table {
+    position: relative;
+    z-index: 2;
+  }
+
+  .portrait & {
+    text-align: center;
+    margin: 0 -3.5em;
+    //padding-top: 3em;
+
+    &:after {
+      right: 0;
+      background: url(../img/right_island.jpg) no-repeat 0 0;
+    }
+
+    &:before {
+      left: 0;
+      background: url(../img/left_island.jpg) no-repeat 0 0;
+    }
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      height: 38.5em;
+      top: 0;
+      width: 32em;
+      z-index: 1;
+      background-size: cover;
+    }
+
+    .gl_table {
+      height: 37.5em;
+
+      .gl_table_cell {
+        padding-top: 3em;
+      }
+    }
+  }
+
+  .landscape & {
+    margin: 0 auto;
+    width: 50em;
+    height: 45.5em;
+
+    .gl_table {
+      text-align: center;
+    }
+  }
+}
+
+$palette_radius: 23em;
+$palette_list: '_empty', 'raise_free', 'hidden_photos', 'original_photos', '_empty_2', 'invisible', 'multi_gallery', 'search';
+
+$R: $palette_radius;
+$ticks: length($palette_list);
+$section: (pi()/36); // 21 !important
+$magic: pi() + $section * ($ticks + 1); // some magic to put first item at 12 o'clock
+
+.vip_options {
+  position: relative;
+
+  .portrait & {
+    @extend %clearfix;
+    margin-right: -1%;
+    margin-left: -3em;
+    padding: 0 2.5em 4em;
+    z-index: 2;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      vertical-align: top;
+      width: 33%;
+      padding-left: 3em;
+      padding-top: 8em;
+    }
+  }
+
+  .landscape & {
+    position: absolute;
+    height: 0;
+    width: 0;
+    left: 50%;
+    top: 50%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -25em;
+      bottom: -25em;
+      left: -25em;
+      right: -25em;
+      border-radius: 100%;
+      border: 1px solid #eef1f4;
+    }
+  }
+
+  li {
+    .landscape & {
+      @include transform_translate(-50%, -50%);
+      position: absolute;
+
+      //@for $i from 1 through $ticks {
+      //  $clr: nth($palette_list, $i);
+      //
+      //  &._vip_#{$clr} {
+      //    $rad: -((($ticks + 1) * $i * $section) - $magic);
+      //    top: $R * cos($rad);
+      //    left: $R * sin($rad);
+      //  }
+      //}
+
+      &._vip_search {
+        top: -14.5em;
+        left: -18.5em;
+      }
+
+      &._vip_multi_gallery {
+        top: 0.5em;
+        left: -23.8em;
+      }
+
+      &._vip_invisible {
+        top: 15em;
+        left: -20em;
+      }
+
+      &._vip_original_photos {
+        top: 15.5em;
+        left: 18em;
+      }
+
+      &._vip_hidden_photos {
+        top: 1em;
+        left: 24.8em;
+      }
+
+      &._vip_raise_free {
+        top: -14.5em;
+        left: 19em;
+      }
+    }
+  }
+}
+
+.vip_option {
+  position: relative;
+}
+
+.vip_option_name {
+
+  .landscape & {
+    @include transform_translate(0, -50%);
+    position: absolute;
+    top: 50%;
+    width: 20em;
+
+    span {
+      font-size: 1.6em;
+      line-height: 1.4;
+    }
+  }
+
+  .portrait & {
+    padding-top: .5em;
+
+    span {
+      font-size: 2.4em;
+      line-height: 1.3;
+    }
+  }
+
+  .landscape ._vip_search & {
+    right: 100%;
+    margin-right: 2em;
+    text-align: right;
+  }
+
+  .landscape ._vip_multi_gallery & {
+    right: 100%;
+    margin-right: 2em;
+    text-align: right;
+  }
+
+  .landscape ._vip_invisible & {
+    right: 100%;
+    margin-right: 2em;
+    text-align: right;
+  }
+
+  .landscape ._vip_original_photos & {
+    left: 100%;
+    margin-left: 2em;
+    text-align: left;
+  }
+
+  .landscape ._vip_hidden_photos & {
+    left: 100%;
+    margin-left: 2em;
+    text-align: left;
+  }
+
+  .landscape ._vip_raise_free & {
+    left: 100%;
+    margin-left: 2em;
+    text-align: left;
+  }
+}
+
+.vip_option_icon {
+  position: relative;
+
+  svg {
+    fill: $gl_blue;
+
+    path {
+      fill: $gl_blue;
+    }
+  }
+
+  .portrait & {
+    min-height: 9.5em;
+  }
+
+  .landscape ._vip_search & {
+    svg {
+      width: 6.5em;
+      height: 6.5em;
+    }
+  }
+
+  .landscape ._vip_multi_gallery & {
+    svg {
+      width: 8.6em;
+      height: 7.3em;
+    }
+  }
+
+  .landscape ._vip_invisible & {
+    svg {
+      width: 5.9em;
+      height: 7.8em;
+    }
+  }
+
+  .landscape ._vip_original_photos & {
+    svg {
+      width: 11.1em;
+      height: 7.8em;
+    }
+  }
+
+  .landscape ._vip_hidden_photos & {
+    svg {
+      width: 6.5em;
+      height: 6.5em;
+    }
+  }
+
+  .landscape ._vip_raise_free & {
+    svg {
+      width: 6.5em;
+      height: 6.5em;
+    }
+  }
+
+  .portrait ._vip_search & {
+    svg {
+      width: 7.5em;
+      height: 7.5em;
+    }
+  }
+
+  .portrait ._vip_multi_gallery & {
+    svg {
+      width: 9em;
+      height: 8em;
+    }
+  }
+
+  .portrait ._vip_invisible & {
+    svg {
+      width: 6.6em;
+      height: 7.8em;
+    }
+  }
+
+  .portrait ._vip_original_photos & {
+    svg {
+      width: 12.1em;
+      height: 8.8em;
+    }
+  }
+
+  .portrait ._vip_hidden_photos & {
+    svg {
+      width: 7.5em;
+      height: 7.5em;
+    }
+  }
+
+  .portrait ._vip_raise_free & {
+    svg {
+      width: 7.5em;
+      height: 7.5em;
+    }
+  }
+
+}
+
+.vip_user {
+  .landscape & {
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 3.5em;
+  }
+
+  .portrait & {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.vip_tip {
+  color: #fff;
+  text-align: center;
+  padding-top: 3em;
+
+  span {
+    font-size: 2.6em;
+    line-height: 1.3;
+  }
+}
+
+.vip_crown {
+  position: relative;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  .portrait & {
+    width: 14.5em;
+    margin: 0 auto;
+  }
+
+  .landscape & {
+    padding-bottom: .5em;
+  }
+}
+
+.vip_avatar {
+  position: relative;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  .portrait & {
+    margin: 0 auto;
+    width: 11.3em;
+    height: 11.3em;
+    border: .4em solid #fff;
+  }
+}
+
 
 

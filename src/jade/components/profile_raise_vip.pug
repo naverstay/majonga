@@ -1,0 +1,148 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span Получить VIP-статус
+
+    +profile_title_controls()
+
+  .vip_block
+    .vip_left.land_only
+      img(src='img/svg/palma_left.svg')
+    .vip_right.land_only
+      img(src='img/svg/palma_right.svg')
+
+    .vip_option_holder
+      .bg_island.land_hidden
+        img(src='img/bg_island.jpg')
+        img(src='img/bg_island.jpg')
+        img(src='img/bg_island.jpg')
+      .gl_table
+        .gl_table_cell
+          .vip_user
+            .vip_crown
+              img(src='img/crown_b.png')
+            .vip_avatar
+              img(src='img/vip.jpg')
+            .vip_tip.land_hidden
+              span Статус VIP<br>открывает мир неограниченных возможностей!
+
+      ul.vip_options
+        li._vip_search
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_search')
+            .vip_option_name
+              span Расширенный
+              span.land_only <br>
+              span  поиск
+
+        li._vip_multi_gallery
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_multi_gallery')
+            .vip_option_name
+              span Много фото
+              span.land_only <br>
+              span  в галерее
+
+        li._vip_invisible
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_invisible')
+            .vip_option_name
+              span Режим
+              span.land_only <br>
+              span  «Невидимка»
+
+        li._vip_original_photos
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_original_photos')
+            .vip_option_name
+              span Оригиналы
+              span.land_only <br>
+              span  фотографий
+
+        li._vip_hidden_photos
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_hidden_photos')
+            .vip_option_name
+              span Скрытые
+              span.land_only <br>
+              span  фотографии
+
+        li._vip_raise_free
+          .vip_option
+            .vip_option_icon
+              +menu_icon('vip_raise_free')
+            .vip_option_name
+              span Бесплатное
+              span.land_only <br>
+              span  поднятие анкеты
+
+  .raise_propose
+    .raise_caption.text_center
+      span Выберите удобный вам вариант!
+
+    ul.raise_type_list
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 1 сутки
+            span.raise_price
+              span._val 5
+              span.raise_icon
+                +menu_icon('coins')
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type' checked)
+          span.check_text
+            span.raise_type_name
+              span 3 суток
+            span.raise_price
+              span._val 15
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 30%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 7 дней
+            span.raise_best.land_hidden
+              span.fz_11 Лучший выбор!
+            span.raise_price
+              span._val 45
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.raise_best.land_only
+                span.fz_11 Лучший выбор!
+              span.fz_16 экономия 20%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 30 дней
+            span.raise_price
+              span._val 125
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 20%
+
+    .text_center
+      a.btn_v1.btn_red.raise_btn._chose(href='by_coins.html')
+        span.btn_text.fz_16 Я выбрал!

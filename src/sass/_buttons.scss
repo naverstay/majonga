@@ -101,6 +101,105 @@
   cursor: pointer;
   height: 2.7em;
 
+  &.gift_btn {
+    text-align: center;
+    position: absolute;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      fill: #d3d3d3;
+      width: 2.4em;
+      height: 2.4em;
+
+      path {
+        fill: #d3d3d3;
+      }
+    }
+
+    .landscape & {
+      width: 2.7em;
+      bottom: 2.5em;
+      right: 12.7em;
+    }
+
+    .portrait & {
+      width: 3.2em;
+      height: 3.2em;
+      left: 2.5em;
+      bottom: 5.5em;
+
+      svg {
+        width: 3.5em;
+        height: 3.5em;
+      }
+    }
+  }
+
+  &.smile_btn {
+    text-align: center;
+    position: absolute;
+    width: 2.7em;
+    bottom: 2.5em;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      fill: #d3d3d3;
+      width: 2.4em;
+      height: 2.4em;
+
+      path {
+        fill: #d3d3d3;
+      }
+    }
+
+    .landscape & {
+      right: 8.7em;
+    }
+  }
+
+  &.send_msg_btn {
+    text-align: center;
+    width: 2.7em;
+    font-size: 1em;
+    background: none;
+
+    svg {
+      fill: #fe5718;
+      width: 2.7em;
+      height: 2.7em;
+
+      path {
+        fill: #fe5718;
+      }
+    }
+
+    .landscape & {
+      position: absolute;
+      right: 4.6em;
+      bottom: 2.8em;
+
+      svg {
+        width: 2.3em;
+        height: 2.3em;
+      }
+    }
+
+    .portrait & {
+      position: absolute;
+      right: 4em;
+      bottom: 5em;
+      width: 3.8em;
+      height: 3.8em;
+
+      svg {
+        width: 3.8em;
+        height: 3.8em;
+      }
+    }
+  }
+
   &.counter_btn {
     position: absolute;
     border-radius: 1.3em;

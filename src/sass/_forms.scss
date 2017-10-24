@@ -248,7 +248,7 @@
 }
 
 .inp_hidden {
-  display: none;
+  display: none !important;
 }
 
 .f_label_v1 {
@@ -605,6 +605,14 @@
         border-color: #dfdfdf;
       }
     }
+
+    .landscape & {
+      .check_text {
+        &:before {
+          height: 3px;
+        }
+      }
+    }
   }
 
   &.check_v4 {
@@ -766,6 +774,49 @@
           background: #fff;
         }
       }
+    }
+  }
+
+  &.check_v6 {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: transparentize($gl_blue, .3);
+
+    .check_text {
+
+      &:after {
+        content: '';
+        display: none;
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -1.1em 0 0 -1.2em;
+        width: 2.4em;
+        height: 2.2em;
+        background: url(../img/svg/checkbox.svg) 50% 50% no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    }
+
+    .inp_hidden:checked + .check_text {
+      cursor: default;
+
+      &:after {
+        display: block;
+      }
+    }
+
+    .portrait.edit_photos & {
+      display: block;
     }
   }
 }
@@ -978,6 +1029,28 @@
     height: 2em;
     font: 1.6em/1 $PFDinDisplayProReg;
   }
+
+  &.input_v5 {
+    border: none;
+    background: none;
+    border-bottom: 1px solid #d2d2d2;
+    height: 2em;
+    color: #7f7f7f;
+    font: 1.6em/1 $PFDinDisplayProReg;
+
+    &::-moz-placeholder {
+      color: rgba(127, 127, 127, .5);
+    }
+
+    &::-webkit-input-placeholder {
+      color: rgba(127, 127, 127, .5);
+    }
+
+    .portrait & {
+      font-size: 3em;
+      border-bottom-width: 2px;
+    }
+  }
 }
 
 textarea._h5.f_input {
@@ -992,6 +1065,10 @@ textarea.mob_h_3.f_input {
   .portrait & {
     height: 4.4em;
   }
+}
+
+.popup_caption {
+  margin-bottom: 2.5em;
 }
 
 .jconfirm.jconfirm-white .jconfirm-bg,
@@ -1031,7 +1108,77 @@ textarea.mob_h_3.f_input {
 
   .jconfirm & {
     .jconfirm-box {
+      border-radius: 0 !important;
+      overflow: visible !important;
+
+      div.jconfirm-closeIcon {
+        right: 0;
+        top: -1.2em;
+        font-size: 60px !important;
+        line-height: 1 !important;
+        width: auto;
+        height: auto;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.king_photo_dialog {
+  margin: 0 auto;
+
+  .portrait & {
+    max-width: 57em;
+  }
+
+  .portrait .jconfirm & {
+    .jconfirm-box {
+      .jconfirm-buttons {
+        padding-bottom: 5em;
+        font-size: 1.25em;
+      }
+    }
+  }
+
+  .landscape & {
+    max-width: 68em;
+  }
+
+  .jconfirm & {
+
+    .jconfirm-box {
+      position: relative;
       border-radius: 0;
+      overflow: visible !important;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 9em;
+        background: #f9f9f9;
+      }
+
+      div.jconfirm-title-c {
+        font-size: 1em;
+        line-height: 1.2;
+        padding: 1.8em 2em 2em;
+      }
+
+      .jconfirm-buttons {
+        padding-bottom: 2em;
+        float: none;
+        text-align: center;
+        position: relative;
+
+        button.btn {
+          @extend .btn_v1.raise_btn;
+          @extend .btn_red;
+          text-transform: none;
+        }
+      }
 
       div.jconfirm-closeIcon {
         right: 0;
@@ -1078,6 +1225,12 @@ textarea.mob_h_3.f_input {
 
     .jconfirm-box {
       border-radius: 0;
+
+      div.jconfirm-title-c {
+        font-size: 1em;
+        line-height: 1.2;
+        padding: 1.8em 2em 2em;
+      }
 
       .jconfirm-buttons {
         padding-bottom: 2em;

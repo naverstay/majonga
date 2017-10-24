@@ -135,6 +135,7 @@
       background: #fcfcfc;
       font-size: 2.2em;
       padding: 1.2em 5em 1.1em 1.25em;
+      display: none;
     }
 
     &._search {
@@ -151,6 +152,12 @@
         content: '';
         position: absolute;
       }
+    }
+  }
+
+  .portrait.edit_photos & {
+    &._fixed {
+      display: block;
     }
   }
 
@@ -258,7 +265,6 @@
     margin: -.4em 0 0 -.4em;
     border-radius: 100%;
     background: #000;
-    font-size: .5em;
 
     &:after,
     &:before {
@@ -280,6 +286,16 @@
     }
   }
 
+  &:hover > span {
+    background: $gl_blue;
+  }
+
+  .portrait & {
+    > span {
+      font-size: .5em;
+    }
+  }
+
   .board_title & {
     right: 0;
   }
@@ -287,6 +303,114 @@
 
 .board_footer_link {
   color: #000;
+}
+
+.board_title_menu {
+  position: relative;
+  margin-left: -.5em;
+  padding-right: 2em;
+  cursor: pointer;
+}
+
+.board_title_menu_dd {
+  @extend %bx_shdw;
+  position: absolute !important;
+  z-index: 3 !important;
+  top: 100%;
+  left: 3em;
+  display: none;
+  background: #fff;
+
+  ._menu_opened & {
+    display: block;
+  }
+
+  &._right {
+    left: auto;
+    right: .5em;
+  }
+
+  .portrait & {
+    font-size: .55em;
+    left: 0;
+
+    &._right {
+      left: auto;
+      right: .5em;
+    }
+  }
+}
+
+.board_menu {
+
+  li {
+
+  }
+
+  .landscape & {
+    padding: 1em 0 1.3em;
+  }
+
+  .portrait & {
+    padding: 1.7em 0;
+  }
+}
+
+.board_menu_counter {
+  font-size: .9em;
+}
+
+.board_menu_link {
+  @include transition_all(color .3s);
+  display: block;
+  color: #000;
+
+  &:hover {
+    color: $gl_blue;
+  }
+
+  .landscape & {
+    padding: .8em 2.8em;
+
+    span {
+      font-size: 1.6em;
+      padding-right: .4em;
+    }
+  }
+
+  .portrait & {
+    padding: 1.7em 1.4em 1.7em 3.4em;
+
+    span {
+      font-size: 3.2em;
+      padding-right: .5em;
+    }
+  }
+}
+
+.board_title_menu_icon {
+  @include transition_all(transform .3s);
+  @include transform_rotate(-90);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -.5em;
+  width: 1em;
+  height: 1em;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ._menu_opened & {
+    @include transform_rotate(90);
+  }
+}
+
+.flip_number {
+  font-size: .4em;
+  margin-top: -1.8em;
 }
 
 .board_title {
@@ -325,9 +449,32 @@
         border-bottom: 1px solid #dfdfdf;
       }
 
+      &._king {
+        text-align: center;
+        font-size: 1.5em;
+        padding: 2.7em 3em 2.5em 1em;
+
+        &:before {
+          background: #fff;
+          border: none;
+        }
+      }
+
       > * {
         position: relative;
         z-index: 1;
+      }
+    }
+  }
+
+  &.msg_page {
+    display: none;
+
+    .portrait._open_msg & {
+      display: block;
+
+      ~ .board_title {
+        display: none;
       }
     }
   }

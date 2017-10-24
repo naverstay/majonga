@@ -127,6 +127,7 @@
 
 .profile_avatar {
   float: left;
+  overflow: hidden;
 
   img {
     display: block;
@@ -1058,6 +1059,7 @@
   border-radius: 100%;
   text-align: center;
   border: none;
+  box-shadow: 0 1.1em 2.1em rgba(0, 0, 0, .4);
 
   svg {
     fill: #fff;
@@ -1098,6 +1100,7 @@
       border-radius: 100%;
       text-align: center;
       border: none;
+      box-shadow: 0 1.1em 2.1em rgba(0, 0, 0, .4);
 
       svg {
         fill: #fff;
@@ -1372,6 +1375,11 @@
     top: 8%;
     left: 10.5%;
     font-size: 2em;
+    display: none;
+  }
+
+  .portrait.edit_photos & {
+    display: block;
   }
 }
 
@@ -1468,6 +1476,10 @@
       font-size: 2.5em;
     }
   }
+
+  .portrait.edit_photos & {
+    display: none;
+  }
 }
 
 .profile_photo_views {
@@ -1548,6 +1560,10 @@
   width: auto;
   min-width: 50px;
   font: 2em $PFDinDisplayProReg;
+
+  @include respond-to-max($resp_step_1) {
+    font-size: 3.8em;
+  }
 }
 
 .lg-photomenu {

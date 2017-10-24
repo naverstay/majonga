@@ -35,7 +35,7 @@ body {
 
   &.portrait {
 
-    @include respond-to-max(640px) {
+    @include respond-to-max($resp_step_1) {
       font-size: .5em;
     }
 
@@ -95,6 +95,39 @@ body {
   .portrait & {
     padding: $header_mob_h 0 9.2em;
     padding-bottom: 92px;
+
+    //&._full_h {
+    //  @extend %global_flex_block_column_nowrap_space_around_stretch;
+    //
+    //  .main_content {
+    //    @extend %global_flex_block_column_nowrap_space_around_stretch;
+    //    flex: 1 0;
+    //
+    //    > .section_inner {
+    //      @extend %global_flex_block_column_nowrap_space_around_stretch;
+    //      flex: 1 0;
+    //
+    //      > .content {
+    //        @extend %global_flex_block_column_nowrap_space_around_stretch;
+    //        flex: 1 0;
+    //
+    //        > .board_holder {
+    //          @extend %global_flex_block_column_nowrap_space_around_stretch;
+    //          flex: 1 0;
+    //
+    //          > .messages_block {
+    //            flex: 1 0;
+    //
+    //            .correspondence_col,
+    //            .messages_col {
+    //              min-height: 100%;
+    //            }
+    //          }
+    //        }
+    //      }
+    //    }
+    //  }
+    //}
   }
 
   .landscape & {

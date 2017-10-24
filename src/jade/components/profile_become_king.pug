@@ -1,0 +1,93 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span Хочу стать царём горы
+
+    +profile_title_controls()
+
+  .raise_block._king
+    .king_box
+      .raise_caption.land_only
+        span Как это работает?
+
+      p.clr_gray
+        span.fz_16 Выберите одно своё лучшее фото и количество просмотров.
+
+      p.clr_gray
+        span.fz_16 Вы станете очень популярным, вам будут писать даже роботы.
+        span.fz_16.land_only Нет, правда, вот попробуйте!
+
+    .king_photo.kingPhoto
+      span.land_hidden.king_photo_tip
+        span.dm.king_photo_icon
+          +menu_icon('settings')
+        span.dm.fz_22 Выбрать другое фото
+      img(src='img/king_big2.jpg')
+
+  .raise_propose._king
+    .raise_caption.text_center
+      span Лучшие варианты поднятия
+    p.text_center
+      span.fz_16
+        span Тут можно написать подсказку о том, что это вообще такое.
+        span.land_hidden <br>
+        span  Пояснить пользователю, что считается просмотром.
+    ul.raise_type_list
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 10 просмотров
+            span.raise_price
+              span._val 5
+              span.raise_icon
+                +menu_icon('coins')
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type' checked)
+          span.check_text
+            span.raise_type_name
+              span 30 просмотров
+            span.raise_price
+              span._val 15
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 30%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 50 просмотров
+            span.raise_price
+              span._val 45
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.raise_best.land_only
+                span.fz_11 Лучший выбор!
+              span.fz_16 экономия 20%
+
+      li
+        label.f_check.check_v4
+          input.inp_hidden(type='radio' name='raise_type')
+          span.check_text
+            span.raise_type_name
+              span 100 просмотров
+            span.raise_price
+              span._val 125
+              span.raise_icon
+                +menu_icon('coins')
+            span.raise_share
+              span.fz_16 экономия 20%
+
+    .text_center
+      a.btn_v1.btn_red.raise_btn._chose(href='by_coins.html')
+        span.btn_text.fz_16 Я выбрал!

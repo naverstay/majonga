@@ -1,0 +1,61 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls._king
+    a.title_back_btn.dm.land_only(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.dm
+      span.fz_22.dm Вы смотрите&nbsp;
+      span.dm.flip_number
+        +flip(2)
+      span.fz_22.dm &nbsp;из&nbsp;
+      span.dm.flip_number
+        +flip(2)
+      span.dm.flip_number
+        +flip(0)
+
+    +profile_title_controls()
+
+  .king_slider_holder.keepWidth
+    .king_slider_w
+      .kingSlider.swiper-container.king_slider
+        .swiper-wrapper
+          +loop_while(5)
+            .slide.swiper-slide
+              .king_slide
+                img.checkHeight(src='img/king_slide_1.jpg')
+
+        .kingNext.king_control._prev
+          <svg width="143px" height="528px" viewBox="0 0 143 528" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="left-black" transform="translate(23.000000, 8.000000)" stroke-width="43" stroke="#000000">
+          <polyline id="_Path_2" points="99.42 511.51 0.43 255.95 99.42 0.4"></polyline>
+          </g>
+          </g>
+          </svg>
+        .kingPrev.king_control._next
+          <svg width="143px" height="528px" viewBox="0 0 143 528" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="right-black" transform="translate(5.000000, 8.000000)" stroke-width="43" stroke="#000000">
+          <polyline id="_Path_" points="15.8 511.51 114.8 255.95 16.15 0.39"></polyline>
+          </g>
+          </g>
+          </svg>
+
+      .king_description
+        a.king_favorite(href='#')
+          +menu_icon('heart')
+
+      .king_info
+        .king_name
+          span.fz_22.dm Виктория, 32
+          span.board_status._online.dm
+        .king_city
+          span.fz_16 Россия, Санкт-Петербург, Близнецы
+
+      .king_photo_counter
+        span.dm
+          +menu_icon('camera')
+        span.dm.fz_14 25
+
+

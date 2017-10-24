@@ -58,7 +58,6 @@ mixin profile_photo_menu(has_check, views, lock, adult, menu, camera, address)
         li: a.profile_menu_link(href='#'): span.fz_16 Интим-фото
         li: a.profile_menu_link(href='#'): span.fz_16 Удалить
 
-
 mixin profile_title_controls()
   .profile_title_controls
     ul.profile_controls
@@ -95,4 +94,14 @@ mixin search_view_controls()
         span.check_text
           +menu_icon('view_list')
 
-
+mixin flip(x)
+  span.flip-clock-wrapper
+    ul.flip.play
+      li.flip-clock-active
+        a(href="#")
+          .up
+            .shadow
+            .inn= x
+          .down
+            .shadow
+            .inn= x

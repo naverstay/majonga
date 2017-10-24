@@ -97,12 +97,12 @@ include ../components/profile_photo_menu
         .checkout_col._currency
           - if (checkout_mode === 'wm')
             .select_box_v1
-              select.select2(data-placeholder='В какой валюте отображать цену?' data-select-class='select_w1')
+              select.select2.prefix(data-placeholder='В какой валюте отображать цену?' data-select-class='select_w1' data-prefix='В какой валюте отображать цену?')
                 option(disabled selected)
-                option В какой валюте отображать цену?     wmz
-                option В какой валюте отображать цену?     wmr
-                option В какой валюте отображать цену?     wmu
-                option В какой валюте отображать цену?     wmd
+                option(value=0) wmz
+                option(value=1) wmr
+                option(value=2) wmu
+                option(value=3) wmd
 
         .checkout_col._phone
           .f_cell._wide

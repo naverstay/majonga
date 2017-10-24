@@ -1,10 +1,12 @@
 {
-  "prod_ver": false,
+  "prod_ver": true,
   "scripts": [
     "/js/jquery1.10.js",
     "/js/enquire.js",
     "/js/hammer.min.js",
     "/js/jquery.hammer.js",
+    "/js/jquery.mCustomScrollbar.min.js",
+    "/vendor/cropperjs-master/dist/cropper.js",
     "/vendor/jquery-confirm-master/dist/jquery-confirm.min.js",
     "/vendor/FlipClock-master/compiled/flipclock.js",
     "/vendor/lightGallery-master/lib/picturefill.min.js",
@@ -21,24 +23,30 @@
     "/js/main.js"
   ],
   "styles": [
+    "vendor/cropperjs-master/dist/cropper.css",
     "vendor/jquery-confirm-master/dist/jquery-confirm.min.css",
     "vendor/lightGallery-master/dist/css/lg-fb-comment-box.css",
     "vendor/lightGallery-master/dist/css/lg-transitions.css",
     "vendor/lightGallery-master/dist/css/lightgallery.css",
     "css/main_global.css"
   ],
-  "skip_templates": true,
+  "skip_templates": false,
   "skip_pug": [
     "!src/jade/pages/by_coins.pug",
     "!src/jade/pages/index.pug",
     "!src/jade/pages/my_history.pug",
     "!src/jade/pages/my_photos.pug",
+    "!src/jade/pages/profile.pug",
     "!src/jade/pages/my_profile.pug",
     "!src/jade/pages/profile_settings.pug",
-    "!src/jade/pages/profile.pug",
-    "!src/jade/pages/raise_profile.pug",
-    "!src/jade/pages/search_results.pug",
     "!src/jade/pages/user_profile.pug",
+    "!src/jade/pages/raise_profile.pug",
+    "!src/jade/pages/raise_vip.pug",
+    "!src/jade/pages/checkout_wm.pug",
+    "!src/jade/pages/checkout_sber.pug",
+    "!src/jade/pages/search_results.pug",
+    "!src/jade/pages/become_king.pug",
+    "!src/jade/pages/messages.pug",
     "!src/jade/pages/visitors.pug"
   ],
   "uglify": {

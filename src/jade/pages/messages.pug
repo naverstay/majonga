@@ -1,0 +1,24 @@
+extends ../components/layout
+block head
+  - var pageTitle = 'Профиль сообщения';
+  - var pageDescription = '';
+  - var activePage = 4;
+  - var leftBtn = 1;
+
+block content
+  .wrapper._full_h
+    include ../components/header
+    include ../components/top
+
+    .main_content
+      .section_inner.content_block
+        .aside.profile_aside.scrollFixed
+          include ../components/profile_aside
+
+        .content.filter_aside.land_hidden
+          include ../components/filter
+
+        .content._blur_it
+          include ../components/messages_block
+
+    include ../components/footer

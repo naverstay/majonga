@@ -1,0 +1,317 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls.msg_page
+    a.title_back_btn.dm.closeChatBtn(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.dm.board_title_menu
+      span.fz_22.dm
+        span Ирина, 26
+      span.profile_title_tip.fz_11.dm Была 7 часов назад
+
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.dm.board_title_menu.boardMenuBtn
+      span.fz_22
+        span.land_only Мои
+        span.land_ttl  Сообщения
+      span.board_title_menu_icon
+        img(src='img/svg/back-left-arr.svg')
+
+    a.title_edit_btn.land_hidden.editBtn(href='#')
+      +menu_icon('settings')
+
+    .board_title_menu_dd
+      ul.board_menu
+        li
+          a.board_menu_link(href='#')
+            span.fw_m Избранные
+            span.clr_black_5.board_menu_counter 5
+        li
+          a.board_menu_link(href='#')
+            span.fw_m Заблокированные
+            span.clr_black_5.board_menu_counter 20
+        li
+          a.board_menu_link(href='#')
+            span.fw_m Корзина
+            span.clr_black_5.board_menu_counter 20
+
+    +profile_title_controls()
+
+  .messages_block
+    .messages_col
+      .messages_remover
+        a.btn_v1.btn_red.profile_action_btn.removeMsg(href='#')
+          span.btn_icon
+            +menu_icon('trash')
+
+      .tab_holder: ul.tab_block.tabSwitcher
+        li.tabItem
+          label.check_v3.f_check
+            input.inp_hidden.tabToggle(data-filter='' type='radio' name='history_filter' checked)
+            span.check_text
+              span.fw_b Все
+              span._filter_count.board_menu_counter 23
+        li.tabItem
+          label.check_v3.f_check
+            input.inp_hidden.tabToggle(data-filter='_show_new' type='radio' name='history_filter')
+            span.check_text
+              span.fw_b Новые
+              span._filter_count.board_menu_counter 18
+        li.tabItem
+          label.check_v3.f_check
+            input.inp_hidden.tabToggle(data-filter='_show_online' type='radio' name='history_filter')
+            span.check_text
+              span.fw_b Онлайн
+              span._filter_count.board_menu_counter 5
+
+      .corr_list_holder.mCSB
+        ul.corr_list.filterList
+          +loop_while(15)
+            li._new
+              .corr_unit.openDialog
+                .corr_counter._new
+                  span 35
+                .corr_photo
+                  .corr_info
+                    span
+                  label.f_check.check_v6
+                    input.inp_hidden(type='checkbox')
+                    span.check_text
+                  img(src='img/top_4.jpg')
+
+                .corr_author
+                  span.author_name Владислав, 26
+                  span.board_status._online
+                .corr_text
+                  p
+                    span Эй, чувак, ты зачем смотрел мою анкету уже сто раз подряд? Какого хрена те....
+
+            li._online
+              .corr_unit.openDialog._online
+                .corr_counter
+                  span 25
+                .corr_photo
+                  .corr_info
+                    span
+                  label.f_check.check_v6
+                    input.inp_hidden(type='checkbox')
+                    span.check_text
+                  img(src='img/top_1.jpg')
+
+                .corr_author
+                  span.author_name Ирина, 26
+                  span.board_status._online
+                .corr_text
+                  p
+                    span И вообще ты мне надоел уже совсем, не пиши мне больше, понял? тупой му....
+
+      .board_footer._search.land_hidden
+        .board_pagination
+          ul.board_pagination_list
+            li
+              a.pagination_link(href='#')
+                span &#8592;
+
+            - var p = 0
+            while p < 6
+              - p++;
+              li
+                a.pagination_link(href='#')
+                  span= p
+
+            li
+              a.pagination_link(href='#')
+                span &#8594;
+
+    .correspondence_col
+      .correspondence_title
+        .collocutor_name.land_only
+          span._author Ирина, 26, Санкт-Петербург
+          span.board_status._online
+
+        .collocutor_icon.land_only
+          +menu_icon('user')
+
+        .collocutor_menu
+          a.board_menu_toggle.menuToggleBtn(href='#')
+            span
+          .board_title_menu_dd._right
+            ul.board_menu
+              li
+                a.board_menu_link(href='#')
+                  span.fw_m В избранные
+              li
+                a.board_menu_link(href='#')
+                  span.fw_m Удалить переписку
+              li
+                a.board_menu_link(href='#')
+                  span.fw_m Пожаловаться
+
+      .correspondence_board.mCSB
+        .correspondence_list
+          .msg_date
+            ._date.dm
+              span.fz_14 17 марта 2017
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Привет!
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span какие люди! как дела?
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span В общем тут такое дело, как бы тебе сказать-то, чтобы ты хоть понял меня немножко? cлышишь меня?
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span какие люди! как дела?
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span В общем тут такое дело, как бы тебе сказать-то
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Ира, это опять ты? <br>Заблуждение понимает под собой типичный предмет деятельности. Идеи гедонизма занимают центральное место
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Ты мне надоел, пока
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span э, не, а ну ка стой
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_date
+            ._date.dm
+              span.fz_14 18 марта 2017
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Привет!
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span какие люди! как дела?
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span В общем тут такое дело, как бы тебе сказать-то, чтобы ты хоть понял меня немножко? cлышишь меня?
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span какие люди! как дела?
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span В общем тут такое дело, как бы тебе сказать-то
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Ира, это опять ты? <br>Заблуждение понимает под собой типичный предмет деятельности. Идеи гедонизма занимают центральное место
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+          .msg_answer
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span Ты мне надоел, пока
+              .msg_corner
+              .msg_time 21:08
+
+          .msg_item
+            .msg_author
+              img(src='img/msg_author.jpg')
+            .msg_text
+              span э, не, а ну ка стой
+              .msg_corner
+              .msg_time 21:08
+            .msg_status
+              span Просмотрено
+
+
+      .correspondence_footer
+        form(action='#')
+          .input_w
+            input.input_v5.f_input(placeholder='Напишите сообщение (для отправки нажмите Enter)')
+
+          a.btn_v2.gift_btn(href='#')
+            +menu_icon('gift')
+          a.btn_v2.smile_btn.land_only(href='#')
+            +menu_icon('smile')
+          button.btn_v2.send_msg_btn
+            +menu_icon('plane')

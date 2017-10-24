@@ -42,6 +42,10 @@ var body_var,
     minimumDigits: 3
   },
 
+  cropBoxData,
+  canvasData,
+  cropper,
+
   //Standard dimensions, for which the body font size is correct
 
   baseFZ = 1,
@@ -76,11 +80,15 @@ function domReady(cb) {
 
   confirmDialogDefaults();
 
+  initScrollBars();
+
   startOrientationWatching(); // отслежаваем медиа-квери
 
   initPlaceholder(); // проверка пустых/заполненных инпутов
 
   initBoard(); // изотоп
+
+  keepWidth();
 
   // слайдеры
 
@@ -89,6 +97,8 @@ function domReady(cb) {
   initGiftSlider();
 
   initUserSlider();
+
+  initKingSlider();
 
   initGallery();
 
@@ -177,6 +187,7 @@ function domReady(cb) {
       return false;
     })
     .delegate('.editBtn', pointer_event, function () {
+      body_var.toggleClass('edit_photos');
       return false;
     })
     .delegate('.menuToggleBtn', pointer_event, function () {
@@ -216,6 +227,10 @@ function domReady(cb) {
 
       return false;
     })
+    .delegate('.boardMenuBtn', pointer_event, function (e) {
+      toggleMenuClass($(this).parent(), '_menu_opened');
+      return false;
+    })
     .delegate('.settingsCollapseBtn', pointer_event, function (e) {
       var btn = $(this);
 
@@ -235,13 +250,41 @@ function domReady(cb) {
       return false;
     })
     .delegate('.profileMenuBtn', pointer_event, function (e) {
-      //e.preventDefault();
-
       var btn = $(this), parent = btn.closest('.gridItem');
 
-      console.log(btn);
-
       toggleMenuClass(parent, '_menu_opened');
+
+      return false;
+    })
+    .delegate('.removeMsg', pointer_event, function (e) {
+      var msg = $('.openDialog input:checked');
+
+      msg.each(function () {
+        $(this).closest('li').remove();
+      });
+
+      return false;
+    })
+    .delegate('.closeChatBtn', pointer_event, function (e) {
+      $('.openDialog._active').removeClass('_active');
+      body_var.removeClass('_open_msg');
+      return false;
+    })
+    .delegate('.openDialog', pointer_event, function (e) {
+      if (body_var.hasClass('edit_photos')) {
+        var chck = $(this).find('input:checkbox');
+
+        chck.prop('checked', !chck.prop('checked'));
+
+      } else {
+        var msg = $(this);
+
+        $('._menu_opened').removeClass('_menu_opened');
+
+        body_var.toggleClass('_open_msg', !msg.hasClass('_active'));
+
+        toggleMenuClass(msg, '_active');
+      }
 
       return false;
     })
@@ -257,6 +300,15 @@ function domReady(cb) {
     })
     .delegate('.startCrop', pointer_event, function (e) {
       openCropDialog();
+      return false;
+    })
+    .delegate('.kingPhoto', pointer_event, function (e) {
+      openKingDialog();
+      return false;
+    })
+    .delegate('.kingImg', pointer_event, function (e) {
+      var img = $(this).toggleClass('_current');
+      $('.kingImg').not(img).removeClass('_current');
       return false;
     })
     .delegate('.raiseUpBtn', pointer_event, function (e) {
@@ -412,10 +464,72 @@ function hideDropDowns(el) {
   //});
 }
 
+function saveCropImage() {
+  console.log('send image to server here');
+
+  var cnvs = cropper.getCroppedCanvas({maxWidth: 4096, maxHeight: 4096});
+  var img = cnvs.toDataURL("image/png");
+  cropper.destroy();
+
+  $('.startCrop img').attr('src', img);
+}
+
 function openCropDialog() {
+  $.confirm({
+    title: '<span class="fz_22">Crop it</span>',
+    content: '<div class="raise_up_block">' +
+    '<div class="crop_img"><img id="crop_it" src="img/avatar_5.jpg" alt=""></div></div>',
+    columnClass: 'raise_up_dialog',
+    buttons: {
+      confirm: {
+        btnClass: 'btn_v1 btn_red raise_btn',
+        text: '<span class="fz_16 btn_text">Применить</span>',
+        action: function () {
+          saveCropImage();
+        }
+      }
+    },
+    onOpenBefore: function () {
+      var image = document.getElementById('crop_it');
 
+      console.log($(this.$content));
 
+      cropper = new Cropper(image, {
+        autoCropArea: 0.5,
+        ready: function () {
+          cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+        }
+      });
+    }
+  });
+}
 
+function openKingDialog() {
+  $.confirm({
+    title: '<span class="fz_22">Выберите одно фото, которое будет царём горы</span>',
+    content: '<div class="king_popup_block"><ul class="king_image_list">' +
+    '<li><div class="king_image kingImg"><img src="img/king_1.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_2.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_1.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_2.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_1.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_2.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_1.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_2.jpg" alt=""></div></li>' +
+    '<li><div class="king_image kingImg"><img src="img/king_2.jpg" alt=""></div></li>' +
+    '</ul>' +
+    '</div>',
+    columnClass: 'king_photo_dialog',
+    buttons: {
+      confirm: {
+        btnClass: 'btn_v1 btn_red raise_btn',
+        text: '<span class="fz_16 btn_text">Я выбрал!</span>',
+        action: function () {
+          console.log('update king photo');
+        }
+      }
+    }
+  });
 }
 
 function giftRemover(link) {
@@ -797,6 +911,22 @@ function initUserSlider() {
   });
 }
 
+function initKingSlider() {
+  userSlider = new Swiper('.kingSlider', {
+    // Optional parameters
+    //direction: 'vertical',
+
+    //effect: 'fade',
+    loop: true,
+    autoResize: true,
+    spaceBetween: 0,
+    slidesPerView: 1,
+
+    nextButton: '.kingNext',
+    prevButton: '.kingPrev'
+  });
+}
+
 function initTopSlider() {
   topSlider = new Swiper('.topSlider', {
     // Optional parameters
@@ -839,6 +969,16 @@ function initGiftSlider() {
   });
 }
 
+function keepWidth() {
+  var kw = $('.keepWidth'), ch = $('.checkHeight');
+
+  // установка высоты контейнера для слайдера царя горы. без этого ломается слайдер из-за флексабокса
+
+  if (kw && kw.length && ch && ch.length) {
+    kw.css('minHeight', ch.eq(0).height() + 1 * kw.css('paddingTop').replace('px', '') + 1 * kw.css('paddingBottom').replace('px', ''));
+  }
+}
+
 function initBoard() {
 
   if ($('.boardGrid').length) {
@@ -853,9 +993,12 @@ function initBoard() {
   }
 }
 
-function formatResult(rslt) {
-  //if (rslt.loading) return rslt.name;
+function formatPrefixResultSelection(rslt, e, r) {
+  var prefix = $(e).closest('.select2').prevAll('select.select2').attr('data-prefix');
+  return (prefix && prefix.length > 0) ? $('<span class="fl">' + prefix + '</span>&nbsp;<span class="fr selected_currency">' + rslt.text + '</span>') : rslt.text;
+}
 
+function formatResult(rslt) {
   return rslt.name;
 }
 
@@ -918,6 +1061,9 @@ function initSelect() {
       minimumResultsForSearch: 3,
       containerCssClass: "select_c2"
     },
+    s2prefix = {
+      templateSelection: formatPrefixResultSelection
+    },
     s2ajax = {
       ajax: {
         //url: "https://api.github.com/search/repositories",
@@ -949,10 +1095,10 @@ function initSelect() {
       },
       escapeMarkup: function (markup) {
         return markup;
-      }, // let our custom formatter work
+      },
       minimumInputLength: 1,
-      templateResult: formatResult, // omitted for brevity, see the source of this page
-      templateSelection: formatResultSelection // omitted for brevity, see the source of this page
+      templateResult: formatResult,
+      templateSelection: formatResultSelection
     };
 
   $('.select2').each(function (ind) {
@@ -967,6 +1113,8 @@ function initSelect() {
       };
 
     opt = Object.assign({}, opt, ($slct.hasClass('ajax') ? s2ajax : s2options));
+
+    opt = Object.assign({}, opt, ($slct.hasClass('prefix') ? s2prefix : s2options));
 
     $slct.select2(opt);
   });
@@ -1226,6 +1374,7 @@ function windowRisize() {
 
   if (resizer) {
     resizeTimer = setTimeout(function () {
+      keepWidth();
       resizeMe(browserWindow.height(), browserWindow.width());
     }, 0);
   }
@@ -1358,7 +1507,9 @@ function initValidation() {
 }
 
 function startOdometer() {
-  getUsers();
+  if ($('.counters').length) {
+    getUsers();
+  }
 }
 
 function getUsers() {
@@ -1420,7 +1571,21 @@ function switchTab(el, next) {
       return $(this).prop('checked');
     }).closest('.tabItem').index() + (next ? -1 : 1);
 
-    tabs.eq((goto < 0 ? tabs.length - 1 : (goto > tabs.length - 1 ? 0 : goto))).prop('checked', 'checked');
+    tabs.eq((goto < 0 ? tabs.length - 1 : (goto > tabs.length - 1 ? 0 : goto))).prop('checked', 'checked').trigger('change');
+  }
+}
+
+function initScrollBars() {
+
+  if ($('.mCSB').length) {
+    $('.mCSB').mCustomScrollbar({
+      documentTouchScroll: true,
+      mouseWheel: {
+        //preventDefault: true
+      },
+      theme: "dark",
+      scrollEasing: "linear"
+    });
   }
 }
 
