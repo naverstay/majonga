@@ -1,0 +1,84 @@
+include ../components/profile_photo_menu
+
+.board_holder
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span Фотолента
+
+    +profile_title_controls()
+
+  .photolenta_block
+    .photolenta_text
+      span Можно размещать только проверенные модератором фотографии из вашего альбома «Это я».
+
+    ul.raise_type_list
+      li
+        .photolenta_unit
+          a.startCrop.photocrop_btn(href='#' data-corp-target='#img_1')
+            +menu_icon('edit')
+          label.f_check.check_v4._dark._has_image
+            input.inp_hidden(type='radio' name='raise_type')
+            span.check_text
+              span.raise_type_name
+                span Одно фото
+              span.raise_price
+                span._val 5
+                span.raise_icon
+                  +menu_icon('coins')
+              span.photolenta_img
+                img#img_1(src='img/top_1.jpg')
+
+        .input_w.photolenta_tip
+          input.input_v6.f_input(placeholder='Примечание')
+
+      li
+        .photolenta_unit
+          a.startCrop.photocrop_btn(href='#' data-corp-target='#img_2')
+            +menu_icon('edit')
+          label.f_check.check_v4._dark._has_image
+            input.inp_hidden(type='radio' name='raise_type')
+            span.check_text
+              span.raise_type_name
+                span Два фото
+              span.raise_price
+                span._val 9
+                span.raise_icon
+                  +menu_icon('coins')
+              span.raise_share
+                span.raise_best.land_only
+                  span.fz_11 Лучший выбор!
+                span.fz_16 экономия 20%
+              span.raise_best.land_hidden._lenta
+                span.fz_11 Лучший выбор!
+              span.photolenta_img
+                img#img_2(src='img/top_3.jpg')
+
+        .input_w.photolenta_tip
+          input.input_v6.f_input(placeholder='Примечание')
+
+      li
+        .photolenta_unit
+          a.startCrop.photocrop_btn(href='#' data-corp-target='#img_3')
+            +menu_icon('edit')
+          label.f_check.check_v4._dark._has_image
+            input.inp_hidden(type='radio' name='raise_type')
+            span.check_text
+              span.raise_type_name
+                span Три фото
+              span.raise_price
+                span._val 12
+                span.raise_icon
+                  +menu_icon('coins')
+              span.raise_share
+                span.fz_16 экономия 20%
+              span.photolenta_img
+                img#img_3(src='img/top_4.jpg')
+
+        .input_w.photolenta_tip
+          input.input_v6.f_input(placeholder='Примечание')
+
+    .text_center
+      a.btn_v1.btn_red.raise_btn._chose(href='by_coins.html')
+        span.btn_text.fz_16 Я выбрал!

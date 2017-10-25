@@ -299,7 +299,13 @@ function domReady(cb) {
       }
     })
     .delegate('.startCrop', pointer_event, function (e) {
-      openCropDialog();
+      var btn = $(this), target = $(btn.attr('data-corp-target'));
+
+      if (!(target && target.length)) {
+        target = btn.find('img');
+      }
+
+      openCropDialog(target);
       return false;
     })
     .delegate('.kingPhoto', pointer_event, function (e) {
@@ -464,44 +470,50 @@ function hideDropDowns(el) {
   //});
 }
 
-function saveCropImage() {
+function saveCropImage(trgt) {
   console.log('send image to server here');
 
   var cnvs = cropper.getCroppedCanvas({maxWidth: 4096, maxHeight: 4096});
   var img = cnvs.toDataURL("image/png");
   cropper.destroy();
 
-  $('.startCrop img').attr('src', img);
+  trgt.attr('src', img);
 }
 
-function openCropDialog() {
-  $.confirm({
-    title: '<span class="fz_22">Crop it</span>',
-    content: '<div class="raise_up_block">' +
-    '<div class="crop_img"><img id="crop_it" src="img/avatar_5.jpg" alt=""></div></div>',
-    columnClass: 'raise_up_dialog',
-    buttons: {
-      confirm: {
-        btnClass: 'btn_v1 btn_red raise_btn',
-        text: '<span class="fz_16 btn_text">Применить</span>',
-        action: function () {
-          saveCropImage();
+function openCropDialog(target) {
+
+  if (target && target.length) {
+    $.confirm({
+      title: '<span class="fz_22">Crop it</span>',
+      content: '<div class="raise_up_block">' +
+      '<div class="crop_img"><img id="crop_it" src="img/avatar_5.jpg" alt=""></div></div>',
+      columnClass: 'raise_up_dialog',
+      buttons: {
+        confirm: {
+          btnClass: 'btn_v1 btn_red raise_btn',
+          text: '<span class="fz_16 btn_text">Применить</span>',
+          action: function () {
+            saveCropImage(target);
+          }
         }
+      },
+      onOpenBefore: function () {
+        var image = document.getElementById('crop_it');
+
+        console.log($(this.$content));
+
+        cropper = new Cropper(image, {
+          autoCropArea: 0.5,
+          ready: function () {
+            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+          }
+        });
       }
-    },
-    onOpenBefore: function () {
-      var image = document.getElementById('crop_it');
+    });
+  } else {
+    console.log('no target image');
+  }
 
-      console.log($(this.$content));
-
-      cropper = new Cropper(image, {
-        autoCropArea: 0.5,
-        ready: function () {
-          cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-        }
-      });
-    }
-  });
 }
 
 function openKingDialog() {

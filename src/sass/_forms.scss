@@ -673,6 +673,17 @@
           background: #fff;
         }
       }
+
+      &._dark {
+        .check_text {
+          background: #f3f3f3;
+        }
+
+        .inp_hidden:checked + .check_text:before {
+          background: #f6fcfe;
+          box-shadow: none;
+        }
+      }
     }
 
     .portrait & {
@@ -713,6 +724,30 @@
           margin: .8em 0 0 .8em;
           background: $gl_blue;
         }
+      }
+
+      &._dark {
+        .check_text {
+
+          &:after {
+            background: #fff;
+            top: 6em;
+            left: 3.4em;
+          }
+        }
+
+        .inp_hidden:checked + .check_text {
+          &:before {
+            top: 6em;
+            left: 3.4em;
+          }
+        }
+      }
+    }
+
+    &._dark {
+      .check_text {
+        background: #f3f3f3;
       }
     }
   }
@@ -1049,6 +1084,26 @@
     .portrait & {
       font-size: 3em;
       border-bottom-width: 2px;
+    }
+  }
+
+  &.input_v6 {
+    border: none;
+    background: none;
+    height: 2em;
+    font: 1.6em/1 $PFDinDisplayProReg;
+    border-bottom: 2px solid #d2d2d2;
+
+    &::-moz-placeholder {
+      color: #a5a5a5;
+    }
+
+    &::-webkit-input-placeholder {
+      color: #a5a5a5;
+    }
+
+    .portrait & {
+      font-size: 3em;
     }
   }
 }

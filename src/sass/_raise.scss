@@ -138,6 +138,24 @@
         height: 11.7em;
         padding: 2.3em 12.7%;
       }
+
+      &._dark {
+        &._has_image {
+          .check_text {
+            padding-right: 21em;
+          }
+
+          .raise_type_name {
+            font-size: .65em;
+            padding-top: .5em;
+          }
+
+          .raise_share {
+            margin-top: 0;
+            padding-right: 0;
+          }
+        }
+      }
     }
 
     .check_v5 {
@@ -155,9 +173,32 @@
       margin-bottom: 2em;
     }
 
-    .check_v4 .check_text {
-      height: 12em;
-      padding: 4.3em 1.8em 1em 9.2em;
+    .check_v4 {
+      .check_text {
+        height: 12em;
+        padding: 4.3em 1.8em 1em 9.2em;
+      }
+
+      &._dark {
+        &._has_image {
+          .check_text {
+            min-height: 16em;
+            padding-top: 6.5em;
+            padding-right: 21em;
+            padding-left: 10.5em;
+          }
+
+          .raise_type_name {
+            font-size: .65em;
+            padding-top: .5em;
+          }
+
+          .raise_share {
+            margin-top: 0;
+            padding-right: 0;
+          }
+        }
+      }
     }
   }
 
@@ -804,6 +845,11 @@
     margin-left: 1.5em;
     margin-top: .7em;
     padding: .35em 1.4em .2em 0.85em;
+
+    &._lenta {
+      float: left;
+      margin: 0;
+    }
   }
 
   .portrait .check_v5 & {
@@ -851,6 +897,7 @@
     //  margin-left: -1px;
     //}
   }
+
 }
 
 .raise_price {
@@ -957,6 +1004,122 @@
       padding-top: 1.5em;
     }
   }
+}
+
+.photolenta_tip {
+  padding: 1.8em 0 1.3em;
+}
+
+.photolenta_unit {
+  position: relative;
+}
+
+.photocrop_btn {
+  position: absolute;
+  bottom: .8em;
+  right: 1.2em;
+  z-index: 2;
+
+  svg {
+    width: 3.2em;
+    fill: #fff;
+
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.photolenta_block {
+
+  .portrait & {
+    padding: 3.5em 0 2em;
+
+    .raise_type_list {
+      padding-top: 2em;
+    }
+  }
+
+  .landscape & {
+    padding: 3.4em;
+
+    .raise_type_list {
+      li {
+        width: 50%;
+
+        @include respond-to-max(111em) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.photolenta_img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 16em;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 34.5em;
+    max-height: 50%;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#000000', GradientType=0);
+  }
+
+  &:before {
+    content: '';
+    position: relative;
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  img {
+    @extend %hor_vert_centr;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 22em;
+    max-height: 22em;
+  }
+
+  .landscape & {
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+  }
+}
+
+.photolenta_text {
+  color: #a5a5a5;
+
+  .landscape & {
+    margin-bottom: 1.5em;
+
+    span {
+      font-size: 1.6em;
+    }
+  }
+
+  .portrait & {
+    margin-bottom: 1.5em;
+
+    span {
+      font-size: 2em;
+    }
+  }
+
 }
 
 .history_account_state {
