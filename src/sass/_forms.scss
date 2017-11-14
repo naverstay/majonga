@@ -248,7 +248,14 @@
 }
 
 .inp_hidden {
-  display: none !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
 }
 
 .f_label_v1 {
@@ -285,6 +292,23 @@
   }
 }
 
+%check_icon {
+  position: relative;
+  width: 2.6em;
+  height: 2.6em;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.3em 0 0 -1.3em;
+    width: 2.6em;
+    height: 2.6em;
+    background-size: cover;
+  }
+}
+
 .label_v3 {
   display: block;
   width: 4.6em;
@@ -295,6 +319,24 @@
     display: inline-block;
     vertical-align: middle;
     max-width: 100%;
+  }
+
+  .check_text {
+    &._view_block {
+      &:before {
+        background: url(../img/view_1_g.png) no-repeat 50% 50%;
+      }
+
+      @extend %check_icon;
+    }
+
+    &._view_list {
+      &:before {
+        background: url(../img/view_2_g.png) no-repeat 50% 50%;
+      }
+
+      @extend %check_icon;
+    }
   }
 
   svg {
@@ -313,6 +355,18 @@
 
       path {
         fill: #c6c9cb;
+      }
+    }
+
+    &._view_block {
+      &:before {
+        background-image: url(../img/view_1_b.png);
+      }
+    }
+
+    &._view_list {
+      &:before {
+        background-image: url(../img/view_2_b.png);
       }
     }
   }
@@ -362,6 +416,10 @@
     .inp_hidden:checked + .check_text {
       color: #fff;
       background: $gl_blue;
+    }
+
+    .inp_hidden:focus + .check_text {
+      text-decoration: underline;
     }
 
     .portrait .filter_block & {
@@ -426,6 +484,10 @@
       &:after {
         opacity: 1;
       }
+    }
+
+    .inp_hidden:focus + .check_text {
+      text-decoration: underline;
     }
 
     .portrait .filter_block & {
@@ -497,6 +559,10 @@
       &:after {
         display: block;
       }
+    }
+
+    .inp_hidden:focus + .check_text {
+      text-decoration: underline;
     }
 
     .portrait .filter_block & {
@@ -852,6 +918,146 @@
 
     .portrait.edit_photos & {
       display: block;
+    }
+  }
+
+  &.check_v7 {
+    display: block;
+
+    .check_text {
+      position: relative;
+      display: block;
+      width: 100%;
+
+      &:before {
+        @include transition_all(border .3s, background .3s, box-shadow .3s);
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border: 1px solid transparent;
+      }
+
+      &:hover {
+        background: #f6fcfe;
+
+        &:before {
+          border-color: $gl_blue;
+        }
+      }
+    }
+
+    .landscape & {
+      .check_text {
+        @include transition_all(background .3s);
+        background: #f9f9f9;
+      }
+
+      .inp_hidden:checked + .check_text {
+        cursor: default;
+
+        &:before {
+          box-shadow: inset 0 0 2.7em rgba(0, 0, 0, .16);
+          border: 2px solid $gl_red;
+          background: #f9f9f9;
+        }
+      }
+    }
+
+    .landscape .board_checkout & {
+      .check_text {
+        background: #fff;
+      }
+
+      .inp_hidden:checked + .check_text {
+
+        &:before {
+          box-shadow: inset 0 0 2.7em rgba(0, 0, 0, .16);
+          border: 2px solid $gl_red;
+          background: #fff;
+        }
+      }
+
+      &._dark {
+        .check_text {
+          background: #f3f3f3;
+        }
+
+        .inp_hidden:checked + .check_text:before {
+          background: #f6fcfe;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .portrait & {
+      .check_text {
+        overflow: hidden;
+        padding-top: 7.5em;
+        background: #f3f3f3;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 1.5em;
+          left: 50%;
+          margin-left: -2.1em;
+          border-radius: 100%;
+          width: 4.2em;
+          height: 4.2em;
+          border: .2em solid #d2d2d2;
+        }
+
+        &:before {
+          @include transition_all(none);
+        }
+      }
+
+      .inp_hidden:checked + .check_text {
+        box-shadow: inset 0 0 0 2px $gl_blue;
+
+        &:before {
+          opacity: 1;
+          position: absolute;
+          top: 1.5em;
+          left: 50%;
+          bottom: auto;
+          right: auto;
+          width: 2.6em;
+          height: 2.6em;
+          border-radius: 100%;
+          z-index: 2;
+          margin: .8em 0 0 -1.3em;
+          background: $gl_blue;
+        }
+      }
+
+      &._dark {
+        .check_text {
+
+          &:after {
+            background: #fff;
+            top: 6em;
+            left: 3.4em;
+          }
+        }
+
+        .inp_hidden:checked + .check_text {
+          &:before {
+            top: 1.5em;
+            left: 50%;
+            margin-left: -2.1em;
+          }
+        }
+      }
+    }
+
+    &._dark {
+      .check_text {
+        background: #f3f3f3;
+      }
     }
   }
 }

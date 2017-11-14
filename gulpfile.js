@@ -237,5 +237,5 @@ gulp.task('dev', ['jade', 'sass', 'js', 'copy', 'browser-sync'], function () {
 });
 
 gulp.task('default', ['dev']);
-gulp.task('build', ['copy', 'jade', 'csso', 'image', 'compress']);
+gulp.task('build', ['copy', 'jade', 'csso', 'image', 'js']);
 gulp.task('svg', ['svgstore']);

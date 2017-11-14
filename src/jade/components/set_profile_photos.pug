@@ -1,0 +1,120 @@
+include ../components/profile_photo_menu
+
+.board_holder._footer_mode
+  .board_title._profile_controls
+    a.title_back_btn.dm(href='index.html')
+      img(src='img/svg/back-left-arr.svg')
+    span.fz_22.dm
+      span Фотолента
+
+    +profile_title_controls()
+
+  .board_block._has_aside._photos_mode
+    .land_only.hawaii_block
+      img(src='img/hawaii.png')
+    form(action='#'): .profile_photos_holder
+      .profile_photos_helper._photolenta
+        .profile_photos_helper_caption.land_only
+          span Правила игры:
+
+        .profile_photos_helper_text
+          p.land_only Наша галерея наверху, может предложить много мест для размещения.
+
+          p Вы можете разместить несколько фотографий из вашей анкеты<br>с приветствием.
+
+          p Размещения не имеет ограничений по времени и пропадают из поля видимости как только вас подвинут другие участники.
+
+          p
+            span.land_only <br>
+            span На фотографии должны быть только вы, в гордом одиночестве.
+          p В приветствии запрещены: грубость, нецензурщина, объявления, контакты.
+
+      .profile_photos_list._photolenta
+        .boardGrid.lightgallery_.clearfix
+          .profile_photo_unit.gridItem
+            a.btn_v1.btn_white_blue.photolenta_btn.selectPhotolentaImg(href='#')
+              span.land_hidden
+                +menu_icon('settings')
+              span.fz_16.land_only Выбрать другое
+            .profile_photo_w
+              .profile_photo.galItem()
+                img(src='img/my_photo.jpg')
+              +profile_photo_menu(true)
+          .profile_photo_unit.gridItem
+            a.btn_v1.btn_white_blue.photolenta_btn.selectPhotolentaImg(href='#')
+              span.land_hidden
+                +menu_icon('settings')
+              span.fz_16.land_only Выбрать другое
+            .profile_photo_w
+              .profile_photo.galItem()
+                img(src='img/my_photo_adult.jpg')
+              +profile_photo_menu(true)
+          .profile_photo_unit.gridItem.land_only
+            a.btn_v1.btn_white_blue.photolenta_btn.selectPhotolentaImg(href='#')
+              span.land_hidden
+                +menu_icon('settings')
+              span.fz_16.land_only Выбрать другое
+            .profile_photo_w
+              .profile_photo.galItem._no_shadow._empty()
+              +profile_photo_menu(true)
+
+          .profile_photo_unit.gridItem.land_hidden
+            a.btn_v1.btn_white_blue.photolenta_btn.selectPhotolentaImg(href='#')
+              span.land_hidden
+                +menu_icon('settings')
+            .profile_photo_w
+              a.profile_photo._camera_white(href='#')
+                .gl_table
+                  .gl_table_cell
+                    +menu_icon('camera_plus')
+              +profile_photo_menu(true)
+
+        .photolenta_switcher
+          .profile_photos_helper_caption.land_only
+            span Текст приветствия
+
+          .input_w.photolenta_tip
+            input.input_v6.f_input(placeholder='Моё приветствие к фотографиям')
+
+          ul.raise_type_list
+            li
+              label.f_check.check_v7
+                input.inp_hidden(type='radio' name='raise_type')
+                span.check_text
+                  span.raise_type_name
+                    span 1 фото
+                  span.raise_price
+                    span._val 5
+                    span.raise_icon
+                      +menu_icon('coins')
+            li
+              label.f_check.check_v7
+                input.inp_hidden(type='radio' name='raise_type' checked)
+                span.check_text
+                  span.raise_type_name
+                    span 2 фото
+                  span.raise_price
+                    span._val 15
+                    span.raise_icon
+                      +menu_icon('coins')
+                  span.raise_share
+                    span.fz_16 экономия 30%
+
+            li
+              label.f_check.check_v7
+                input.inp_hidden(type='radio' name='raise_type')
+                span.check_text
+                  span.raise_best._photolenta
+                    span.fz_11 Лучший выбор!
+                  span.raise_type_name
+                    span 3 фото
+                  span.raise_price
+                    span._val 45
+                    span.raise_icon
+                      +menu_icon('coins')
+                  span.raise_share
+                    span.fz_16 экономия 20%
+
+          .text_center
+            a.btn_v1.btn_red.raise_btn._chose(href='by_coins.html')
+              span.btn_text.fz_16 Я выбрал!

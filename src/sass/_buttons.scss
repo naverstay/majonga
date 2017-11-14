@@ -4,6 +4,41 @@
   height: 4em;
   cursor: pointer;
 
+  &.photolenta_btn {
+    display: block;
+    text-align: center;
+    border-radius: 2em;
+    font: 1em/2.6 $PFDinDisplayProBold;
+
+    .landscape & {
+      margin-right: 3em;
+      margin-top: -1.5em;
+
+      + .profile_photo_w {
+        bottom: 6em;
+      }
+    }
+
+    .portrait & {
+      position: absolute;
+      bottom: 5.7em;
+      right: 5.8em;
+      z-index: 2;
+      border: none;
+      background: none !important;
+
+      span {
+        display: block;
+      }
+
+      svg {
+        fill: #fff;
+        width: 3.2em;
+        height: 3.2em;
+      }
+    }
+  }
+
   &.coins_btn {
     display: inline-block;
     vertical-align: top;
@@ -266,6 +301,7 @@
 
   &:focus,
   &:active {
+    color: #fff;
     background: darken($gl_blue, 5%);
   }
 }
@@ -297,6 +333,7 @@
 
   &:focus,
   &:active {
+    color: #000;
     background: darken(#e1e4e6, 5%);
   }
 }

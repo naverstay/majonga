@@ -62,23 +62,29 @@ include ../components/profile_photo_menu
         .questionnaire_gifts
           .questionnaire_gift_list: .giftSlider.swiper-container
             .swiper-wrapper
-              +loop_while(3)
-                .questionnaire_slide.swiper-slide
+              +loop_while(1)
+                .questionnaireGift.questionnaire_slide.swiper-slide
                   .questionnaire_gift
                     a.gift_rm_btn.giftRmBtn(href='#')
                       +menu_icon('close')
                     img(src='img/gift_1.jpg')
-                .questionnaire_slide.swiper-slide
+                .questionnaireGift.questionnaire_slide.swiper-slide
                   .questionnaire_gift
                     a.gift_rm_btn.giftRmBtn(href='#')
                       +menu_icon('close')
                     img(src='img/gift_2.jpg')
-                .questionnaire_slide.land_hidden.swiper-slide
+                //-.questionnaireGift.questionnaire_slide.land_hidden.swiper-slide
                   .questionnaire_gift
                     a.gift_rm_btn.giftRmBtn(href='#')
                       +menu_icon('close')
                     img(src='img/gift_3.jpg')
-                .questionnaire_slide.swiper-slide
+
+                .questionnaireGift.questionnaire_slide.swiper-slide
+                  .questionnaire_gift
+                    a.gift_rm_btn.giftRmBtn(href='#')
+                      +menu_icon('close')
+                    img(src='img/gift_4.jpg')
+                .questionnaireGift.questionnaire_slide.swiper-slide
                   .questionnaire_gift
                     a.gift_rm_btn.giftRmBtn(href='#')
                       +menu_icon('close')
@@ -106,7 +112,7 @@ include ../components/profile_photo_menu
           span.fz_22 О себе
 
           .profile_settings_control
-            .profile_settings_btn.dm
+            a.profile_settings_btn.dm(href='profile_settings.html')
               +menu_icon('settings')
             .profile_settings_toggle.dm
               label.check_v2.f_check.checkIt
@@ -128,7 +134,7 @@ include ../components/profile_photo_menu
           span.fz_22 Знакомства
 
           .profile_settings_control
-            .profile_settings_btn.dm
+            a.profile_settings_btn.dm(href='profile_settings.html')
               +menu_icon('settings')
             .profile_settings_toggle.dm
               label.check_v2.f_check.checkIt
@@ -191,7 +197,7 @@ include ../components/profile_photo_menu
           span.fz_22 Типаж
 
           .profile_settings_control
-            .profile_settings_btn.dm
+            a.profile_settings_btn.dm(href='profile_settings.html')
               +menu_icon('settings')
             .profile_settings_toggle.dm
               label.check_v2.f_check.checkIt
@@ -264,7 +270,7 @@ include ../components/profile_photo_menu
           span.fz_22 Увлечения
 
           .profile_settings_control
-            .profile_settings_btn.dm
+            a.profile_settings_btn.dm(href='profile_settings.html')
               +menu_icon('settings')
             .profile_settings_toggle.dm
               label.check_v2.f_check.checkIt
@@ -307,7 +313,7 @@ include ../components/profile_photo_menu
           span.fz_22 Секс
 
           .profile_settings_control
-            .profile_settings_btn.dm
+            a.profile_settings_btn.dm(href='profile_settings.html')
               +menu_icon('settings')
             .profile_settings_toggle.dm
               label.check_v2.f_check.checkIt

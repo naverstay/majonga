@@ -278,6 +278,10 @@
     //min-height: 2.7em;
     //padding-top: 1em;
     width: 53.5%;
+
+    + .msg_item {
+      margin-top: 2.5em;
+    }
   }
 }
 
@@ -329,6 +333,10 @@
     //min-height: 2.7em;
     //padding-top: 1em;
     width: 45%;
+
+    + .msg_answer {
+      margin-top: 2.5em;
+    }
   }
 }
 
@@ -494,6 +502,15 @@
   .portrait & {
     margin: 0 -3.5em;
     height: 70.2em;
+  }
+}
+
+.corr_box {
+  display: none;
+  flex: 1 0;
+
+  &._current {
+    display: block;
   }
 }
 

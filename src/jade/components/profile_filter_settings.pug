@@ -63,10 +63,10 @@ include ../components/profile_photo_menu
 
               .profile_settings_box: .toddler_v1
                 .toddler_val.toddler_min
-                  input#filter_age_min.f_input.input_v1(value=25 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
+                  input.valMin.f_input.input_v1(value=25 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
                 .toddler_val.toddler_max
-                  input#filter_age_max.f_input.input_v1(value=40 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
-                .toddler(data-start=25 data-end=40 data-min=18 data-max=100 data-step=1 data-slide-func='updateFilterAge')
+                  input.valMax.f_input.input_v1(value=40 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
+                .toddler(data-start=25 data-end=40 data-min=18 data-max=100 data-step=1 data-slide-func='updateAge')
 
       .profile_settings_row
         .profile_settings_caption._expanded._toggled

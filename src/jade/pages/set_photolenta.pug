@@ -1,0 +1,25 @@
+extends ../components/layout
+block head
+  - var pageTitle = 'Помещение в фотоленту';
+  - var pageDescription = '';
+  - var activePage = 7;
+  - var leftBtn = 1;
+  - var bodyClass = 'edit_photos';
+
+block content
+  .wrapper._full_h
+    include ../components/header
+    include ../components/top
+
+    .main_content
+      .section_inner.content_block
+        .aside.profile_aside.scrollFixed
+          include ../components/profile_aside
+
+        .content.filter_aside.land_hidden
+          include ../components/filter
+
+        .content._blur_it
+          include ../components/set_profile_photos
+
+    include ../components/footer

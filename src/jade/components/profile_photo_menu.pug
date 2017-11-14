@@ -77,22 +77,25 @@ mixin profile_title_controls()
           span.profile_l_counter
             span 25
 
-      li: a.profile_control(href='#')
+      li: a.profile_control.toggleProfileSearch(href='#')
         span.profile_c_icon
           +menu_icon('search_2')
+
+  .profileTitleSearch.profile_title_search.land_only
+    include filter_block
 
 mixin search_view_controls()
   .search_view_controls
     ul.view_controls
       li: label.label_v3
         input.inp_hidden.viewTogller(type='radio' data-view='block' name='search_view' checked)
-        span.check_text
-          +menu_icon('view_block')
+        span.check_text._view_block
+          //-+menu_icon('view_block')
 
       li: label.label_v3
         input.inp_hidden.viewTogller(type='radio' data-view='list' name='search_view')
-        span.check_text
-          +menu_icon('view_list')
+        span.check_text._view_list
+          //-+menu_icon('view_list')
 
 mixin flip(x)
   span.flip-clock-wrapper

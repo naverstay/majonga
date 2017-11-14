@@ -54,7 +54,7 @@ include ../components/profile_photo_menu
 
         .questionnaire_tip
           .f_cell.questionnaire_comunication
-            a.btn_v1.btn_red.profile_action_btn(href='#')
+            a.btn_v1.btn_red.profile_action_btn(href='messages.html')
               span.btn_icon
                 +menu_icon('plane')
               span.btn_text.fz_16.land_only Сообщение
@@ -107,19 +107,19 @@ include ../components/profile_photo_menu
         .questionnaire_gifts
           .questionnaire_gift_list: .giftSlider.swiper-container
             .swiper-wrapper
-              +loop_while(3)
-                .questionnaire_slide.swiper-slide
+              +loop_while(1)
+                .questionnaire_slide.swiper-slide.questionnaireGift
                   .questionnaire_gift
                     img(src='img/gift_1.jpg')
-                .questionnaire_slide.swiper-slide
-                  .questionnaire_gift
-                    img(src='img/gift_2.jpg')
-                .questionnaire_slide.land_hidden.swiper-slide
-                  .questionnaire_gift
-                    img(src='img/gift_3.jpg')
-                .questionnaire_slide.swiper-slide
-                  .questionnaire_gift
-                    img(src='img/gift_4.jpg')
+                //-.questionnaire_slide.swiper-slide
+                //-  .questionnaire_gift
+                //-    img(src='img/gift_2.jpg')
+                //-.questionnaire_slide.land_hidden.swiper-slide
+                //-  .questionnaire_gift
+                //-    img(src='img/gift_3.jpg')
+                //-.questionnaire_slide.swiper-slide
+                //-  .questionnaire_gift
+                //-    img(src='img/gift_4.jpg')
 
           //-.questionnaire_gifts_make.land_hidden
             a.questionnaire_slide.dm(href='#')

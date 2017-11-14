@@ -312,6 +312,19 @@
   }
 }
 
+.profile_title_search {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+
+  ._show_profile_search & {
+    display: block;
+  }
+}
+
 .search_view_controls {
   position: absolute !important;
   top: 0;
@@ -976,10 +989,112 @@
 
   .landscape & {
     @include flex(1 0 auto);
+
+    &._photolenta {
+      padding: 1em 1em 3em 0.5em;
+      max-width: 65em;
+      margin: 0 auto;
+
+      .raise_type_list {
+        margin-left: -6%;
+        padding-top: 4em;
+
+        li {
+          padding-left: 6%;
+          width: 50%;
+          margin-bottom: 3.75em;
+
+          @include respond-to-min(100em) {
+            width: 33.3%;
+          }
+        }
+
+        .check_v7 .check_text {
+          height: 14.5em;
+          padding: 2.3em 8.7%;
+
+          @include respond-to-min(100em) {
+            padding: 2.3em 17.7%;
+          }
+        }
+      }
+
+      .raise_share {
+        margin: 0;
+        float: left;
+        clear: both;
+      }
+
+      .photolenta_switcher {
+        padding-right: 3em;
+
+        .profile_photos_helper_caption {
+          margin: 2em 0 0;
+        }
+      }
+
+      .profile_photo_unit {
+        width: 50%;
+        margin-bottom: 2em;
+
+        @include respond-to-min(100em) {
+          width: 33.3%;
+        }
+      }
+    }
   }
 
   .portrait & {
     margin: 0 -3.5em;
+
+    .photolenta_switcher {
+      padding-right: 4.8em;
+      padding-bottom: 4.5em;
+      margin-top: -1em;
+
+      .photolenta_tip {
+        padding-top: 0;
+      }
+
+      .raise_type_list {
+        @extend %clearfix;
+        margin-right: -4.8em;
+
+        li {
+          float: left;
+          width: 33.33%;
+          padding-right: 4.8em;
+          margin-bottom: 4.5em;
+        }
+      }
+    }
+
+    .check_v7 {
+      .raise_type_name {
+        margin-bottom: 1em;
+
+        span {
+          font-size: 2.7em;
+        }
+      }
+
+      .raise_price {
+        margin-bottom: 1em;
+      }
+
+      .raise_share,
+      .raise_price,
+      .raise_type_name {
+        display: block;
+        width: 100%;
+        float: none;
+        text-align: center;
+      }
+    }
+
+    &._photolenta {
+      margin: 0 -4.8em 0 0;
+    }
   }
 }
 
@@ -989,10 +1104,39 @@
   .landscape & {
     width: 34.4em;
     padding: 0 2.3em 0 5.3em;
+
+    &._photolenta {
+      padding: 1.7em 3em 0 4.2em;
+      order: 1;
+
+      .profile_photos_helper_caption {
+        margin-bottom: 1.75em;
+      }
+    }
   }
 
   .portrait & {
     padding-top: 4.2em;
+
+    &._photolenta {
+      padding-top: 0;
+      margin: 0 -3.5em;
+
+      .profile_photos_helper_text {
+        padding-top: 2em;
+        padding-bottom: 2em;
+        background: none;
+
+        p {
+          font-size: 2em;
+          line-height: 1.3;
+
+          + p {
+            margin-top: .75em;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1042,6 +1186,28 @@
 
       + p {
         margin-top: 1.35em;
+      }
+    }
+  }
+}
+
+.hawaii_block {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 39.5em;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  .landscape & {
+    + form .profile_photos_holder {
+      .profile_photos_helper {
+        padding-bottom: 9em;
       }
     }
   }
@@ -1196,6 +1362,10 @@
     }
   }
 
+  .portrait .profile_photos_list._photolenta & {
+    width: 33.3%;
+  }
+
   ._list & {
     &:before {
       display: none;
@@ -1317,6 +1487,34 @@
     }
   }
 
+  &._camera_white {
+    background: #fff;
+    text-align: center;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 2px;
+      bottom: 2px;
+      border: .3em solid $gl_blue;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    svg {
+      fill: $gl_blue;
+      width: 7em;
+
+      path {
+        fill: $gl_blue;
+      }
+    }
+  }
+
   &._profile_address {
     margin-top: -.5em;
     margin-right: -5em;
@@ -1358,6 +1556,11 @@
     bottom: 0;
     right: 0;
   }
+
+  .portrait .profile_photos_list._photolenta & {
+    bottom: 4.6em;
+    right: 4.6em;
+  }
 }
 
 .profile_photo_check {
@@ -1376,6 +1579,10 @@
     left: 10.5%;
     font-size: 2em;
     display: none;
+  }
+
+  .portrait .profile_photos_list._photolenta & {
+    background: #fff;
   }
 
   .portrait.edit_photos & {

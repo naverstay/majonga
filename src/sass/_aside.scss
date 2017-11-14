@@ -34,12 +34,18 @@
         background: #343538;
       }
     }
+
+    &._aside_bottom {
+      left: auto !important;
+      top: auto !important;
+    }
   }
 
   .landscape & {
+    @extend %translate3d;
     @extend %bx_shdw;
     @extend %global_flex_block_column_nowrap_flex-start_stretch;
-    min-height: 100%;
+    //min-height: 100%;
     background: #f6fafc;
 
     .aside_form_inner {
@@ -50,6 +56,19 @@
     .aside_footer {
       @include flex(1 0);
       @extend %global_flex_block_column_nowrap_flex-end_stretch;
+    }
+
+    &._aside_fixed {
+      position: fixed;
+      z-index: 2;
+      width: inherit;
+    }
+
+    &._aside_bottom {
+      position: absolute;
+      bottom: 0 !important;
+      left: 0 !important;
+      top: auto !important;
     }
   }
 }

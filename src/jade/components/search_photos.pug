@@ -17,9 +17,10 @@ include ../components/profile_photo_menu
 
   .board_block._photos_mode
     form(action='#'): .profile_photos_holder._search
-      .profile_photos_list: .boardGrid.lightgallery.loadSearchResults(class= visitors ? '_list' : '')
+      .profile_photos_list: .boardGrid.lightgallery_.loadSearchResults(class= visitors ? '_list' : '')
 
-  .board_footer._search
+  .board_footer._search.stickMeSpacer
+  .board_footer._search.stickMeBottom
     .board_pagination
       ul.board_pagination_list.searchPager
         li

@@ -6,7 +6,7 @@
   width: device-width;
 }
 
-html, body {
+html {
   height: 100%;
 }
 
@@ -28,6 +28,7 @@ body {
   background: #fff;
   color: $default_t_color;
   overflow-x: hidden;
+  height: 100%;
 
   &.landscape {
     background: #f1f1f1;
@@ -243,11 +244,11 @@ body {
 }
 
 .aside {
-
   .landscape & {
     float: left;
     width: 385px;
     font-size: 10px;
+    position: relative;
     //max-width: 23%;
   }
 
@@ -262,6 +263,22 @@ body {
     @include flex(1 0);
     padding-left: 30px;
   }
+}
+
+.stickem-container {
+  position: relative;
+}
+
+.stickit {
+  margin-left: 660px;
+  position: fixed;
+  top: 0;
+}
+
+.stickit-end {
+  bottom: 0;
+  position: absolute;
+  right: 0;
 }
 
 %mob_aside {

@@ -16,11 +16,15 @@ include ../components/profile_photo_menu
   .board_block._has_aside._photos_mode
     form(action='#'): .profile_photos_holder
       .profile_photos_list: .boardGrid.lightgallery.needMenu
-        .profile_photo_unit.gridItem: .profile_photo_w
+        //-.profile_photo_unit.gridItem: .profile_photo_w
           a.profile_photo._camera(href='#')
             .gl_table
               .gl_table_cell
                 +menu_icon('camera_plus')
+        .profile_photo_unit.gridItem: .profile_photo_w
+          a.profile_photo.galItem(href='img/my_photo_big.jpg')
+            img(src='img/my_photo.jpg')
+          +profile_photo_menu(true, 1250, true)
         .profile_photo_unit.gridItem: .profile_photo_w
           a.profile_photo.galItem(href='img/my_photo_big.jpg')
             img(src='img/my_photo.jpg')
@@ -80,13 +84,13 @@ include ../components/profile_photo_menu
         span.fw_b.land_only &nbsp;фото
 
     ul.board_footer_controls
-      li.land_hidden
+      li
         a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
           span.fz_16.fw_m Выключить
-      li.land_hidden
+      li
         a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
           span.fz_16.fw_m Только для VIP
-      li.land_hidden
+      li
         a.dm.btn_v2.board_footer_btn.btn_gray(href='#')
           span.fz_16.fw_m Интим-фото
       li.land_only

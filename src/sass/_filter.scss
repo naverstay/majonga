@@ -129,6 +129,10 @@
 
   .select2-container {
     min-width: 100%;
+
+    &.select2-container--open {
+      z-index: 2;
+    }
   }
 
   .select2-container--default {

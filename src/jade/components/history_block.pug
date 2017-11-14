@@ -16,9 +16,9 @@ include ../components/profile_photo_menu
       img(src='img/skarb.png')
 
     .history_acc_val
-      span._text У вас на счету:
-      span._val  155
-      span._icon
+      span.dm._text У вас на счету:
+      a.dm._val(href='my_history.html')  155
+      span.dm._icon
         +menu_icon('coins')
 
   .history_block
@@ -149,8 +149,8 @@ include ../components/profile_photo_menu
             .dm.history_operation_name Зачисление через Сбербанк Онлайн
             .history_date 05.10.2017
 
-
-  .board_footer._search._history
+  .board_footer._search._spacer._history.stickMeSpacer
+  .board_footer._search._history.stickMeBottom
     .board_pagination
       ul.board_pagination_list.searchPager
         li

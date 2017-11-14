@@ -1,4 +1,4 @@
-.aside_form_holder._profile.preventClosing
+.aside_form_holder._profile.preventClosing.stickMe
   .profile_holder
     .profile_block
       .profile_b_inner
@@ -15,16 +15,16 @@
 
         p
           span Ваша позиция:&nbsp;
-          span.profile_counter 22 456
+          a.profile_counter(href='search_results.html') 22 456
 
         p
           span.profile_icon
             <svg xmlns="http://www.w3.org/2000/svg" width="201.60149mm" height="107.10079mm" viewBox="0 0 571.46879 303.59279"><title>look-black</title><path d="M563.13479,141.6758C558.37309,136.3184,438.127,0,285.7344,0,134.5332,0,14.2866,136.3184,8.334,141.6758L0,151.7959l8.334,10.12019c4.7622,5.35741,125.0088,141.67671,277.4004,141.67671,151.20119,0,271.44729-136.3193,277.40039-141.67671l8.334-10.12019ZM285.7344,247.04108c-52.38481,0-95.24461-42.86039-95.24461-95.24519s42.8598-95.2451,95.24461-95.2451,95.24409,42.8604,95.24409,95.2451S338.11919,247.04108,285.7344,247.04108Z"/><circle cx="285.73452" cy="151.79592" r="41.6698"/></svg>
 
           span за сутки&nbsp;
-          span.profile_counter 1 456
+          a.profile_counter(href='visitors.html') 1 456
           span , за месяц&nbsp;
-          span.profile_counter 20 555
+          a.profile_counter(href='visitors.html') 20 555
 
     .profile_menu_w
       ul.profile_menu
@@ -51,17 +51,17 @@
             span.profile_l_icon
               +menu_icon('envelope')
             span.profile_l_text Сообщения
-            span.profile_l_counter
+            span.profile_l_counter.openNewMsg
               span 25
 
         li
-          a.profile_link(href='kings.html' class=(5 === activePage ? '_active' : ''))
+          a.profile_link(href='become_king.html' class=(5 === activePage ? '_active' : ''))
             span.profile_l_icon
               +menu_icon('cup')
             span.profile_l_text Царь горы
 
         li
-          a.profile_link(href='photolenta.html' class=(6 === activePage ? '_active' : ''))
+          a.profile_link(href='set_photolenta.html' class=(6 === activePage ? '_active' : ''))
             span.profile_l_icon
               +menu_icon('photos')
             span.profile_l_text Фотолента
@@ -75,7 +75,7 @@
     .profile_menu_w
       ul.profile_menu._mod_1
         li
-          a.profile_link(href='#')
+          a.profile_link(href='my_history.html')
             span.profile_l_icon._mod_1
               +menu_icon('coins')
             span.profile_l_text

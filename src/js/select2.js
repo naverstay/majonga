@@ -4179,7 +4179,7 @@ S2.define('select2/dropdown/attachBody',[
   };
 
   AttachBody.prototype.render = function (decorated) {
-    var $container = $('<span></span>');
+    var $container = $('<span tabindex="-1"></span>');
 
     var $dropdown = decorated.call(this);
     $container.append($dropdown);
@@ -5621,7 +5621,7 @@ S2.define('select2/core',[
     var $container = $(
       '<span class="select2 select2-container">' +
         '<span class="selection"></span>' +
-        '<span class="dropdown-wrapper" aria-hidden="true"></span>' +
+        '<span tabindex="-1" class="dropdown-wrapper" aria-hidden="true"></span>' +
       '</span>'
     );
 
