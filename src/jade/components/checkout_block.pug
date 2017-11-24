@@ -2,7 +2,7 @@ include ../components/profile_photo_menu
 
 .board_holder.board_checkout
   .board_title._profile_controls
-    a.title_back_btn.dm(href='index.html')
+    a.title_back_btn.dm.goBackBtn(href='index.html')
       img(src='img/svg/back-left-arr.svg')
     span.fz_22.dm
       - if (checkout_mode === 'sber')

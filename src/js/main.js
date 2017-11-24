@@ -192,6 +192,13 @@ function domReady(cb) {
       body_var.toggleClass('edit_photos');
       return false;
     })
+    .delegate('.goBackBtn', pointer_event, function () {
+      if ('history' in window) {
+        window.history.back();
+
+        return false;
+      }
+    })
     .delegate('.toggleProfileSearch', pointer_event, function () {
       body_var.toggleClass('_show_profile_search');
       return false;
@@ -407,17 +414,19 @@ function domReady(cb) {
 
       var form = $(this), msg = form.find('.msgInput').val();
 
-      $('.correspondenceList').append(
-        $('<div class="msg_item">' +
-          '<div class="msg_author"><img src="img/msg_author.jpg" class="mCS_img_loaded"></div>' +
-          '<div class="msg_text"><span>' + msg + '</span>' +
-          '<div class="msg_corner"></div>' +
-          '<div class="msg_time">21:08</div>' +
-          '</div>' +
-          '<div class="msg_status"><span>Доставлено</span></div>' +
-          '</div>')).closest('.mCSB').mCustomScrollbar("scrollTo", "bottom");
+      if (msg.length) {
+        $('.correspondenceList').append(
+          $('<div class="msg_item">' +
+            '<div class="msg_author"><img src="img/msg_author.jpg" class="mCS_img_loaded"></div>' +
+            '<div class="msg_text"><span>' + msg + '</span>' +
+            '<div class="msg_corner"></div>' +
+            '<div class="msg_time">21:08</div>' +
+            '</div>' +
+            '<div class="msg_status"><span>Доставлено</span></div>' +
+            '</div>')).closest('.mCSB').mCustomScrollbar("scrollTo", "bottom");
 
-      form[0].reset();
+        form[0].reset();
+      }
 
       return false;
     })
@@ -476,6 +485,10 @@ function domReady(cb) {
 
 function checkTagParent(el, tag) {
   return el.tagName.toUpperCase() === tag.toUpperCase() || $(el).closest(tag).length > 0;
+}
+
+function isMobile() {
+  return ('touchstart' in window) || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 function checkEventTimeout() {
@@ -1418,11 +1431,11 @@ function initToddler() {
 }
 
 function updateAge(that, values, handle, unencoded, isTap, positions) {
-  var tdlr = $(that.target);
+  var tdlr = $(that.target), parent = tdlr.closest('.toddlerHolder');
   console.log(that, handle, unencoded, isTap, positions);
 
-  tdlr.parent().find('.valMin').val(parseInt(values[0]));
-  tdlr.parent().find('.valMax').val(parseInt(values[1]));
+  parent.find('.valMin').val(parseInt(values[0]));
+  parent.find('.valMax').val(parseInt(values[1]));
 }
 
 $(window).on('resize', function () {
@@ -1819,28 +1832,36 @@ function toggleHistoryRemover(el, show) {
 }
 
 function switchTab(el, next) {
-  var tabs = $(el).find('.tabToggle');
+  if (checkEventTimeout()) {
+    var tabs = $(el).find('.tabToggle');
 
-  if ((tabs[0].tagName).toLowerCase() === 'input') {
-    var goto = tabs.filter(function () {
-      return $(this).prop('checked');
-    }).closest('.tabItem').index() + (next ? -1 : 1);
+    if ((tabs[0].tagName).toLowerCase() === 'input') {
+      var goto = tabs.filter(function () {
+        return $(this).prop('checked');
+      }).closest('.tabItem').index() + (next ? -1 : 1);
 
-    tabs.eq((goto < 0 ? tabs.length - 1 : (goto > tabs.length - 1 ? 0 : goto))).prop('checked', 'checked').trigger('change');
+      console.log(el, next, goto);
+
+      tabs.eq((goto < 0 ? tabs.length - 1 : (goto > tabs.length - 1 ? 0 : goto))).prop('checked', 'checked').trigger('change');
+    }
   }
 }
 
 function initScrollBars() {
 
   if ($('.mCSB').length) {
-    $('.mCSB').mCustomScrollbar({
-      documentTouchScroll: true,
-      mouseWheel: {
-        //preventDefault: true
-      },
-      theme: "dark",
-      scrollEasing: "linear"
-    });
+    if (isMobile) {
+      $('.mCSB').addClass('_has_scroll');
+    } else {
+      $('.mCSB').mCustomScrollbar({
+        documentTouchScroll: true,
+        mouseWheel: {
+          //preventDefault: true
+        },
+        theme: "dark",
+        scrollEasing: "linear"
+      });
+    }
   }
 }
 

@@ -2,7 +2,7 @@ include ../components/profile_photo_menu
 
 .board_holder
   .board_title._profile_controls
-    a.title_back_btn.dm(href='index.html')
+    a.title_back_btn.dm.goBackBtn(href='index.html')
       img(src='img/svg/back-left-arr.svg')
     span.fz_22.dm Анкета: Знакомства
 
@@ -61,7 +61,7 @@ include ../components/profile_photo_menu
               .profile_settings_label
                 span.fz_16 Возраст
 
-              .profile_settings_box: .toddler_v1
+              .profile_settings_box: .toddler_v1.toddlerHolder
                 .toddler_val.toddler_min
                   input.valMin.f_input.input_v1(value=25 data-inputmask="'alias': 'decimal', 'groupSeparator': '', 'digitsOptional': true, 'autoGroup': false, 'rightAlign': false" maxlength=3)
                 .toddler_val.toddler_max

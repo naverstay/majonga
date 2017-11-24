@@ -126,6 +126,18 @@
 
     .board_menu {
       padding: 2.9em 0 3.4em;
+
+      .board_menu_link {
+        padding: 2.8em 1.4em 2.8em 3.4em;
+        color: #fff;
+        min-width: 33.4em;
+        font-size: 1.55em;
+        letter-spacing: .07em;
+
+        .fw_m {
+          font-family: $PFDinDisplayProReg;
+        }
+      }
     }
 
     .board_menu_toggle {
